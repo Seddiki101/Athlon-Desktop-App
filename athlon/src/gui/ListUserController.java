@@ -36,14 +36,19 @@ import util.ConnectionDB;
  */
 public class ListUserController implements Initializable {
 
+    @FXML
     private TableView<User> tvUser;
     @FXML
     private TableColumn<?, ?> colNom;
     @FXML
     private TableColumn<?, ?> colPrenom;
+    @FXML
     private TableColumn<?, ?> colEmail;
+    @FXML
     private TableColumn<?, ?> colPhone;
+    @FXML
     private TableColumn<?, ?> colDateins;
+    @FXML
     private TextField tfsearch;
 
     private Connection cnx;
@@ -52,20 +57,19 @@ public class ListUserController implements Initializable {
     private ResultSet result;
     User user = null;
     ObservableList<User> UserList = FXCollections.observableArrayList();
+    
     @FXML
-    private TableView<?> tvRecs;
+    private Button btnTriDateins;
     @FXML
-    private TextField tfsearchRecs;
+    private Button btnTriNom;
     @FXML
-    private Button btnTriTitre;
+    private Button btnModifUsr;
     @FXML
-    private Button btnModifRecs;
+    private Button btnSupprimUsr;
     @FXML
-    private Button btnSupprimRecs;
+    private Button btnPDFusr;
     @FXML
-    private Button btnPDFrecs;
-    @FXML
-    private Button btnRefreshRecs;
+    private Button btnRefresh;
 
     /**
      * Initializes the controller class.
@@ -98,6 +102,7 @@ public class ListUserController implements Initializable {
         return UserList;
     }
 
+    @FXML
     public void refreshing() {
         ObservableList<User> list = getUserList();
 
@@ -112,6 +117,7 @@ public class ListUserController implements Initializable {
         tvUser.setItems(list);
     }
 
+    @FXML
     public void sortingName() {
         ObservableList<User> listusr = getUserList();
         FXCollections.sort(listusr, Comparator.comparing(User::getNom));
@@ -123,6 +129,7 @@ public class ListUserController implements Initializable {
         tvUser.setItems(listusr);
     }
 
+    @FXML
     public void sortingDateins() {
         ObservableList<User> listusr = getUserList();
         FXCollections.sort(listusr, Comparator.comparing(User::getDateins));
@@ -134,6 +141,7 @@ public class ListUserController implements Initializable {
         tvUser.setItems(listusr);
     }
 
+    @FXML
     public void searching() {
 
         FilteredList<User> filteredList = new FilteredList<>(UserList, p -> true);
@@ -165,6 +173,7 @@ public class ListUserController implements Initializable {
     }
     
     
+    @FXML
         private void Suppression(ActionEvent event) {    
         User usr = (User) tvUser.getSelectionModel().getSelectedItem();
         if( usr!=null ) {
@@ -197,4 +206,11 @@ public class ListUserController implements Initializable {
         }
     }    
 
+    public void modification()
+    {
+        
+    }
+        
+        
+        
 }

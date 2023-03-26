@@ -66,7 +66,7 @@ public class SignUPController implements Initializable {
                 {
                   //empty fields
                                   Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Athlon Me :: Error Message");
+                alert.setTitle("Athlon  :: Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Entrer all blank fields !!");
                 alert.showAndWait();  
@@ -75,7 +75,7 @@ public class SignUPController implements Initializable {
                 else if ( tfPassword.getText().length() < 8 ){
                 //pwd < 8
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Travel Me :: Error Message");
+                alert.setTitle("Athlon :: Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Password doit etre sup 8 caractéres !!");
                 alert.showAndWait();  
@@ -99,7 +99,7 @@ public class SignUPController implements Initializable {
              
                 System.out.println("ajout avec succee");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Travel Me :: BIENVENNUE");
+                alert.setTitle("Athlon :: BIENVENNUE");
                 alert.setHeaderText(null);
                 alert.setContentText("Vous Etes Inscrit !!");
                 alert.showAndWait();

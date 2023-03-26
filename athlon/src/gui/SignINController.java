@@ -81,7 +81,7 @@ public class SignINController implements Initializable {
                smt.setString(2,usrPass );
                ResultSet rs= smt.executeQuery();
                User p;
-               System.out.println("ya rabi");
+               // System.out.println("ya rabi");
                //if user exists
                 if(rs.next()){
                     
@@ -103,12 +103,8 @@ public class SignINController implements Initializable {
                       //show dashboard               
                       
                     //he enters here , and that s it
-                     alert.setTitle(" Athlon :: test 1");
-                     alert.setHeaderText(null);
-                     alert.setContentText("test 1");
-                     alert.showAndWait();
-                      
-                     
+ 
+                               
                     //btnSignIn.getScene().getWindow().hide();
                     /*
   
@@ -121,7 +117,9 @@ public class SignINController implements Initializable {
                     apSigin.getChildren().setAll(pan);
                     */
                     
-                          Parent t = FXMLLoader.load(getClass().getResource("/gui/Profile.fxml"));
+                    //all three methods not working
+                    
+                          Parent t = FXMLLoader.load(getClass().getResource("/gui/ReclamationCrud.fxml"));
                           Stage stage = new Stage();
                           stage = (Stage)(btnSignIn).getScene().getWindow();
                           Scene scene = new Scene(t);
@@ -133,15 +131,10 @@ public class SignINController implements Initializable {
                     }
                     else if (p.getRoles().contains("ROLE_USER") ){
                         //show regular user thingy
-                     alert.setTitle(" Athlon :: test 2");
-                     alert.setHeaderText(null);
-                     alert.setContentText("test 2");
-                     alert.showAndWait();
-                        
-                        
-                        
+
+                                                
                     btnSignIn.getScene().getWindow().hide();
-                    Parent root = FXMLLoader.load(getClass().getResource("/gui/launcher.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/gui/Profile.fxml"));
                      Scene scene;
                     scene = new Scene(root);
                     Stage stage = new Stage();
@@ -168,31 +161,6 @@ public class SignINController implements Initializable {
                         //verify your email or password
                         lblErrorLogin.setText("verify your email or password");
                     }
-                
-                
-                
-                     //Now we loadview based on user role
-                  /*   
-                     btnSignIn.getScene().getWindow().hide();
-                    Parent root = FXMLLoader.load(getClass().getResource("/Gui/MenuDynamicDevelopers.fxml"));
-                     Scene scene;
-                    scene = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.initStyle(StageStyle.TRANSPARENT);
-                    stage.setScene(scene);
-      
-                    stage.show();
-                }else{
-                   Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Athlon :: Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Wrong Email/Password !!");
-                alert.showAndWait();  
-                }
-          
-                */
-        
-                  
                   
       
            }catch(Exception ex){

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,5 +14,6 @@
       <TextField fx:id="tfPassword" layoutX="140.0" layoutY="225.0" promptText="password" />
       <TextField fx:id="tfPhone" layoutX="354.0" layoutY="93.0" promptText="phone" />
       <TextField fx:id="tfAdress" layoutX="355.0" layoutY="146.0" promptText="adress" />
+      <Button fx:id="btnEditUsr" layoutX="357.0" layoutY="200.0" mnemonicParsing="false" onAction="#updateUsr" prefHeight="26.0" prefWidth="150.0" text="Update" />
    </children>
 </AnchorPane>
