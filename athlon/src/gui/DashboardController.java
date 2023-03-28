@@ -5,13 +5,16 @@
  */
 package gui;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +22,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -35,6 +41,8 @@ public class DashboardController implements Initializable {
     private BorderPane bpDashboard;
     @FXML
     private AnchorPane apDashboard;
+    @FXML
+    private ImageView ivProfile;
 
     AnchorPane profile,listUsr,listRecs;
 
@@ -43,13 +51,28 @@ public class DashboardController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-             // preparing the pages
+            InputStream stream; 
+            // preparing the pages
             try {
           //        profile = FXMLLoader.load(getClass().getResource("/gui/page.fxml"));
             profile = FXMLLoader.load(getClass().getResource("/viewUser/Profile.fxml"));
             listUsr = FXMLLoader.load(getClass().getResource("/viewUser/ListUser.fxml"));
             listRecs = FXMLLoader.load(getClass().getResource("/viewReclamation/ListReclamation.fxml"));
           //  setNode(listUsr);
+          
+                                //image adding         
+            stream = new FileInputStream("B:/project/jav/fx/at/src/media/profil.png");
+            Image image = new Image(stream);
+            ivProfile.setImage(image);
+            //handling the bound on mouse click
+           // ivProfileLauncher.setPickOnBounds(true);
+            ivProfile.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                setNode(profile);
+            }
+        });
+          
             
             } catch (IOException ex) {
             System.out.println(ex);

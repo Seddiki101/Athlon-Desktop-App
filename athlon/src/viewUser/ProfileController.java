@@ -33,8 +33,8 @@ import util.SessionManager;
  */
 public class ProfileController implements Initializable {
 
-    @FXML
-    private ImageView ivProfile;
+    //@FXML
+    //private ImageView ivProfile;
     @FXML
     private TextField tfNom;
     @FXML
@@ -62,6 +62,7 @@ public class ProfileController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        /*
         InputStream stream;
         try {
             stream = new FileInputStream("B:/project/jav/fx/athlon/src/media/profil.png");
@@ -69,8 +70,9 @@ public class ProfileController implements Initializable {
             ivProfile.setImage(image);
             
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
+        */
         
         
      tfNom.setText( SessionManager.getUser().getNom() );
@@ -84,6 +86,7 @@ public class ProfileController implements Initializable {
     
     
     
+    @FXML
     public void updateUsr()
     {
              cnx = ConnectionDB.getInstance().getCnx();
