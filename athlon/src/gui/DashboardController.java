@@ -10,15 +10,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -31,58 +35,53 @@ public class DashboardController implements Initializable {
     private BorderPane bpDashboard;
     @FXML
     private AnchorPane apDashboard;
-    @FXML
-    private Button btnProfile;
+
+    AnchorPane profile,listUsr,listRecs;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }  
-    
-    //this loads pages as tabbed widget in qt 
-    private void loadPager(String page)
-    {
-        Parent root = null ;
-        
-        try {
+             // preparing the pages
+            try {
+          //        profile = FXMLLoader.load(getClass().getResource("/gui/page.fxml"));
+            profile = FXMLLoader.load(getClass().getResource("/viewUser/Profile.fxml"));
+            listUsr = FXMLLoader.load(getClass().getResource("/viewUser/ListUser.fxml"));
+            listRecs = FXMLLoader.load(getClass().getResource("/viewReclamation/ListReclamation.fxml"));
+          //  setNode(listUsr);
             
-            root = FXMLLoader.load(getClass().getResource( "/gui/"+ page +".fxml" ));
-        } catch (IOException ex) {
-             System.out.println(ex.getMessage());
-        }
-        
-        bpDashboard.setCenter(root);
-        //apDashboard.getChildren().add(root);
-        
+            } catch (IOException ex) {
+            System.out.println(ex);
+            }
     }
     
-    @FXML
-    private void btnProfileClicked()
-    {
-        //loadPager("Profile");
-        
-        try {   
-           // AnchorPane pp = FXMLLoader.load(getClass().getResource("/gui/Profile.fxml"));
-             // apDashboard.getChildren().setAll(pp);
-            
-                          Parent t = FXMLLoader.load(getClass().getResource("/gui/Profile.fxml"));
-                          Stage stage = new Stage();
-                          stage = (Stage)(btnProfile).getScene().getWindow();
-                          Scene scene = new Scene(t);
-                          stage.setScene(scene);
-                          stage.show();
-             
-        } catch (IOException ex) {
-             System.out.println(ex.getMessage());
-        }
-        
-        
+        private void setNode(Node node) {
+        apDashboard.getChildren().clear();
+        apDashboard.getChildren().add((Node) node);
 
-        
-      
+        FadeTransition ft = new FadeTransition(Duration.millis(1500));
+        ft.setNode(node);
+        ft.setFromValue(0.1);
+        ft.setToValue(1);
+        ft.setCycleCount(1);
+        ft.setAutoReverse(false);
+        ft.play();
     }
+    
+    
+    public void switchUserList(ActionEvent event) {
+        setNode(listUsr);
+    }
+    
+    public void switchRecList(ActionEvent event) {
+        setNode(listRecs);
+    }
+        
+    public void switchProfile(ActionEvent event) {
+        //this won t work unless you login
+           setNode(profile);
+    }
+    
     
 }

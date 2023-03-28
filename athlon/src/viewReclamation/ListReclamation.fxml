@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewReclamation.ListReclamationController">
+   <children>
+      <TableView fx:id="tvRecs" layoutX="30.0" layoutY="87.0" prefHeight="222.0" prefWidth="536.0">
+        <columns>
+          <TableColumn fx:id="colTitre" prefWidth="132.79998779296875" text="Titre" />
+          <TableColumn fx:id="colDesc" prefWidth="392.800048828125" text="Description" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tfsearchRecs" layoutX="30.0" layoutY="49.0" onAction="#searchingRecs" promptText="recherche" />
+      <Button fx:id="btnTriTitre" layoutX="205.0" layoutY="49.0" mnemonicParsing="false" onAction="#sortingTitre" text="Tri Titre" />
+      <Button fx:id="btnModifRecs" layoutX="626.0" layoutY="138.0" mnemonicParsing="false" onAction="#modificationRecs" prefHeight="34.0" prefWidth="110.0" text="Modifier" />
+      <Button fx:id="btnSupprimRecs" layoutX="626.0" layoutY="182.0" mnemonicParsing="false" onAction="#SuppressionRecs" prefHeight="34.0" prefWidth="110.0" text="Supprimer" />
+      <Button fx:id="btnPDFrecs" layoutX="626.0" layoutY="224.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" text="PDF" />
+      <Button fx:id="btnRefreshRecs" layoutX="510.0" layoutY="49.0" mnemonicParsing="false" onAction="#refreshingRecs" text="Refresh" />
+   </children>
+</AnchorPane>

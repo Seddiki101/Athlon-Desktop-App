@@ -58,9 +58,20 @@ public class User {
         this.phone = phone;
         this.adres = adres;    
     }
-    
-    
 
+    public User(int id, String email, String roles, String nom, String prenom, int phone, Date dateins) {
+        this.id = id;
+        this.email = email;
+        this.roles = roles;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.phone = phone;
+        this.dateins = dateins;
+    }
+    
+    
+    
+    
     public User(int id, String email, String password, String roles, String nom, String prenom, int phone, String adres, Date dateins) {
         this.id = id;
         this.email = email;
@@ -152,6 +163,11 @@ public class User {
 
     public static void setCurrent_User(User Current_User) {
         User.Current_User = Current_User;
+    }
+
+    @Override
+    public String toString() {
+        return "User {" + "id=" + id + ", email=" + email + ", password=" + password + ", roles=" + roles + ", nom=" + nom + ", prenom=" + prenom + ", phone=" + phone + ", adres=" + adres + ", dateins=" + dateins + '}';
     }
     
     
