@@ -6,13 +6,18 @@
 package viewUser;
 
 import entity.User;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +33,21 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import util.ConnectionDB;
+
+
+
+
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+
+
 
 /**
  * FXML Controller class
@@ -211,6 +231,69 @@ public class ListUserController implements Initializable {
         
     }
         
-        
+       
+  
+    @FXML
+public void generatePDF(ActionEvent event) {
+    
+    // Create content list
+List<String> content = new ArrayList<>();
+
+// Add header row to the content list
+content.add("First   Name   Last Name   Email   Phone   DateIns");
+
+// Populate table content from userList TableView
+for (User user : tvUser.getItems()) {
+    String row = user.getNom() + "," + user.getPrenom() + "," + user.getEmail() + "," + user.getPhone() + "," + user.getDateins();
+    content.add(row);
+}
+
+// Create a new PDF document
+PDDocument document = new PDDocument();
+
+// Add a new page to the document
+PDPage page = new PDPage();
+document.addPage(page);
+
+// Create a new font for the header
+PDType1Font font = PDType1Font.HELVETICA;
+
+// Add content to the PDF document
+try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+    // Add the title
+    contentStream.beginText();
+    contentStream.setFont(font, 36);
+    contentStream.newLineAtOffset(50, 650);
+    contentStream.showText("User List");
+    contentStream.endText();
+
+    // Add the table data
+    contentStream.beginText();
+    contentStream.setFont(font, 12);
+    contentStream.newLineAtOffset(50, 600);
+
+    for (int i = 0; i < content.size(); i++) {
+        contentStream.showText(content.get(i));
+        contentStream.newLineAtOffset(0, -20);
+    }
+
+    contentStream.endText();
+    contentStream.close();
+}catch(Exception e) {
+        e.printStackTrace();
+}
+
+// Save the PDF document to a file or stream
+    try {
+        document.save("user_list.pdf");
+        document.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+
+}
+    
+    
         
 }

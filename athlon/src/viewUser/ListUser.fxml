@@ -22,7 +22,7 @@
       <Button fx:id="btnTriNom" layoutX="319.0" layoutY="50.0" mnemonicParsing="false" onAction="#sortingName" text="Tri Nom" />
       <Button fx:id="btnModifUsr" layoutX="664.0" layoutY="139.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" text="Modifier" />
       <Button fx:id="btnSupprimUsr" layoutX="664.0" layoutY="183.0" mnemonicParsing="false" onAction="#Suppression" prefHeight="34.0" prefWidth="110.0" text="Supprimer" />
-      <Button fx:id="btnPDFusr" layoutX="664.0" layoutY="225.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" text="PDF" />
+      <Button fx:id="btnPDFusr" layoutX="664.0" layoutY="225.0" mnemonicParsing="false" onAction="#generatePDF" prefHeight="34.0" prefWidth="110.0" text="PDF" />
       <Button fx:id="btnRefresh" layoutX="414.0" layoutY="50.0" mnemonicParsing="false" onAction="#refreshing" text="Refresh" />
    </children>
 </AnchorPane>
