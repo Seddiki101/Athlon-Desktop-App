@@ -13,13 +13,13 @@
          <children>
             <ImageView fx:id="ivLogo" fitHeight="150.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true" />
            
-             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchSignin" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Sign in" textFill="WHITE">
+             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchSignin" prefHeight="50.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Sign in" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
             
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchSignup" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Sign up" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchSignup" prefHeight="50.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Sign up" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

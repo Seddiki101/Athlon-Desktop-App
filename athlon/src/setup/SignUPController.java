@@ -14,6 +14,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +23,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javax.mail.MessagingException;
 import util.ConnectionDB;
+import util.HelperV2;
 
 /**
  * FXML Controller class
@@ -100,11 +104,24 @@ public class SignUPController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Athlon :: BIENVENNUE");
                 alert.setHeaderText(null);
-                alert.setContentText("Vous Etes Inscrit !!");
+                alert.setContentText("Vous Etes Inscrit !! \n proceed to sign in ");
                 alert.showAndWait();
-                    
-                //now hide this and show login
                 
+
+                
+                    try {
+
+                        
+                        //we try to send mail
+
+                        HelperV2.sendWelcomeEmail(tfEmail.getText() , "Dear new user, \n Welcome to our app! We are glad you signed up" );
+                        System.out.println("mail fct called ");
+                        
+                    } catch (MessagingException ex) {
+                        System.out.println(ex);
+                    }
+
+                                    //now hide this and show login
                 
                 }
                 
