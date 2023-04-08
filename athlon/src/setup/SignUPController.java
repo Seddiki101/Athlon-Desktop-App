@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javax.mail.MessagingException;
 import util.ConnectionDB;
 import util.HelperV2;
+import util.PwdHasher;
 
 /**
  * FXML Controller class
@@ -87,6 +88,10 @@ public class SignUPController implements Initializable {
                 else{
                     
                     PreparedStatement smt = cnx.prepareStatement(query);
+                    String pew;
+                    pew = PwdHasher.hashPassword(tfPassword.getText());
+                    System.out.println("bigg pribmem  ");
+                    
                     
                            Date datei = new Date();
                             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
@@ -95,7 +100,7 @@ public class SignUPController implements Initializable {
             smt.setString(1, tfNom.getText());
             smt.setString(2, tfPrenom.getText());
             smt.setString(3, tfEmail.getText());
-            smt.setString(4, tfPassword.getText());
+            smt.setString(4, pew );
             smt.setString(5, strdate );
 
             smt.executeUpdate();

@@ -50,7 +50,7 @@ public class setupController implements Initializable {
             signin = FXMLLoader.load(getClass().getResource("signIN.fxml"));
             setNode(signin);
             
-            stream = new FileInputStream("B:/project/jav/fx/at/src/media/logo.png");
+            stream = new FileInputStream("B:/project/jav/fx/athlon/src/media/logo.png");
             Image image = new Image(stream);
             ivLogo.setImage(image);
             

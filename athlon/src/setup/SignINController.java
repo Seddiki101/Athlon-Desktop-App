@@ -28,6 +28,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import util.ConnectionDB;
+import util.PwdHasher;
 import util.SessionManager;
 
 
@@ -66,22 +67,29 @@ public class SignINController implements Initializable {
     private void login() {
     String usrEmail = tfEmail.getText().toString();
     String usrPass = pfPWD.getText().toString();
+  //  String usrPass = PwdHasher.hashPassword(pfPWD.getText());
     
-            String query2="select * from user where email=?  and password=?";
+            String query2="select * from user where email=?";
             cnx = ConnectionDB.getInstance().getCnx();
             
            try{
               PreparedStatement smt = cnx.prepareStatement(query2);
        
                smt.setString(1,usrEmail );
-               smt.setString(2,usrPass );
+               //smt.setString(2,usrPass );
                ResultSet rs= smt.executeQuery();
                User p;
                // System.out.println("ya rabi");
                //if user exists
                 if(rs.next()){
+                    //here teleport
+                    String hashedPassword = rs.getString("password");
+                    if (PwdHasher.verifyPassword(usrPass, hashedPassword)) {
+                // Passwords match, user is authenticated
+                    System.out.println("heehe");
+                    }
                     
-                    
+    
                     //getting user info
                      p=new User(rs.getInt("id"),rs.getString("email"),rs.getString("password"),rs.getString("roles"),rs.getString("nom"),rs.getString("prenom"),rs.getInt("phone"),rs.getString("adres") );
                      User.setCurrent_User(p);
@@ -114,20 +122,11 @@ public class SignINController implements Initializable {
                           stage.setScene(scene);
                           stage.show();
                           
-                    }
-                    else {
-                        //this is uselsess
-                        //account exists but it has no roles
-                        lblErrorLogin.setText("verify your email or password");
-                        
-                     alert.setTitle(" Athlon :: test 3");
-                     alert.setHeaderText(null);
-                     alert.setContentText("test 3");
-                     alert.showAndWait();
-                        
-                    }
+                    }      
                     
-                     
+                    
+                    
+                    //here teleport
                 }
                         else {
                         //verify your email or password
