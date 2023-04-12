@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="754.0" prefWidth="1049.0" style="-fx-background-color: black;" styleClass="-bor" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProduitController">
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="754.0" prefWidth="1049.0" style="-fx-background-color: black;" styleClass="-bor" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProduitController">
    <children>
       <BorderPane layoutX="6.0" layoutY="27.0" prefHeight="75.0" prefWidth="1137.0" style="-fx-border-color: white;">
          <left>
@@ -36,7 +36,7 @@
       <TextField fx:id="brandProduitFiled" layoutX="170.0" layoutY="253.0" />
       <TextField fx:id="descriptionProduitFiled" layoutX="168.0" layoutY="321.0" />
       <TextField fx:id="prixProduitFiled" layoutX="168.0" layoutY="400.0" />
-      <TextField fx:id="imageProduitFiled" layoutX="108.0" layoutY="649.0" style="-fx-background-color: #1a0202;" />
+      <TextField fx:id="imageProduitFiled" layoutX="635.0" layoutY="-89.0" style="-fx-background-color: #1a0202;" />
       <Label layoutX="92.0" layoutY="-37.0" text="Id" />
       <Label graphicTextGap="5.0" layoutX="34.0" layoutY="189.0" style="-fx-content-display: #FF0000;" text="Nom" textFill="#eeeded">
          <font>
@@ -85,6 +85,11 @@
       <Button fx:id="selectImageBtn" layoutX="167.0" layoutY="529.0" mnemonicParsing="false" onMouseClicked="#selectImage" prefHeight="31.0" prefWidth="187.0" style="-fx-background-color: #f4f0ef;" text="Ajouter une image" textFill="#220701" />
       <ImageView fx:id="imageProduitView" fitHeight="41.0" fitWidth="135.0" layoutX="14.0" layoutY="524.0" pickOnBounds="true" preserveRatio="true" />
       <Pane layoutX="393.0" layoutY="174.0" prefHeight="434.0" prefWidth="6.0" style="-fx-background-color: #9d240b;" />
-      <TextField fx:id="idProduitField" layoutX="173.0" layoutY="128.0" />
+      <TextField fx:id="idProduitField" layoutX="360.0" layoutY="-89.0" />
+      <Button layoutX="1022.0" layoutY="680.0" mnemonicParsing="false" onAction="#produitFront" style="-fx-background-color: #b13535;" text="Voir produit" textFill="#fcf9f9">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

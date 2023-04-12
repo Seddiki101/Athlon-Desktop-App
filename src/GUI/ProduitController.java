@@ -9,6 +9,7 @@ import Services.ServiceProduit;
 import Entities.Produit;
 import Services.ServiceCategorie;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +23,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -38,6 +41,7 @@ import javax.swing.JOptionPane;
 import static jdk.nashorn.internal.runtime.Debug.id;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 
 /**
@@ -55,6 +59,8 @@ public class ProduitController implements Initializable {
    private int idCategorieToadd ;
     @FXML
     private ImageView imageProduitView;
+    @FXML
+    private AnchorPane pane;
     
     
       public int getIdCategorieToadd() {
@@ -214,10 +220,15 @@ String path="";
     }
     
     // Vérification de la saisie du prix du produit
-  //  if (!prixProduit.matches("^\\d+(\\.\\d{1,2})?$")) {
-    //    JOptionPane.showMessageDialog(null, "Veuillez saisir un prix de produit valide.");
-     //   return;
-    //}
+    //if (!prixProduit.matches("^\\d+(\\.\\d{1,2})?$")) {
+      //  JOptionPane.showMessageDialog(null, "Veuillez saisir un prix de produit valide.");
+      // return;
+   // }
+   
+   // Vérification que la quantité et le prix sont des nombres valides
+
+
+
     
     // Vérification de la saisie du chemin d'accès de l'image du produit
    // if (imageProduit.isEmpty()) {
@@ -236,7 +247,13 @@ String path="";
     c.setNom(nomProduit);
     c.setBrand(brandProduit);
     c.setDescription(descriptionProduit);
-    c.setPrix(prixProduit);
+   try {
+
+c.setPrix(Float.parseFloat(prixProduitFiled.getText()));
+} catch (NumberFormatException e) {
+JOptionPane.showMessageDialog(null, "La quantité et le prix doivent être des nombres.");
+return;
+}
     c.setImage(imagePath);
      c.setIdCategory(idCategorieToadd);
      
@@ -248,8 +265,8 @@ String path="";
     JOptionPane.showMessageDialog(null, "Produit ajouté.");
     
     
-}
-    
+
+    }
    
 
     @FXML
@@ -325,6 +342,14 @@ c.setNomCategory( catPField.getValue());
         Image image = new Image(selectedFile.toURI().toString());
     imageProduitView.setImage(image);
     }
+    }
+
+    @FXML
+    private void produitFront(ActionEvent event) throws IOException {
+        
+          pane.getChildren().clear();
+        Parent Content = FXMLLoader.load(getClass().getResource("frontProduit.fxml"));
+        pane.getChildren().setAll(Content);
     }
 
     

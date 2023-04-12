@@ -38,8 +38,6 @@ public class FrontProduitController implements Initializable {
     private HBox cardlayoout;
         private List<Produit> recentlyadd;
 
-    @FXML
-    private GridPane vehiculeContainer;
        Connection cnx;
     Statement stmt;
     

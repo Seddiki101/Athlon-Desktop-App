@@ -55,7 +55,6 @@ ServiceCategorie sc =new ServiceCategorie();
     private TableColumn<Categorie, Integer> idCat;
     @FXML
     private TableColumn<Categorie, String> nomCat;
-    @FXML
     private TableColumn<Categorie, String> imageCat;
 
     /**
@@ -68,7 +67,7 @@ ServiceCategorie sc =new ServiceCategorie();
          idCat.setCellValueFactory(new PropertyValueFactory<>("id"));
            nomCat.setCellValueFactory(new PropertyValueFactory<>("nom"));
          
-       imageCat.setCellValueFactory(new PropertyValueFactory<>("image"));
+      // imageCat.setCellValueFactory(new PropertyValueFactory<>("image"));
 
         System.out.println("affichage" + sc.afficherCategorie());
          TableViewCat.setItems(Categorie);
@@ -80,7 +79,7 @@ ServiceCategorie sc =new ServiceCategorie();
               idCat.setCellValueFactory(new PropertyValueFactory<>("id"));
        nomCat.setCellValueFactory(new PropertyValueFactory<>("nom"));
       
-        imageCat.setCellValueFactory(new PropertyValueFactory<>("image"));
+       // imageCat.setCellValueFactory(new PropertyValueFactory<>("image"));
         
         TableViewCat.setItems(CategorieList);
     }
@@ -102,10 +101,10 @@ ServiceCategorie sc =new ServiceCategorie();
     }
     
     // Vérification de la saisie du chemin d'accès de l'image de la catégorie
-    if (imageCategorie.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Veuillez saisir un chemin d'accès d'image de catégorie valide.");
-        return;
-    }
+    //if (imageCategorie.isEmpty()) {
+      //  JOptionPane.showMessageDialog(null, "Veuillez saisir un chemin d'accès d'image de catégorie valide.");
+      //  return;
+   // }
     
     // Toutes les saisies sont valides, création et ajout de la catégorie
     Categorie c = new Categorie();
@@ -123,7 +122,7 @@ ServiceCategorie sc =new ServiceCategorie();
         c.setId(Integer.parseInt(IdCatFiled.getText()));
        c.setNom(nomCatFiled.getText());
        
-        c.setImage(imageCatFiled.getText());
+      //  c.setImage(imageCatFiled.getText());
 
         sc.modifierCategorie (c);
       updateTable();
@@ -136,7 +135,7 @@ ServiceCategorie sc =new ServiceCategorie();
         c.setId(Integer.parseInt(IdCatFiled.getText()));
        c.setNom(nomCatFiled.getText());
        
-        c.setImage(imageCatFiled.getText());
+     //   c.setImage(imageCatFiled.getText());
 
         sc.supprimerCategorie(c);
        updateTable();

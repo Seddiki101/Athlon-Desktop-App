@@ -23,12 +23,12 @@
             </ImageView>
          </right></BorderPane>
       <TextField fx:id="nomCatFiled" layoutX="175.0" layoutY="272.0" />
-      <TextField fx:id="imageCatFiled" layoutX="175.0" layoutY="344.0" />
+      <TextField fx:id="imageCatFiled" layoutX="702.0" layoutY="-67.0" />
       <Text fill="#fbf8f8" layoutX="66.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
          <font>
             <Font name="System Bold" size="22.0" />
          </font></Text>
-      <Text fill="#f8eeee" layoutX="58.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image">
+      <Text fill="#f8eeee" layoutX="933.0" layoutY="-43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image">
          <font>
             <Font name="System Bold" size="23.0" />
          </font></Text>
@@ -37,7 +37,6 @@
         <columns>
           <TableColumn fx:id="idCat" prefWidth="75.0" text="id" />
           <TableColumn fx:id="nomCat" prefWidth="75.0" text="nom" />
-            <TableColumn fx:id="imageCat" prefWidth="75.0" text="image" />
         </columns>
       </TableView>
       <Button fx:id="modifierCat" layoutX="533.0" layoutY="465.0" mnemonicParsing="false" onAction="#modifierCat" style="-fx-background-color: #b13535;" text="Modifier" />
@@ -53,7 +52,7 @@
             <TextField promptText="Search" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
-      <TextField fx:id="IdCatFiled" layoutX="175.0" layoutY="198.0" />
+      <TextField fx:id="IdCatFiled" layoutX="549.0" layoutY="-83.0" />
      
    </children>
 </AnchorPane>
