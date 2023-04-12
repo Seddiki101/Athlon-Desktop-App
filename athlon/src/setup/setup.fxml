@@ -24,6 +24,11 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
+            <Button mnemonicParsing="false" onAction="#switchForgotten" prefHeight="50.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Forgot pass" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
          </children></VBox>
    </left>
    <center>

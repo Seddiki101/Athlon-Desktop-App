@@ -90,7 +90,7 @@ public class SignUPController implements Initializable {
                     PreparedStatement smt = cnx.prepareStatement(query);
                     String pew;
                     pew = PwdHasher.hashPassword(tfPassword.getText());
-                    System.out.println("bigg pribmem  ");
+                    //System.out.println("bigg pribmem  ");
                     
                     
                            Date datei = new Date();
@@ -115,12 +115,10 @@ public class SignUPController implements Initializable {
 
                 
                     try {
-
                         
                         //we try to send mail
-
                         HelperV2.sendWelcomeEmail(tfEmail.getText() , "Dear new user, \n Welcome to our app! We are glad you signed up" );
-                        System.out.println("mail fct called ");
+                        //System.out.println("mail fct called ");
                         
                     } catch (MessagingException ex) {
                         System.out.println(ex);

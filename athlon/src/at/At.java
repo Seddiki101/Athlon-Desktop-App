@@ -19,6 +19,7 @@ public class At extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        //Parent root = FXMLLoader.load(getClass().getResource("/setup/ForgotPass.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/setup/setup.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/gui/Dashboard.fxml"));
         Scene scene = new Scene(root);

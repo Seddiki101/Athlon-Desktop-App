@@ -34,7 +34,7 @@ public class setupController implements Initializable {
     @FXML
     private ImageView ivLogo;
     
-    AnchorPane signup,signin;
+    AnchorPane signup,signin,oublie;
 
     
     /**
@@ -48,6 +48,7 @@ public class setupController implements Initializable {
          try {
             signup = FXMLLoader.load(getClass().getResource("SignUP.fxml"));
             signin = FXMLLoader.load(getClass().getResource("signIN.fxml"));
+            oublie = FXMLLoader.load(getClass().getResource("ForgotPass.fxml"));
             setNode(signin);
             
             stream = new FileInputStream("B:/project/jav/fx/athlon/src/media/logo.png");
@@ -83,6 +84,11 @@ public class setupController implements Initializable {
     @FXML
     private void switchSignup(ActionEvent event) {
         setNode(signup);
+    }
+    
+        @FXML
+    private void switchForgotten(ActionEvent event) {
+        setNode(oublie);
     }
     
 }

@@ -96,6 +96,7 @@ public class SignINController implements Initializable {
                      SessionManager.getInstace(p);//here big prob
                      System.out.println(" email of current user ");
                      System.out.println(User.Current_User.getEmail());
+                     
                      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                      alert.setTitle(" Athlon :: Success Message");
                      alert.setHeaderText(null);
