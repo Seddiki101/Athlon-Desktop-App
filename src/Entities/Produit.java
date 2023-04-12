@@ -45,6 +45,9 @@ public class Produit {
         this.prix = prix;
     }
 
+ 
+    
+
     public void setIdCategory(int idCategory) {
         this.idCategory = idCategory;
     }

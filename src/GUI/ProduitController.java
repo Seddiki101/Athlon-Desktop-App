@@ -8,7 +8,6 @@ import Entities.Categorie;
 import Services.ServiceProduit;
 import Entities.Produit;
 import Services.ServiceCategorie;
-import java.awt.Image;
 import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
@@ -30,7 +29,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -38,6 +36,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javax.swing.JOptionPane;
 import static jdk.nashorn.internal.runtime.Debug.id;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 
 /**
  * FXML Controller class
@@ -63,7 +64,7 @@ public class ProduitController implements Initializable {
     public void setIdCategorieToadd(int idCategorieToadd) {
         this.idCategorieToadd = idCategorieToadd;
     }
-
+String path="";
     @FXML
     private Button AddP;
     @FXML
@@ -180,12 +181,19 @@ public class ProduitController implements Initializable {
     
     @FXML
     private void ajouterP(ActionEvent event) {
+        
+                        Image photo=imageProduitView.getImage();
+
     String nomProduit = nomProduitFiled.getText();
     String brandProduit = brandProduitFiled.getText();
     String descriptionProduit = descriptionProduitFiled.getText();
-    String prixProduit = prixProduitFiled.getText();
-    String imageProduit = imageProduitFiled.getText();
-    String CategoryP = catPField.getValue();
+    Float prixProduit =(  Float.parseFloat(prixProduitFiled.getText()));
+    
+    String imagePath = path;
+          Produit u = new Produit(nomProduit, brandProduit, descriptionProduit, imagePath,prixProduit);
+
+
+
    
     // Vérification de la saisie du nom du produit
     if (nomProduit.isEmpty()) {
@@ -206,20 +214,20 @@ public class ProduitController implements Initializable {
     }
     
     // Vérification de la saisie du prix du produit
-    if (!prixProduit.matches("^\\d+(\\.\\d{1,2})?$")) {
-        JOptionPane.showMessageDialog(null, "Veuillez saisir un prix de produit valide.");
-        return;
-    }
+  //  if (!prixProduit.matches("^\\d+(\\.\\d{1,2})?$")) {
+    //    JOptionPane.showMessageDialog(null, "Veuillez saisir un prix de produit valide.");
+     //   return;
+    //}
     
     // Vérification de la saisie du chemin d'accès de l'image du produit
    // if (imageProduit.isEmpty()) {
     //    JOptionPane.showMessageDialog(null, "Veuillez saisir un chemin d'accès d'image de produit valide.");
       //  return;
     //}
-    if (imageProduitFiled.getText().isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Veuillez sélectionner une image de produit.");
-        return;
-    }
+   // if (imageProduitFiled.getText().isEmpty()) {
+     //   JOptionPane.showMessageDialog(null, "Veuillez sélectionner une image de produit.");
+     //   return;
+    //}
     
    
 
@@ -228,10 +236,13 @@ public class ProduitController implements Initializable {
     c.setNom(nomProduit);
     c.setBrand(brandProduit);
     c.setDescription(descriptionProduit);
-    c.setPrix(Float.parseFloat(prixProduit));
-    //c.setImage(imageProduit);
-    c.setImage(imageProduitFiled.getText());
+    c.setPrix(prixProduit);
+    c.setImage(imagePath);
      c.setIdCategory(idCategorieToadd);
+     
+    
+   
+
     sc.ajouterProduit(c);
     updateTable();
     JOptionPane.showMessageDialog(null, "Produit ajouté.");
@@ -243,6 +254,8 @@ public class ProduitController implements Initializable {
 
     @FXML
     private void getSelected(MouseEvent event) {
+                 Produit c=TableView.getSelectionModel().getSelectedItem();
+
       index =  TableView.getSelectionModel().getSelectedIndex();
         if (index <= -1) {
             return;
@@ -252,21 +265,23 @@ public class ProduitController implements Initializable {
         brandProduitFiled.setText(brandProduit.getCellData(index));
         descriptionProduitFiled.setText(DescriptionProduit.getCellData(index));
         prixProduitFiled.setText(PrixProduit.getCellData(index).toString());
-         imageProduitFiled.setText(imageProduit.getCellData(index));
-         //coachingField.setValue(coursR.getCellData(index));
-         catPField.setValue(CategoryP.getCellData(index));
+ Image image = new Image(new File(c.getImage()).toURI().toString());
+            imageProduitView.setImage(image);         //coachingField.setValue(coursR.getCellData(index));
+        // catPField.setValue(CategoryP.getCellData(index).toString());
     }
 
     @FXML
     private void ModifierProduit(ActionEvent event) {
         
          Produit c = new Produit();
+              String path =  imageProduit.getText();
+
         c.setId(Integer.parseInt(idProduitField.getText()));
        c.setNom(nomProduitFiled.getText());
         c.setBrand(brandProduitFiled.getText());
         c.setDescription(descriptionProduitFiled.getText());
         c.setPrix(Float.parseFloat(prixProduitFiled.getText()));
-        c.setImage(imageProduitFiled.getText());
+        c.setImage(path);
         c.setNomCategory(catPField.getValue());
         c.setIdCategory(idCategorieToadd);
         sc.modifierProduit(c);
@@ -294,13 +309,21 @@ c.setNomCategory( catPField.getValue());
     private void selectImage(MouseEvent event) {
        
     FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Sélectionner une image de produit");
-    // filtre pour les fichiers image uniquement
+    fileChooser.setTitle("Choose Image File");
+
+    // Ajouter un filtre pour n'afficher que les fichiers d'images
     fileChooser.getExtensionFilters().addAll(
-        new ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"));
-    File selectedFile = fileChooser.showOpenDialog(selectImageBtn.getScene().getWindow());
+            new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+    );
+
+    // Afficher la boîte de dialogue de sélection de fichiers
+    File selectedFile = fileChooser.showOpenDialog(null);
     if (selectedFile != null) {
-        imageProduitFiled.setText(selectedFile.getAbsolutePath());
+    // load the selected image into the image view
+    path=selectedFile.getAbsolutePath().replace("\\", "/");
+
+        Image image = new Image(selectedFile.toURI().toString());
+    imageProduitView.setImage(image);
     }
     }
 
