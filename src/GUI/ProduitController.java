@@ -189,7 +189,7 @@ String path="";
     String descriptionProduit = descriptionProduitFiled.getText();
     Float prixProduit =(  Float.parseFloat(prixProduitFiled.getText()));
     
-    String imagePath = path;
+                String imagePath = path.substring(path.lastIndexOf("/img/"));
           Produit u = new Produit(nomProduit, brandProduit, descriptionProduit, imagePath,prixProduit);
 
 

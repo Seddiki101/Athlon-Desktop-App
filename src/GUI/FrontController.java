@@ -18,8 +18,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
@@ -28,29 +26,27 @@ import javafx.scene.layout.HBox;
  *
  * @author msi
  */
-public class FrontProduitController implements Initializable {
+public class FrontController implements Initializable {
 
-
-    /**
-     * Initializes the controller class.
-     */
-      @FXML
+    @FXML
     private HBox cardlayoout;
         private List<Produit> recentlyadd;
 
     @FXML
     private GridPane vehiculeContainer;
-       Connection cnx;
+
+    /**
+     * Initializes the controller class.
+     */
+      Connection cnx;
     Statement stmt;
     
-     public FrontProduitController() {
+     public FrontController() {
         cnx = MyDB.getInstance().getCnx();
     }
-  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        ServiceProduit sm = new ServiceProduit();
+         ServiceProduit sm = new ServiceProduit();
 
         recentlyadd = new ArrayList<>(sm.afficherProduit());
         try {
@@ -66,5 +62,8 @@ public class FrontProduitController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+        //
+        // TODO
     }    
+    
+}
