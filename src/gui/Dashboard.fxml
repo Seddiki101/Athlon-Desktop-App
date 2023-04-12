@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="bpDashboard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DashboardController">
+   <left>
+      <VBox prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #008080;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="ivProfile" fitHeight="98.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchUserList" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="User" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="46.0" mnemonicParsing="false" onAction="#switchRecList" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Reclamation" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Produit" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="118.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Categorie" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="154.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Commandes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="334.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Cour" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="298.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Exercice" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="262.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Article" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="370.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Sujet" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#switchEmploye" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Employe" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="226.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Conge" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane fx:id="apDashboard" prefHeight="400.0" prefWidth="425.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="186.0" layoutY="71.0" text="Welcome Admin" />
+         </children></AnchorPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewUser.ListUserController">
+   <children>
+      <TableView fx:id="tvUser" layoutX="68.0" layoutY="88.0" prefHeight="222.0" prefWidth="536.0">
+        <columns>
+          <TableColumn fx:id="colNom" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="colPrenom" prefWidth="75.0" text="Prenom" />
+            <TableColumn fx:id="colEmail" prefWidth="182.39996337890625" text="Email" />
+            <TableColumn fx:id="colPhone" minWidth="9.5999755859375" prefWidth="84.0" text="Phone" />
+            <TableColumn fx:id="colDateins" minWidth="0.0" prefWidth="113.5999755859375" text="Date Inscription" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tfsearch" layoutX="68.0" layoutY="50.0" onAction="#searching" promptText="recherche" />
+      <Button fx:id="btnTriDateins" layoutX="243.0" layoutY="50.0" mnemonicParsing="false" onAction="#sortingDateins" text="Tri Date" />
+      <Button fx:id="btnTriNom" layoutX="319.0" layoutY="50.0" mnemonicParsing="false" onAction="#sortingName" text="Tri Nom" />
+      <Button fx:id="btnModifUsr" layoutX="664.0" layoutY="139.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" text="Modifier" />
+      <Button fx:id="btnSupprimUsr" layoutX="664.0" layoutY="183.0" mnemonicParsing="false" onAction="#Suppression" prefHeight="34.0" prefWidth="110.0" text="Supprimer" />
+      <Button fx:id="btnPDFusr" layoutX="664.0" layoutY="225.0" mnemonicParsing="false" onAction="#generatePDF" prefHeight="34.0" prefWidth="110.0" text="PDF" />
+      <Button fx:id="btnRefresh" layoutX="414.0" layoutY="50.0" mnemonicParsing="false" onAction="#refreshing" text="Refresh" />
+   </children>
+</AnchorPane>
