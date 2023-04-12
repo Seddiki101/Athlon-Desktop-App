@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="1036.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontProduitController">
+   <children>
+      <BorderPane layoutX="-26.0" layoutY="-7.0" prefHeight="686.0" prefWidth="346.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="-26.0" AnchorPane.rightAnchor="723.0" AnchorPane.topAnchor="-7.0">
+         <left>
+            <VBox prefHeight="704.0" prefWidth="320.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Produits">
+                           <font>
+                              <Font name="Baskerville Old Face" size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="122.0" prefWidth="271.0">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <TextField alignment="CENTER" prefHeight="40.0" prefWidth="188.0" promptText="Search">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="80.0" text="Search" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="356.0" prefWidth="261.0">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="57.0" prefWidth="129.0" text="Tapis">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="31.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="57.0" prefWidth="129.0" text="15Dt">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="31.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fitHeight="170.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../GUI.images/tapiis%20(1).png" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="0.0" prefWidth="293.0" />
+                        <HBox prefHeight="30.0" prefWidth="261.0">
+                           <children>
+                              <Label prefHeight="33.0" prefWidth="74.0" text="Marque" />
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" text="ADD to cart" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </BorderPane>
+      <HBox layoutX="314.0" layoutY="4.0" prefHeight="110.0" prefWidth="721.0">
+         <opaqueInsets>
+            <Insets left="20.0" right="20.0" />
+         </opaqueInsets>
+         <children>
+            <Label prefHeight="57.0" prefWidth="78.0" text="Language" textFill="#a8a2a2">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="57.0" prefWidth="159.0" text="Français" textFill="#6b6565">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="314.0" layoutY="70.0" prefHeight="78.0" prefWidth="749.0">
+         <children>
+            <VBox prefHeight="146.0" prefWidth="669.0">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="126.0" text="Free delivery" textFill="#4d4a4a">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="27.0" prefWidth="114.0" text="  over 99Dt" textFill="#a8a2a2">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="41.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../GUI.images/delivery.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox layoutX="314.0" layoutY="151.0" prefHeight="535.0" prefWidth="749.0">
+         <children>
+            <ScrollPane prefHeight="535.0" prefWidth="721.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutY="13.0" prefHeight="0.0" prefWidth="6.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
