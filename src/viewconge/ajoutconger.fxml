@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewconge.AjoutcongerController">
+   <children>
+      <DatePicker fx:id="textdateD" layoutX="63.0" layoutY="130.0" />
+      <DatePicker fx:id="textdateF" layoutX="64.0" layoutY="179.0" />
+      <TextField fx:id="type" layoutX="64.0" layoutY="238.0" />
+      <ComboBox fx:id="IdEmploye" layoutX="64.0" layoutY="80.0" prefWidth="150.0" />
+      <Button layoutX="77.0" layoutY="299.0" mnemonicParsing="false" onAction="#createConge" text="Ajouter Conge" />
+   </children>
+</AnchorPane>

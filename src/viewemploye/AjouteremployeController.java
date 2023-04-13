@@ -29,6 +29,10 @@ import util.SessionManager;
  */
 public class AjouteremployeController implements Initializable {
 
+    public static ObservableList<employe> getEmployes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Initializes the controller class.
      */

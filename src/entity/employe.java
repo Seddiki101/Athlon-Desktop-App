@@ -66,7 +66,7 @@ public class employe {
 
     @Override
     public String toString() {
-        return "employe{" + "id=" + id + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", salaire=" + salaire + '}';
+        return "employe{" + "id=" + Integer.toString(id) + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", salaire=" + salaire + '}';
     }
   
    
