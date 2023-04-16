@@ -90,5 +90,11 @@ public class setupController implements Initializable {
     private void switchForgotten(ActionEvent event) {
         setNode(oublie);
     }
+
+
+    public void switchForgotten2() {
+        setNode(oublie);
+    }
+
     
 }

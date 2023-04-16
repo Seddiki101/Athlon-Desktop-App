@@ -41,7 +41,7 @@ public class LauncherController implements Initializable {
     @FXML
     private AnchorPane apLauncher;
     
-    AnchorPane profileL,addrecL;
+    AnchorPane profileL,addrecL,verifyL;
 
     /**
      * Initializes the controller class.
@@ -71,6 +71,13 @@ public class LauncherController implements Initializable {
             // now the navigaton bar
             profileL = FXMLLoader.load(getClass().getResource("/viewUser/Profile.fxml"));
             addrecL = FXMLLoader.load(getClass().getResource("/viewReclamation/ReclamationCRUD.fxml"));
+            verifyL = FXMLLoader.load(getClass().getResource("/setup/acconfirm.fxml"));
+            
+            
+            if(SessionManager.getUser().getVerified()!=1)
+            {
+                setNode(verifyL);
+            }
             
         } catch (IOException ex) {
             System.out.println(ex);

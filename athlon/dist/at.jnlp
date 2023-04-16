@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="at.jar" size="258228" download="eager" />
+    <jar href="at.jar" size="268708" download="eager" />
     <jar href="lib\argon2-jvm-2.4.jar" size="388865" download="eager" />
     <jar href="lib\bcrypt-0.10.2.jar" size="40575" download="eager" />
     <jar href="lib\bytes-1.5.0.jar" size="80919" download="eager" />

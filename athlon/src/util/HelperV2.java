@@ -17,6 +17,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+//h
 
 /**
  *
@@ -24,7 +25,25 @@ import javax.mail.internet.MimeMessage;
  */
 public class HelperV2 {
 
-
+  public   static String getRondoKey(int n)
+ {
+  // choose a Character random from this String
+  String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+ "0123456789"+ "abcdefghijklmnopqrstuvxyz";
+  // create StringBuffer size of AlphaNumericString
+  StringBuilder sb = new StringBuilder(n);
+  for (int i = 0; i < n; i++) {
+   // generate a random number between
+   // 0 to AlphaNumericString variable length
+   int index
+    = (int)(AlphaNumericString.length() * Math.random());
+   // add Character one by one in end of sb
+   sb.append(AlphaNumericString
+      .charAt(index));
+  }
+  return sb.toString();
+ }
+    
+    
 //mailer
 public static void sendWelcomeEmail(String toEmail,String context) throws MessagingException {
     // Set up mail server properties
@@ -81,7 +100,27 @@ public static void sendVariableEmail(String toEmail,String context,String title)
     Transport.send(msg);
 }
     
-    
+/* 
+void goToControllerB(ActionEvent event) throws IOException {
+    // Load the FXML file for ControllerB
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/ControllerB.fxml"));
+    // Get the root node of the new FXML file
+    Parent root = loader.load();
+    // Get the controller of the new FXML file
+    ControllerB controllerB = loader.getController();
+    // Get the User variable to pass to ControllerB
+    User user = new User("example@gmail.com", "John", "Doe", new Date());
+    // Call the method in ControllerB to pass the User variable
+    controllerB.receiveUser(user);
+    // Set the scene for the new FXML file
+    Scene scene = new Scene(root);
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    stage.setScene(scene);
+    stage.show();
+}
+*/
+
+
 }
 
 

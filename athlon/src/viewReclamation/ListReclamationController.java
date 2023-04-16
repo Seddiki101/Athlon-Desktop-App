@@ -174,7 +174,7 @@ public class ListReclamationController implements Initializable {
             //
             try {
                 //load reclamation crud fxml with fields set up
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ReclamationCRUD.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewReclamation/ReclamationCRUD.fxml"));
                 // Get the root node of the new FXML file
                 Parent root = loader.load();
                 // Get the controller of the new FXML file

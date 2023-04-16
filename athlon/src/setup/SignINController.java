@@ -79,23 +79,20 @@ public class SignINController implements Initializable {
                //smt.setString(2,usrPass );
                ResultSet rs= smt.executeQuery();
                User p;
-               // System.out.println("ya rabi");
                //if user exists
                 if(rs.next()){
                     //here teleport
                     String hashedPassword = rs.getString("password");
                     if (PwdHasher.verifyPassword(usrPass, hashedPassword)) {
                 // Passwords match, user is authenticated
-                    System.out.println("heehe");
-                    }
-                    
-    
+
                     //getting user info
-                     p=new User(rs.getInt("id"),rs.getString("email"),rs.getString("password"),rs.getString("roles"),rs.getString("nom"),rs.getString("prenom"),rs.getInt("phone"),rs.getString("adres") );
+                     p=new User(rs.getInt("id"),rs.getString("email"),rs.getString("password"),rs.getString("roles"),rs.getString("nom"),rs.getString("prenom"),rs.getInt("phone"),rs.getString("adres"),rs.getInt("is_verified") );
+                     
                      User.setCurrent_User(p);
-                     SessionManager.getInstace(p);//here big prob
-                     System.out.println(" email of current user ");
-                     System.out.println(User.Current_User.getEmail());
+                     SessionManager.getInstace(p);
+                     //System.out.println(" email of current user ");
+                     //System.out.println(User.Current_User.getEmail());
                      
                      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                      alert.setTitle(" Athlon :: Success Message");
@@ -126,7 +123,7 @@ public class SignINController implements Initializable {
                     }      
                     
                     
-                    
+                }  
                     //here teleport
                 }
                         else {

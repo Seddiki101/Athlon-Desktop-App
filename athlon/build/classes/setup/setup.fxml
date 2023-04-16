@@ -9,7 +9,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="setup.setupController">
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #008080;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #008080;" styleClass="bar" stylesheets="@../media/custom.css" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="ivLogo" fitHeight="150.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true" />
            

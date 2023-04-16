@@ -6,23 +6,23 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewUser.ListUserController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewUser.ListUserController">
    <children>
-      <TableView fx:id="tvUser" layoutX="68.0" layoutY="88.0" prefHeight="222.0" prefWidth="536.0">
+      <TableView fx:id="tvUser" layoutX="68.0" layoutY="88.0" prefHeight="370.0" prefWidth="661.0">
         <columns>
-          <TableColumn fx:id="colNom" prefWidth="75.0" text="Nom" />
-          <TableColumn fx:id="colPrenom" prefWidth="75.0" text="Prenom" />
-            <TableColumn fx:id="colEmail" prefWidth="182.39996337890625" text="Email" />
-            <TableColumn fx:id="colPhone" minWidth="9.5999755859375" prefWidth="84.0" text="Phone" />
-            <TableColumn fx:id="colDateins" minWidth="0.0" prefWidth="113.5999755859375" text="Date Inscription" />
+          <TableColumn fx:id="colNom" prefWidth="102.39998626708984" text="Nom" />
+          <TableColumn fx:id="colPrenom" prefWidth="83.20001220703125" text="Prenom" />
+            <TableColumn fx:id="colEmail" prefWidth="207.99993896484375" text="Email" />
+            <TableColumn fx:id="colPhone" minWidth="9.5999755859375" prefWidth="131.20010375976562" text="Phone" />
+            <TableColumn fx:id="colDateins" minWidth="0.0" prefWidth="136.00006103515625" text="Date Inscription" />
         </columns>
       </TableView>
       <TextField fx:id="tfsearch" layoutX="68.0" layoutY="50.0" onAction="#searching" promptText="recherche" />
       <Button fx:id="btnTriDateins" layoutX="243.0" layoutY="50.0" mnemonicParsing="false" onAction="#sortingDateins" text="Tri Date" />
       <Button fx:id="btnTriNom" layoutX="319.0" layoutY="50.0" mnemonicParsing="false" onAction="#sortingName" text="Tri Nom" />
-      <Button fx:id="btnModifUsr" layoutX="664.0" layoutY="139.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" text="Modifier" />
-      <Button fx:id="btnSupprimUsr" layoutX="664.0" layoutY="183.0" mnemonicParsing="false" onAction="#Suppression" prefHeight="34.0" prefWidth="110.0" text="Supprimer" />
-      <Button fx:id="btnPDFusr" layoutX="664.0" layoutY="225.0" mnemonicParsing="false" onAction="#generatePDF" prefHeight="34.0" prefWidth="110.0" text="PDF" />
+      <Button fx:id="btnModifUsr" layoutX="758.0" layoutY="141.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" text="Modifier" />
+      <Button fx:id="btnSupprimUsr" layoutX="758.0" layoutY="185.0" mnemonicParsing="false" onAction="#Suppression" prefHeight="34.0" prefWidth="110.0" text="Supprimer" />
+      <Button fx:id="btnPDFusr" layoutX="758.0" layoutY="227.0" mnemonicParsing="false" onAction="#generatePDF" prefHeight="34.0" prefWidth="110.0" text="PDF" />
       <Button fx:id="btnRefresh" layoutX="414.0" layoutY="50.0" mnemonicParsing="false" onAction="#refreshing" text="Refresh" />
    </children>
 </AnchorPane>

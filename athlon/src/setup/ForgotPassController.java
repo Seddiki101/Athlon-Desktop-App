@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -87,29 +88,6 @@ public class ForgotPassController implements Initializable {
         this.clef = clef;
     }
 
-
-
-     static String getRondoKey(int n)
- {
-  // choose a Character random from this String
-  String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+ "0123456789"+ "abcdefghijklmnopqrstuvxyz";
-  // create StringBuffer size of AlphaNumericString
-  StringBuilder sb = new StringBuilder(n);
-  for (int i = 0; i < n; i++) {
-   // generate a random number between
-   // 0 to AlphaNumericString variable length
-   int index
-    = (int)(AlphaNumericString.length() * Math.random());
-   // add Character one by one in end of sb
-   sb.append(AlphaNumericString
-      .charAt(index));
-  }
-  return sb.toString();
- }
-     
-     
-     
-     
      
      //recherche d user
     @FXML
@@ -137,7 +115,7 @@ public class ForgotPassController implements Initializable {
             
             if(v==1){
 
-                    String k = getRondoKey(6);
+                    String k = HelperV2.getRondoKey(6);
                 
                     try {
                         HelperV2.sendVariableEmail(fpEmail.getText() , "Password verification Code : "+ k +"\n if you did not perform this action . Contact tech support ","Forgot Password " );                      
@@ -145,7 +123,7 @@ public class ForgotPassController implements Initializable {
                         System.out.println(ex);
                     }
                     
-                    System.out.println("code "+k);
+                    System.out.println("code reset pwd "+k);
                     
                         //show other things
                      apForgotVerification.setVisible(true);
@@ -182,12 +160,12 @@ public class ForgotPassController implements Initializable {
          
          if(! fpVcode.getText().isEmpty() )
          {
-             if( s==fpVcode.getText() )
+             if( s==fpVcode.getText() ){
 
              apForgotpss.setVisible(true);
              apForgotVerification.setVisible(false);
              apForgotpss.setVisible(true);
-            
+             }
              //System.out.println("preliminary " + apForgotpss.isVisible() );
              
          }   
@@ -239,6 +217,11 @@ public class ForgotPassController implements Initializable {
                      alert.setHeaderText(null);
                      alert.setContentText("Proceed to sign in");
                      alert.showAndWait();
+                     
+                //now change the anchorpane here
+                //FXMLLoader loader = new FXMLLoader(getClass().getResource("/setup/setup.fxml"));
+                //setupController controllerB = loader.getController();
+                //controllerB.switchForgotten2();
             
               }
              

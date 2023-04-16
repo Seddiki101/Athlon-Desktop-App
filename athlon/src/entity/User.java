@@ -21,19 +21,21 @@ public class User {
     int phone;
     String adres;
     Date dateins;
+    int verified;
     
     public static User Current_User;
 
     public User() {
     }
 
+    /*
     public User(int id, String nom, String email, String roles ) {
         this.id = id;
         this.email = email;
         this.roles = roles;
         this.nom = nom;
     }
-    
+    */
     
     
     public void consume(User u )
@@ -48,7 +50,8 @@ public class User {
         this.dateins = u.getDateins();        
     }
 
-    public User(int id, String email, String password, String roles, String nom, String prenom, int phone, String adres) {
+    //sign in
+    public User(int id, String email, String password, String roles, String nom, String prenom, int phone, String adres , int v) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -57,8 +60,10 @@ public class User {
         this.prenom = prenom;
         this.phone = phone;
         this.adres = adres;    
+        this.verified = v;
     }
 
+    //affichage
     public User(int id, String email, String roles, String nom, String prenom, int phone, Date dateins) {
         this.id = id;
         this.email = email;
@@ -71,7 +76,7 @@ public class User {
     
     
     
-    
+    /*
     public User(int id, String email, String password, String roles, String nom, String prenom, int phone, String adres, Date dateins) {
         this.id = id;
         this.email = email;
@@ -83,6 +88,7 @@ public class User {
         this.adres = adres;
         this.dateins = dateins;
     }
+    */
 
     public int getId() {
         return id;
@@ -155,6 +161,11 @@ public class User {
     public void setDateins(Date dateins) {
         this.dateins = dateins;
     }
+
+    public int getVerified() {
+        return verified;
+    }
+    
     
     
       public static User getCurrent_User() {

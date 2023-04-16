@@ -28,12 +28,7 @@ public final class SessionManager {
         //this.user.consume(u);   // eli 9rineh 8alet 
     }
  
-    /**
-    *
-    * @param userName
-    * @param privileges
-    * @return
-    */
+
     public static SessionManager getInstace(User u) {
         if(instance == null) {
             instance = new SessionManager( u );
