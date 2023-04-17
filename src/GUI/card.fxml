@@ -16,12 +16,12 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="185.0" prefWidth="246.0" spacing="15.0">
          <children>
-            <Label fx:id="VehiculeName" prefHeight="163.0" prefWidth="230.0" text=" Mercedes             &#10;classe C">
+            <Label fx:id="VehiculeName" prefHeight="163.0" prefWidth="230.0" text=" Tapis     ">
                <font>
                   <Font name="Berlin Sans FB Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="marque" prefHeight="81.0" prefWidth="244.0" text="Mercedes">
+            <Label fx:id="marque" prefHeight="81.0" prefWidth="244.0" text="Blue">
                <font>
                   <Font name="Berlin Sans FB" size="24.0" />
                </font>

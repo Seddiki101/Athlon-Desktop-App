@@ -17,15 +17,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -61,6 +70,8 @@ public class ProduitController implements Initializable {
     private ImageView imageProduitView;
     @FXML
     private AnchorPane pane;
+    @FXML
+    private TextField Recherche;
     
     
       public int getIdCategorieToadd() {
@@ -136,9 +147,7 @@ String path="";
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     show();
-   
-   
-    }    
+  }    
 
     public void show() {
         ObservableList<Produit> ProduitList = FXCollections.observableArrayList(sc.afficherProduit());
@@ -152,6 +161,7 @@ String path="";
         CategoryP.setCellValueFactory(new PropertyValueFactory<>("nomCategory"));
        TableView.setItems(ProduitList);
        
+       chercherProduit();
        
         ServiceCategorie sc = new ServiceCategorie();
         List<String> nomsCataegory = new ArrayList<>();
@@ -352,8 +362,80 @@ c.setNomCategory( catPField.getValue());
         pane.getChildren().setAll(Content);
     }
 
+    private void stat(ActionEvent event) {
+    generateStatistics();
+        
+    }
+
+    public Map<String, Integer> getProduitCountByCategory(List<Produit> produits) {
+    Map<String, Integer> countMap = new HashMap<>();
+
+    for (Produit produit : produits) {
+        String category = produit.getNomCategory();
+        if (countMap.containsKey(category)) {
+            countMap.put(category, countMap.get(category) + 1);
+        } else {
+            countMap.put(category, 1);
+        }
+    }
+
+    return countMap;
+}
+
+
+
+public void generateStatistics() {
+    // Retrieve the list of products
+    ObservableList<Produit> produitList = FXCollections.observableArrayList(sc.afficherProduit());
+
+    // Calculate the number of products by category
+    Map<String, Integer> countMap = getProduitCountByCategory(produitList);
+
+    // Create the data for the chart
+    XYChart.Series<String, Number> countData = new XYChart.Series<>();
+    for (String category : countMap.keySet()) {
+        countData.getData().add(new XYChart.Data<>(category, countMap.get(category)));
+    }
+
+    // Create the chart
+    CategoryAxis xAxis = new CategoryAxis();
+    NumberAxis yAxis = new NumberAxis();
+    BarChart<String, Number> chart = new BarChart<>(xAxis, yAxis);
+    chart.getData().add(countData);
+
+    // Show the chart in a dialog box
+    Alert chartAlert = new Alert(Alert.AlertType.INFORMATION);
+    chartAlert.setTitle("Product Statistics");
+    chartAlert.setHeaderText("Number of Products by Category");
+    chartAlert.getDialogPane().setContent(chart);
+    chartAlert.showAndWait();
+}
     
-    
+    public void chercherProduit() {
+        FilteredList<Produit> filteredData = new FilteredList<>(FXCollections.observableArrayList(sc.afficherProduit()), b -> true);
+        Recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(rec -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (rec.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (rec.getDescription().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (rec.getBrand().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+
+            });
+        });
+        SortedList<Produit> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(TableView.comparatorProperty());
+        TableView.setItems(sortedData);
+    }
     
 
     
