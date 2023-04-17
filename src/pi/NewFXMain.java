@@ -29,6 +29,7 @@ public class NewFXMain extends Application {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
+            
         } catch (IOException ex) {
             System.out.println(ex);        }
 

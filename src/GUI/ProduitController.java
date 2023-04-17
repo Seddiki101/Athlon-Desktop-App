@@ -8,8 +8,19 @@ import Entities.Categorie;
 import Services.ServiceProduit;
 import Entities.Produit;
 import Services.ServiceCategorie;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,12 +40,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -51,6 +64,7 @@ import static jdk.nashorn.internal.runtime.Debug.id;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import org.controlsfx.control.Notifications;
 
 
 /**
@@ -260,6 +274,11 @@ String path="";
    try {
 
 c.setPrix(Float.parseFloat(prixProduitFiled.getText()));
+  Notifications.create()
+                    .title("Notification")
+                    .text("produit ajoutè.")
+                    .position(Pos.BOTTOM_RIGHT)
+                    .showInformation();
 } catch (NumberFormatException e) {
 JOptionPane.showMessageDialog(null, "La quantité et le prix doivent être des nombres.");
 return;
@@ -362,6 +381,7 @@ c.setNomCategory( catPField.getValue());
         pane.getChildren().setAll(Content);
     }
 
+    @FXML
     private void stat(ActionEvent event) {
     generateStatistics();
         
@@ -411,31 +431,144 @@ public void generateStatistics() {
     chartAlert.showAndWait();
 }
     
-    public void chercherProduit() {
-        FilteredList<Produit> filteredData = new FilteredList<>(FXCollections.observableArrayList(sc.afficherProduit()), b -> true);
-        Recherche.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(rec -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                if (rec.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if (rec.getDescription().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if (rec.getBrand().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-
-            });
+   public void chercherProduit() {
+    FilteredList<Produit> filteredData = new FilteredList<>(FXCollections.observableArrayList(sc.afficherProduit()), b -> true);
+    Recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+        filteredData.setPredicate(rec -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (rec.getNom().toLowerCase().contains(lowerCaseFilter)
+                    || rec.getDescription().toLowerCase().contains(lowerCaseFilter)
+                    || rec.getBrand().toLowerCase().contains(lowerCaseFilter)
+                    || String.valueOf(rec.getId()).contains(lowerCaseFilter)
+                    || String.valueOf(rec.getIdCategory()).contains(lowerCaseFilter)
+                    || String.valueOf(rec.getPrix()).contains(lowerCaseFilter)
+                    || rec.getNomCategory().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else {
+                return false;
+            }
         });
-        SortedList<Produit> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(TableView.comparatorProperty());
-        TableView.setItems(sortedData);
+    });
+    SortedList<Produit> sortedData = new SortedList<>(filteredData);
+    sortedData.comparatorProperty().bind(TableView.comparatorProperty());
+    TableView.setItems(sortedData);
+}
+
+    @FXML
+    private void imprimerproduit(ActionEvent event) {
+        
+        Produit selectedObject = TableView.getSelectionModel().getSelectedItem();
+
+    if (selectedObject != null) {
+        int id = selectedObject.getId();
+        //int idCategory = selectedObject.getIdCategory();
+        String nom = selectedObject.getNom();
+        String brand = selectedObject.getBrand();
+        String description = selectedObject.getDescription();
+        String nomCategory = selectedObject.getNomCategory();
+        double prix = selectedObject.getPrix();
+        
+        
+        try {
+            // Chemin du fichier sur le bureau
+            String desktopPath = System.getProperty("user.home") + "/Desktop/";
+            String fileName = "donnees.txt";
+
+            // Création du fichier sur le bureau
+            File file = new File(desktopPath + fileName);
+            PrintWriter writer = new PrintWriter(file);
+
+            // Écriture des données dans le fichier
+            writer.println("id: " + id);
+            writer.println("nom: " + nom);
+            writer.println("brand: " + brand);
+            writer.println("description: " + description);
+            writer.println("nomCategory: " + nomCategory);
+            writer.println("prix: " + prix);
+            
+
+            // Fermeture du fichier
+            writer.close();
+
+            System.out.println("Données imprimées dans le fichier " + desktopPath + fileName + ".");
+            
+            // Ouverture de la boîte de dialogue d'impression
+            PrinterJob job = PrinterJob.getPrinterJob();
+            boolean ok = job.printDialog();
+            if (ok) {
+                job.print();
+            }
+
+        } catch (IOException e) {
+            System.err.println("Erreur lors de l'impression des données sur le fichier.");
+            e.printStackTrace();
+        } catch (PrinterException ex) {
+            System.err.println("Erreur lors de l'impression des données.");
+            ex.printStackTrace();
+        }
     }
+    }
+
+    @FXML
+    private void pdfproduit(MouseEvent event) {
+         Document document = new Document(PageSize.A4);
+
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream("rapport.pdf"));
+
+            document.open();
+
+            Paragraph paragraph = new Paragraph("Détails du produit");
+            paragraph.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragraph);
+
+            document.add(Chunk.NEWLINE);
+
+            PdfPTable pdfTable = new PdfPTable(2);
+
+            Produit produit = TableView.getSelectionModel().getSelectedItem();
+
+            pdfTable.addCell("Nom du champ");
+            pdfTable.addCell("Valeur");
+
+            pdfTable.addCell("ID");
+            pdfTable.addCell(String.valueOf(produit.getId()));
+
+            pdfTable.addCell("Marque");
+            pdfTable.addCell(String.valueOf(produit.getBrand()));
+
+            pdfTable.addCell("Nom Produit");
+            pdfTable.addCell(String.valueOf(produit.getNom()));
+
+            pdfTable.addCell("Description");
+            pdfTable.addCell(produit.getDescription());
+
+            pdfTable.addCell("Nom Categorie");
+            pdfTable.addCell(produit.getNomCategory());
+
+            pdfTable.addCell("Prix");
+            pdfTable.addCell(String.valueOf(produit.getPrix()));
+
+            pdfTable.addCell("image");
+            pdfTable.addCell(produit.getImage());
+
+            document.add(pdfTable);
+
+            document.close();
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Export PDF");
+            alert.setHeaderText(null);
+            alert.setContentText("Le fichier PDF a été généré avec succès !");
+            alert.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     
 
     

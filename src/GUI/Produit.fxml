@@ -91,7 +91,12 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="908.0" layoutY="608.0" mnemonicParsing="false" text="statistique" />
+      <Button layoutX="978.0" layoutY="593.0" mnemonicParsing="false" onAction="#stat" style="-fx-background-color: #b13535;" text="Statistique" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
       <TextField fx:id="Recherche" layoutX="454.0" layoutY="133.0" />
+      <Button layoutX="808.0" layoutY="597.0" mnemonicParsing="false" onAction="#imprimerproduit" text="imprimer" />
+      <Button layoutX="744.0" layoutY="686.0" mnemonicParsing="false" onMouseClicked="#pdfproduit" text="pdf" />
    </children>
 </AnchorPane>
