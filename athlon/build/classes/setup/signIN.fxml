@@ -17,7 +17,7 @@
                   </Label>
                   <TextField fx:id="tfEmail" layoutX="156.0" layoutY="119.0" prefHeight="33.0" prefWidth="247.0" promptText="email" />
                   <PasswordField fx:id="pfPWD" layoutX="158.0" layoutY="171.0" prefHeight="33.0" prefWidth="244.0" promptText="password" />
-                  <Button fx:id="btnSignIn" layoutX="333.0" layoutY="239.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="69.0" text="Sign in" />
+                  <Button fx:id="btnSignIn" layoutX="333.0" layoutY="239.0" mnemonicParsing="false" onAction="#login" prefHeight="36.0" prefWidth="90.0" styleClass="dark" stylesheets="@../style/custom.css" text="Sign in" />
                   <Label fx:id="lblErrorLogin" layoutX="171.0" layoutY="211.0" prefHeight="17.0" prefWidth="273.0" textFill="RED" />
                
        

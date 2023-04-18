@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import util.ConnectionDB;
 import util.SessionManager;
 
@@ -143,6 +144,8 @@ public class ReclamationCRUDController implements Initializable {
             }
             //System.out.println("test 3");
             //now redirect the user to another page
+                Stage stage78 = (Stage) btnEditRec.getScene().getWindow();
+                stage78.close(); // Close the current stage
         
     }
     

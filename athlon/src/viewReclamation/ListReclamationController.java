@@ -176,17 +176,22 @@ public class ListReclamationController implements Initializable {
                 //load reclamation crud fxml with fields set up
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewReclamation/ReclamationCRUD.fxml"));
                 // Get the root node of the new FXML file
-                Parent root = loader.load();
+                Parent root77 = loader.load();
                 // Get the controller of the new FXML file
                 ReclamationCRUDController controllerB = loader.getController();
                 // Get the User variable to pass to ControllerB
                 // Call the method in ControllerB to pass the User variable
                 controllerB.receiveRec(rico);
                 // Set the scene for the new FXML file
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                Scene scene77 = new Scene(root77);
+                Stage newStage77 = new Stage();
+                newStage77.setScene(scene77);
+                newStage77.show();
+                /*
+                Stage stage77 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage77.setScene(scene77);
+                stage77.show();
+                */
                 //
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
