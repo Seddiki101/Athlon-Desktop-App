@@ -19,6 +19,6 @@
       <Button layoutX="72.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleAjoutButton" text="Ajouter" />
       <Button layoutX="72.0" layoutY="29.0" mnemonicParsing="false" onAction="#afficheconge" text="Refresh" />
       <Button layoutX="235.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Supprimer" />
-      <Button layoutX="152.0" layoutY="328.0" mnemonicParsing="false" text="Modifier" />
+      <Button layoutX="152.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleAjoutButtonedit" text="Modifier" />
    </children>
 </AnchorPane>

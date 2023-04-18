@@ -10,7 +10,7 @@
 
 <BorderPane fx:id="bpDashboard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DashboardController">
    <left>
-      <VBox prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #008080;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #D42B44;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="ivProfile" fitHeight="98.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchUserList" prefHeight="36.0" prefWidth="129.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="User" textFill="WHITE">

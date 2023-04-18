@@ -1,1 +1,0 @@
-Athlon desktop app created with javafx

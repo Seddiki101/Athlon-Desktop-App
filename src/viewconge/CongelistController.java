@@ -167,4 +167,34 @@ private void handleDeleteButton(ActionEvent event) {
     }
 }
 
+
+
+     @FXML
+    private void handleAjoutButtonedit(ActionEvent event) {
+        // Get the selected employee from the table
+        conge selectedEmploye = tableconge.getSelectionModel().getSelectedItem();
+ 
+        if (selectedEmploye != null) {
+            try {
+                // Load the "add employee" FXML file and create a new scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewconge/ajoutconger.fxml"));
+                Parent root = loader.load();
+
+                // Get the controller for the "add employee" scene
+                AjoutcongerController controller = loader.getController();
+
+                // Set the selected employee's data in the "add employee" form
+                controller.setCongeData(selectedEmploye);
+
+                // Show the "add employee" form
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

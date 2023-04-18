@@ -13,5 +13,7 @@
       <TextField fx:id="type" layoutX="64.0" layoutY="238.0" />
       <ComboBox fx:id="IdEmploye" layoutX="64.0" layoutY="80.0" prefWidth="150.0" />
       <Button layoutX="77.0" layoutY="299.0" mnemonicParsing="false" onAction="#createConge" text="Ajouter Conge" />
+      <Button layoutX="192.0" layoutY="299.0" mnemonicParsing="false" onAction="#updateConge" text="Modifier Conge" />
+      <TextField fx:id="textidconge" disable="true" layoutX="65.0" layoutY="33.0" promptText="id" />
    </children>
 </AnchorPane>
