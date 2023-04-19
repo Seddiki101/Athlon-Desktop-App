@@ -243,26 +243,17 @@ String path="";
         return;
     }
     
-    // Vérification de la saisie du prix du produit
-    //if (!prixProduit.matches("^\\d+(\\.\\d{1,2})?$")) {
-      //  JOptionPane.showMessageDialog(null, "Veuillez saisir un prix de produit valide.");
-      // return;
-   // }
-   
-   // Vérification que la quantité et le prix sont des nombres valides
-
-
-
+     if (prixProduitFiled.getText().isEmpty()) {
+    JOptionPane.showMessageDialog(null, "Veuillez saisir un prix de produit valide.");
+    return;
+}
     
-    // Vérification de la saisie du chemin d'accès de l'image du produit
-   // if (imageProduit.isEmpty()) {
-    //    JOptionPane.showMessageDialog(null, "Veuillez saisir un chemin d'accès d'image de produit valide.");
-      //  return;
-    //}
-   // if (imageProduitFiled.getText().isEmpty()) {
-     //   JOptionPane.showMessageDialog(null, "Veuillez sélectionner une image de produit.");
-     //   return;
-    //}
+   // Vérification de la saisie du prix du produit
+    if (prixProduit <= 0) {
+        JOptionPane.showMessageDialog(null, "Le prix doit être supérieur à zéro.");
+        return;
+    }
+   // Vérification que la quantité et le prix sont des nombres valide
     
    
 
@@ -271,27 +262,30 @@ String path="";
     c.setNom(nomProduit);
     c.setBrand(brandProduit);
     c.setDescription(descriptionProduit);
-   try {
+    c.setPrix(Float.parseFloat(prixProduitFiled.getText()));
+  
+    c.setImage(imagePath);
+     c.setIdCategory(idCategorieToadd);
+     
+    // try {
 
-c.setPrix(Float.parseFloat(prixProduitFiled.getText()));
+//c.setPrix(Float.parseFloat(prixProduitFiled.getText()));
   Notifications.create()
                     .title("Notification")
                     .text("produit ajoutè.")
                     .position(Pos.BOTTOM_RIGHT)
                     .showInformation();
-} catch (NumberFormatException e) {
-JOptionPane.showMessageDialog(null, "La quantité et le prix doivent être des nombres.");
-return;
-}
-    c.setImage(imagePath);
-     c.setIdCategory(idCategorieToadd);
+//} catch (NumberFormatException e) {
+//JOptionPane.showMessageDialog(null, "La quantité et le prix doivent être des nombres.");
+//return;
+//}
      
     
    
 
     sc.ajouterProduit(c);
     updateTable();
-    JOptionPane.showMessageDialog(null, "Produit ajouté.");
+   
     
     
 
@@ -517,7 +511,7 @@ public void generateStatistics() {
          Document document = new Document(PageSize.A4);
 
         try {
-            PdfWriter.getInstance(document, new FileOutputStream("rapport.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("Détail du produit.pdf"));
 
             document.open();
 
@@ -552,8 +546,7 @@ public void generateStatistics() {
             pdfTable.addCell("Prix");
             pdfTable.addCell(String.valueOf(produit.getPrix()));
 
-            pdfTable.addCell("image");
-            pdfTable.addCell(produit.getImage());
+           
 
             document.add(pdfTable);
 
@@ -569,7 +562,59 @@ public void generateStatistics() {
         }
     }
 
-    
+   /*  @FXML
+    private void pdfproduit(MouseEvent event) {
+        
+     Document document = new Document(PageSize.A4);
+
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream("Liste des produits.pdf"));
+
+            document.open();
+
+            Paragraph paragraph = new Paragraph("Liste des produits");
+            paragraph.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragraph);
+
+            document.add(Chunk.NEWLINE);
+
+            PdfPTable pdfTable = new PdfPTable(7);
+
+            // ajouter les noms des colonnes sur le tableau
+            pdfTable.addCell("ID");
+            pdfTable.addCell("Nom du produit");
+            pdfTable.addCell("Marque");
+            pdfTable.addCell("Description");
+            pdfTable.addCell("Prix");
+            pdfTable.addCell("Catégorie");
+          
+
+            // inserer les valeurs de la tableview dans le tableau
+            for (Produit produit : TableView.getItems()) {
+               
+                pdfTable.addCell(String.valueOf(produit.getId()));
+                pdfTable.addCell(String.valueOf(produit.getNom()));
+                pdfTable.addCell(String.valueOf(produit.getBrand()));
+                pdfTable.addCell(produit.getDescription());
+               
+                pdfTable.addCell(String.valueOf(produit.getPrix()));
+                pdfTable.addCell(produit.getNomCategory());
+            }
+
+            document.add(pdfTable);
+
+            document.close();
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Export PDF");
+            alert.setHeaderText(null);
+            alert.setContentText("Le fichier PDF a été généré avec succès !");
+            alert.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }    
+        
+    }*/
 
     
 }

@@ -96,7 +96,13 @@
             <Font name="System Bold" size="18.0" />
          </font></Button>
       <TextField fx:id="Recherche" layoutX="454.0" layoutY="133.0" />
-      <Button layoutX="808.0" layoutY="597.0" mnemonicParsing="false" onAction="#imprimerproduit" text="imprimer" />
-      <Button layoutX="744.0" layoutY="686.0" mnemonicParsing="false" onMouseClicked="#pdfproduit" text="pdf" />
+      <Button layoutX="808.0" layoutY="597.0" mnemonicParsing="false" onAction="#imprimerproduit" style="-fx-background-color: #b13535;" text="Imprimer" textFill="#fcfafa">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Button>
+      <Button layoutX="807.0" layoutY="649.0" mnemonicParsing="false" onMouseClicked="#pdfproduit" prefHeight="37.0" prefWidth="96.0" style="-fx-background-color: #b13535;" text="PDF" textFill="#f8f5f5">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
    </children>
 </AnchorPane>

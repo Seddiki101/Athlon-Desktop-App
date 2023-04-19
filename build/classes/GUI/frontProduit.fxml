@@ -65,6 +65,7 @@
             <ScrollPane prefHeight="400.0" prefWidth="200.0" styleClass="transparent" stylesheets="@styles.css">
                <content>
                   <HBox fx:id="cardlayoout" alignment="CENTER_LEFT" prefHeight="333.0" prefWidth="1341.0" spacing="20.0" styleClass="transparent" stylesheets="@styles.css" />
+                  
                </content>
             </ScrollPane>
          </children>

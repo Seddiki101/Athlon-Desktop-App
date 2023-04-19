@@ -22,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 
 /**
  * FXML Controller class
@@ -60,9 +61,14 @@ public class FrontProduitController implements Initializable {
                 cardController.setData(value);
                 cardlayoout.getChildren().add(cardBox);
 
-            }
+        
+            
+            
+}
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     }    
+
+     
