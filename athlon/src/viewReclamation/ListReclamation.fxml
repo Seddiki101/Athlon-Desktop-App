@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewReclamation.ListReclamationController">
+   <children>
+      <TableView fx:id="tvRecs" layoutX="90.0" layoutY="88.0" prefHeight="400.0" prefWidth="700.0" stylesheets="@../style/custom.css">
+        <columns>
+          <TableColumn fx:id="colTitre" prefWidth="205.5999984741211" text="Titre" />
+          <TableColumn fx:id="colDesc" prefWidth="488.8000793457031" text="Description" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tfsearchRecs" layoutX="97.0" layoutY="49.0" onAction="#searchingRecs" promptText="recherche" />
+      <Button fx:id="btnTriTitre" layoutX="292.0" layoutY="49.0" mnemonicParsing="false" onAction="#sortingTitre" prefHeight="26.0" prefWidth="69.0" styleClass="blackRound" stylesheets="@../style/custom.css" text="Tri Titre" />
+      <Button fx:id="btnModifRecs" layoutX="828.0" layoutY="142.0" mnemonicParsing="false" onAction="#modificationRecs" prefHeight="26.0" prefWidth="110.0" styleClass="ipad" stylesheets="@../style/custom.css" text="Modifier" />
+      <Button fx:id="btnSupprimRecs" layoutX="828.0" layoutY="200.0" mnemonicParsing="false" onAction="#SuppressionRecs" prefHeight="34.0" prefWidth="110.0" styleClass="ipad" stylesheets="@../style/custom.css" text="Supprimer" />
+      <Button fx:id="btnPDFrecs" layoutX="828.0" layoutY="258.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" styleClass="ipad" stylesheets="@../style/custom.css" text="PDF" />
+      <Button fx:id="btnRefreshRecs" layoutX="735.0" layoutY="40.0" mnemonicParsing="false" onAction="#refreshingRecs" prefHeight="18.0" prefWidth="78.0" styleClass="red" stylesheets="@../style/custom.css" text="Refresh" />
+   </children>
+</AnchorPane>
