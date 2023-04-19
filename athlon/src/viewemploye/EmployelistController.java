@@ -9,6 +9,7 @@ package viewemploye;
 
 
 import entity.Reclamation;
+import entity.User;
 import entity.employe;
 import java.net.URL;
 import java.sql.Connection;
@@ -34,10 +35,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 
 /**
@@ -68,12 +78,17 @@ public class EmployelistController implements Initializable {
     ObservableList<employe> EmployeList = FXCollections.observableArrayList();
     @FXML
     private TableColumn<?, ?> Collidemploye;
+    @FXML
+    private TextField searchInput;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         afficheremploye () ;
+                searchEmploye();
+
+       
         
     }    
        public ObservableList<employe> getEmployeList() {
@@ -184,6 +199,120 @@ public class EmployelistController implements Initializable {
     }
 }
 
+    
+    
+    
+    
+    
+    
+    
+    
+        @FXML
+public void generatePDF(ActionEvent event) {
+    
+    // Create content list
+List<String> content = new ArrayList<>();
+
+// Add header row to the content list
+content.add("FirstName   Last Name   Email   Etat   ");
+
+// Populate table content from userList TableView
+for (employe employee : tableemploye.getItems()) {
+    String row = employee.toString() ;
+    content.add(row);
+}
+
+// Create a new PDF document
+PDDocument document = new PDDocument();
+
+// Add a new page to the document
+PDPage page = new PDPage();
+document.addPage(page);
+
+// Create a new font for the header
+PDType1Font font = PDType1Font.HELVETICA;
+
+// Add content to the PDF document
+try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+    // Add the title
+    contentStream.beginText();
+    contentStream.setFont(font, 36);
+    contentStream.newLineAtOffset(50, 650);
+    contentStream.showText("Employe List");
+    contentStream.endText();
+
+    // Add the table data
+    contentStream.beginText();
+    contentStream.setFont(font, 12);
+    contentStream.newLineAtOffset(50, 600);
+
+    for (int i = 0; i < content.size(); i++) {
+        contentStream.showText(content.get(i));
+        contentStream.newLineAtOffset(0, -20);
+    }
+
+    contentStream.endText();
+    contentStream.close();
+}catch(Exception e) {
+        e.printStackTrace();
+}
+
+// Save the PDF document to a file or stream
+    try {
+        document.save("employe_list.pdf");
+        document.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+
+}
+  
+    
+    
+    
+    
+  public void searchEmploye() {
+        FilteredList<employe> filteredData = new FilteredList<>(EmployeList, p -> true);
+        searchInput.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(employe -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (employe.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (employe.getPrenom().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (Integer.toString(employe.getCin()).contains(lowerCaseFilter)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+        // wrap the filtered list in a SortedList
+        SortedList<employe> sortedData = new SortedList<>(filteredData);
+        // bind the SortedList comparator to the TableView comparator
+        sortedData.comparatorProperty().bind(tableemploye.comparatorProperty());
+        // add sorted (and filtered) data to the table
+        tableemploye.setItems(sortedData);
+    }
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
