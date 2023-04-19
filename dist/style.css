@@ -1,0 +1,9 @@
+.root {
+    -fx-background-image: url("background1.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+}
+    
+#coursTableView {
+    -fx-background-color: transparent;
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import java.net.URL?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DetailsCoursController">
+    <stylesheets>
+        <URL value="file:///C:/Users/lenovo/Documents/NetBeansProjects/PIDEV/style.css" />
+   </stylesheets>
+    <children>
+      <VBox spacing="30" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" >
+    <Label text="Détails du cours" textFill="#0d6efd" style="-fx-text-fill: #4CAF50;-fx-font-weight: bold; ">
+        <font>
+            <javafx.scene.text.Font size="18.0" />
+        </font>
+    </Label>
+    <HBox spacing="15">
+        <Label text="Nom :" style="-fx-text-fill: white;-fx-font-weight: bold;"/>
+        <Label fx:id="nomLabel" text="${controller.selectedCourse.nom}"  style="-fx-text-fill: white;-fx-font-weight: bold;"/>
+    </HBox>
+    <HBox spacing="15">
+        <Label text="Description :" style="-fx-text-fill: white;-fx-font-weight: bold;"/>
+        <Label fx:id="descriptionLabel" text="${controller.selectedCourse.description_cours}" style="-fx-text-fill: white;-fx-font-weight: bold;"/>
+    </HBox>
+    <HBox spacing="15">
+        <Label text="Niveau :" style="-fx-text-fill: white;-fx-font-weight: bold;"/>
+        <Label fx:id="niveauLabel" text="${controller.selectedCourse.niveau_cours}" style="-fx-text-fill: white;-fx-font-weight: bold;"/>
+    </HBox>
+    <HBox spacing="15">
+        <Label text="Capacité :" style="-fx-text-fill: white;-fx-font-weight: bold;"/>
+        <Label fx:id="capaciteLabel" text="${controller.selectedCourse.capacity}" style="-fx-text-fill: white;-fx-font-weight: bold;"/>
+    </HBox>
+    <HBox spacing="15">
+        <Label text="Durée :" style="-fx-text-fill: white;-fx-font-weight: bold;"/>
+        <Label fx:id="dureeLabel" text="${controller.selectedCourse.duree_cours}" style="-fx-text-fill: white;-fx-font-weight: bold;"/>
+    </HBox>
+    <Button fx:id="reserverButton" mnemonicParsing="false" onAction="#handleReservation" text="Réserver" />
+</VBox>
+
+    </children>
+</AnchorPane>
+
