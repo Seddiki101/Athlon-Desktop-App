@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entities.ProductRating;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public interface IService<T> {
     public List<T> afficherProduit();
     public boolean modifierProduit (T t);
     public void supprimerProduit(T t);
+  
   
     
     

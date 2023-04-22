@@ -7,8 +7,10 @@ package pi;
 
 import Entities.Produit;
 import Entities.Categorie;
+import Entities.ProductRating;
 import Services.ServiceProduit;
 import Services.ServiceCategorie;
+import Services.ServiceRating;
 import Util.MyDB;
 /**
  *
@@ -20,15 +22,16 @@ public class PI {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Produit p5 = new  Produit("tapis","nike", "klm", "tapis.png",76);
-      
-       ServiceProduit sp = new ServiceProduit();
+      // Produit p5 = new  Produit("tapis","nike", "klm", "tapis.png",76);
+      ProductRating p5 = new  ProductRating("ttt",4);
+      // ServiceProduit sp = new ServiceProduit();
+        ServiceRating sp = new ServiceRating();
        
-      // sp.ajouterProduit(p5);
-      sp.supprimerProduit(p5);
+       sp.ajouterRating(p5);
+     // sp.supprimerProduit(p5);
   // sp.modifierProduit(p5);
      
-         System.out.println(sp.afficherProduit());
+        // System.out.println(sp.afficherProduit());
         
          Categorie c1 = new  Categorie("accessoires","nike.png");
          ServiceCategorie ca = new ServiceCategorie();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,23 +15,19 @@
             <Image url="@../img/46672.png" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" prefHeight="185.0" prefWidth="246.0" spacing="15.0">
+      <VBox alignment="CENTER" prefHeight="107.0" prefWidth="230.0" spacing="15.0">
          <children>
-            <Label fx:id="VehiculeName" prefHeight="163.0" prefWidth="230.0" text=" Tapis     ">
+            <Label fx:id="VehiculeName" prefHeight="57.0" prefWidth="230.0" text=" Tapis     ">
                <font>
                   <Font name="Berlin Sans FB Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="marque" prefHeight="81.0" prefWidth="244.0" text="Blue">
+            <Label fx:id="marque" prefHeight="36.0" prefWidth="230.0" text="Blue">
                <font>
                   <Font name="Berlin Sans FB" size="24.0" />
                </font>
             </Label>
-            <ImageView fitHeight="70.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/rating.png" />
-               </image>
-            </ImageView>
+            <Button mnemonicParsing="false" onAction="#noteP" text="Noter ce produit" />
          </children>
       </VBox>
    </children>

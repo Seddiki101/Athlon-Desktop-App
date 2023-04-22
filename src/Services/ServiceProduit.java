@@ -157,5 +157,11 @@ public class ServiceProduit implements IService<Produit> {
 
     return existe;
 }*/
+
+    public List<Produit> getProduitByCategory(String topCategory) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     
 }

@@ -6,10 +6,14 @@
 package GUI;
 
 import Entities.Produit;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -50,5 +54,12 @@ public class CardController implements Initializable {
                 +" ; -fx-background-radius: 15;"
                 +"-fx-effect : dropshadow(three-pass-box , rgba(0,0,0,0.1) , 10 , 0 ,0 , 10 ) ;");
         
+    }
+
+    @FXML
+    private void noteP(ActionEvent event) throws IOException {
+     box.getChildren().clear();
+        Parent Content = FXMLLoader.load(getClass().getResource("Rating.fxml"));
+        box.getChildren().setAll(Content);  
     }
 }
