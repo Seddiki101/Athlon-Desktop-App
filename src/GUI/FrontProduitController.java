@@ -24,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -47,7 +48,7 @@ public class FrontProduitController implements Initializable {
         cnx = MyDB.getInstance().getCnx();
     }
   
-    @Override
+   /* @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         ServiceProduit sm = new ServiceProduit();
@@ -70,12 +71,45 @@ public class FrontProduitController implements Initializable {
             e.printStackTrace();
         }
     }
+*/
+     
+     private int cardCount = 0;
+private VBox rowContainer;
+      public void initialize(URL url, ResourceBundle rb) {
+          
+      ServiceProduit sm = new ServiceProduit();
 
-    @FXML
-    private void showTopCategoryProducts(ActionEvent event) {
+        recentlyadd = new ArrayList<>(sm.afficherProduit());
+        rowContainer = new VBox();
+    rowContainer.setSpacing(20.0);
+    cardlayoout.getChildren().add(rowContainer);
+    
+    
+    try {
+    for (Produit value : recentlyadd) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("Card.fxml"));
+        HBox cardBox = fxmlLoader.load();
+        CardController cardController = fxmlLoader.getController();
+        cardController.setData(value);
         
+        if (cardCount % 2 == 0) {
+            HBox row = new HBox();
+            row.setSpacing(20.0);
+            rowContainer.getChildren().add(row);
+        }
         
+        HBox row = (HBox) rowContainer.getChildren().get(rowContainer.getChildren().size() - 1);
+        row.getChildren().add(cardBox);
+        
+        cardCount++;
     }
+} catch (IOException e) {
+    e.printStackTrace();
+      }
+     
+      }
+     
     }    
 
      

@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,13 +29,19 @@ public class CardController implements Initializable {
 
     @FXML
     private HBox box;
-    @FXML
-    private ImageView VehiculeImg;
-    @FXML
-    private Label VehiculeName;
-    @FXML
-    private Label marque;
+   
+    
     private  String [] colors = {"B9E5FF","BDB2FE","FB9AA8","FF5056"} ;
+    @FXML
+    private Label ProduitName;
+    @FXML
+    private ImageView ProduitImg;
+    @FXML
+    private Label description;
+    @FXML
+    private Label prixP;
+    @FXML
+    private Label catp;
 
 
     /**
@@ -47,12 +54,16 @@ public class CardController implements Initializable {
      public void setData(Produit modele)
     {
       Image image = new Image(getClass().getResourceAsStream(modele.getImage())) ;
-       VehiculeImg.setImage(image);
-        VehiculeName.setText(modele.getNom());
-        marque.setText(modele.getDescription());
+       ProduitImg.setImage(image);
+        ProduitName.setText(modele.getNom());
+        description.setText(modele.getDescription());
+       prixP.setText(String.valueOf(modele.getPrix()));
+          catp.setText(modele.getNomCategory());
         box.setStyle("-fx-background-color: #" +colors[(int)(Math.random()*colors.length)] 
                 +" ; -fx-background-radius: 15;"
                 +"-fx-effect : dropshadow(three-pass-box , rgba(0,0,0,0.1) , 10 , 0 ,0 , 10 ) ;");
+        
+         
         
     }
 
@@ -62,4 +73,5 @@ public class CardController implements Initializable {
         Parent Content = FXMLLoader.load(getClass().getResource("Rating.fxml"));
         box.getChildren().setAll(Content);  
     }
+
 }

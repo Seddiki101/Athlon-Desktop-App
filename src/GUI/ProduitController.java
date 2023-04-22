@@ -5,6 +5,7 @@
  */
 package GUI;
 import Entities.Categorie;
+import Entities.ProductRating;
 import Services.ServiceProduit;
 import Entities.Produit;
 import Services.ServiceCategorie;
@@ -163,7 +164,7 @@ String path="";
     
     private int elementsParPage = 3; // nombre d'éléments à afficher par page
     private List<Produit> produits; // liste des produits à afficher
-    
+     private List<ProductRating> ratings = new ArrayList<>();
    public void updateTable() {
            ObservableList<Produit> Produit = FXCollections.observableArrayList(sc.afficherProduit());
 
@@ -204,7 +205,7 @@ String path="";
         pagination.setCurrentPageIndex(0);
         
         // configurer les colonnes du TableView
-        TableColumn<Produit, Integer> idCol = new TableColumn<>("ID");
+        /*TableColumn<Produit, Integer> idCol = new TableColumn<>("ID");
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         
         TableColumn<Produit, String> nomCol = new TableColumn<>("Nom");
@@ -226,7 +227,7 @@ String path="";
         catCol.setCellValueFactory(new PropertyValueFactory<>("nomCategory"));
         
         TableView.getColumns().addAll(idCol, nomCol, brandCol, descCol, prixCol, imageCol, catCol);
-     
+     */
        
    show();
   }
@@ -544,8 +545,65 @@ public void show() {
     return countMap;
 }
 
+    public void generateStatistics() {
+    // Retrieve the list of products
+    ObservableList<Produit> produitList = FXCollections.observableArrayList(sc.afficherProduit());
 
+    // Calculate the number of products by category
+    Map<String, Integer> countMap = getProduitCountByCategory(produitList);
 
+    // Create the data for the chart
+    XYChart.Series<String, Number> countData = new XYChart.Series<>();
+    for (String category : countMap.keySet()) {
+        countData.getData().add(new XYChart.Data<>(category, countMap.get(category)));
+    }
+
+    // Create the chart
+    CategoryAxis xAxis = new CategoryAxis();
+    NumberAxis yAxis = new NumberAxis();
+    BarChart<String, Number> chart = new BarChart<>(xAxis, yAxis);
+    chart.getData().add(countData);
+
+    // Find the category with the highest count
+    String maxCategory = "";
+    int maxCount = 0;
+    for (String category : countMap.keySet()) {
+        int count = countMap.get(category);
+        if (count > maxCount) {
+            maxCategory = category;
+            maxCount = count;
+        }
+    }
+
+    // Retrieve the list of products for the category with the highest count
+    List<Produit> maxCategoryProduits = new ArrayList<>();
+    for (Produit produit : produitList) {
+        if (produit.getNomCategory().equals(maxCategory)) {
+            maxCategoryProduits.add(produit);
+        }
+    }
+
+    // Show the list of products in a dialog box
+    String message = "Les produits du catégorie \"" + maxCategory + "\":\n";
+    for (Produit produit : maxCategoryProduits) {
+        message += "- " + produit.getNom() + "\n";
+    }
+    Alert maxCategoryAlert = new Alert(Alert.AlertType.INFORMATION);
+    maxCategoryAlert.setTitle("Statistiques des produits");
+    maxCategoryAlert.setHeaderText("La catégorie avec le plus grand nombre des produits est : \"" + maxCategory + "\"");
+    maxCategoryAlert.setContentText(message);
+    maxCategoryAlert.showAndWait();
+
+    // Show the chart in a dialog box
+    Alert chartAlert = new Alert(Alert.AlertType.INFORMATION);
+    chartAlert.setTitle("Statistiques des produits");
+    chartAlert.setHeaderText("Nombre des produits par catégorie");
+    chartAlert.getDialogPane().setContent(chart);
+    chartAlert.showAndWait();
+}
+    
+
+/*
 public void generateStatistics() {
     // Retrieve the list of products
     ObservableList<Produit> produitList = FXCollections.observableArrayList(sc.afficherProduit());
@@ -572,7 +630,7 @@ public void generateStatistics() {
     chartAlert.getDialogPane().setContent(chart);
     chartAlert.showAndWait();
 }
-
+   */
     
    public void chercherProduit() {
     FilteredList<Produit> filteredData = new FilteredList<>(FXCollections.observableArrayList(sc.afficherProduit()), b -> true);
@@ -766,96 +824,11 @@ public void generateStatistics() {
         
     }*/
 
-    public List<Produit> getProduitByCategory(String category) {
-    String query = "SELECT * FROM produit WHERE categories_id= ?";
-    try {
-        PreparedStatement preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1, category);
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        List<Produit> produits = new ArrayList<>();
-        while (resultSet.next()) {
-            int id = resultSet.getInt("id_produit");
-            String brand =  resultSet.getString("brand");
-            String descriptionProduit = resultSet.getString("description_produit");
-              float prixProduit = resultSet.getFloat("prix_produit");
-               String image =  resultSet.getString("image");
-            String nomProduit = resultSet.getString("nom_produit");
-            String nomCategory = resultSet.getString("nom_category");
-           
-           
-            
-        
-            Produit produit = new Produit(id,nomProduit,brand, descriptionProduit,image,nomCategory, prixProduit);
-             // public Produit(int idCategory, String nom, String brand, String description, String image, String nomCategory, float prix) {
-
-            produits.add(produit);
-        }
-
-        return produits;
-    } catch (SQLException e) {
-        e.printStackTrace();
-        return null;
-    }
-}
+    
 
     
-    @FXML
-    private void showTopCategoryProducts(ActionEvent event) {
-        // Retrieve the list of products
-    ObservableList<Produit> produitList = FXCollections.observableArrayList(sc.afficherProduit());
 
-    // Calculate the number of products by category
-    Map<String, Integer> countMap = getProduitCountByCategory(produitList);
-
-    // Sort the categories by the number of products
-    List<Entry<String, Integer>> sortedList = new ArrayList<>(countMap.entrySet());
-    sortedList.sort(Entry.comparingByValue(Comparator.reverseOrder()));
-
-    // Retrieve the products in the top category
-    String topCategory = sortedList.get(0).getKey();
-    List<Produit> topCategoryProduits = sc.getProduitByCategory(topCategory);
-
-    // Display the products in a ListView
-    ListView<Produit> listView = new ListView<>();
-    listView.setItems(FXCollections.observableArrayList(topCategoryProduits));
-
-    // Add filtering functionality
-    TextField filterField = new TextField();
-    filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-        if (newValue.isEmpty()) {
-            listView.setItems(FXCollections.observableArrayList(topCategoryProduits));
-        } else {
-            List<Produit> filteredList = topCategoryProduits.stream()
-                    .filter(produit -> produit.getNom().toLowerCase().contains(newValue.toLowerCase()))
-                    .collect(Collectors.toList());
-            listView.setItems(FXCollections.observableArrayList(filteredList));
-        }
-    });
-
-    // Create a dialog box to display the ListView and the filter field
-    Dialog<List<Produit>> dialog = new Dialog<>();
-    dialog.setTitle("Top Category Products");
-    dialog.setHeaderText("Products in the " + topCategory + " category");
-    dialog.getDialogPane().setContent(new VBox(listView, filterField));
-    dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-
-    // Set the result converter
-    dialog.setResultConverter(buttonType -> {
-        if (buttonType == ButtonType.OK) {
-            return listView.getItems();
-        }
-        return null;
-    });
-
-    // Show the dialog box
-    Optional<List<Produit>> result = dialog.showAndWait();
-    result.ifPresent(produits -> {
-        // Do something with the selected products
-    });
-
-    }
-
+   
    
   
 
