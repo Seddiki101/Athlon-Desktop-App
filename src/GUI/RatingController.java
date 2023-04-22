@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.Rating;
@@ -48,12 +49,27 @@ public class RatingController implements Initializable {
     private Connection connection;
     @FXML
     private AnchorPane pane;
+    @FXML
+    private RadioButton star3Button;
+    @FXML
+    private RadioButton star4Button;
+    @FXML
+    private RadioButton star5Button;
+    @FXML
+    private RadioButton star2Button;
+    @FXML
+    private RadioButton star1Button;
     /**
      * Initializes the controller class.
      */
+    private int rating = 0;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        star1Button.setOnAction(e -> rating = 1);
+    star2Button.setOnAction(e -> rating = 2);
+    star3Button.setOnAction(e -> rating = 3);
+    star4Button.setOnAction(e -> rating = 4);
+    star5Button.setOnAction(e -> rating = 5);
     }
        
     
@@ -61,72 +77,61 @@ public class RatingController implements Initializable {
 
   
 
-  /*  public void addProductRating() {
-        String userName = userNameTextField.getText();
-        float rating = (float) productRating.getRating();
-        productRatings.add(new ProductRating(userName, rating));
-        float averageRating = calculateAverageRating();
-        System.out.println("Average rating: " + averageRating);
-        // Ajoutez ici le code pour stocker la note moyenne dans votre base de données ou ailleurs
-    }
-*/
-    private float calculateAverageRating() {
-        float totalRating = 0;
-        for (ProductRating productRating : productRatings) {
-            totalRating += productRating.getRating();
-        }
-        return totalRating / productRatings.size();
-    }
-
-   @FXML
-    private void addProductRating(ActionEvent event) throws SQLException {
+  
+    public void saveRating(int productId, String userName, int rating) {
        
         
-        
-          String userName = userNameTextField.getText();
-        float rating = (float) productRating.getRating();
-          ProductRating t = new ProductRating(userName,rating);
-        productRatings.add(new ProductRating(userName, rating));
-        
-         
-       // float averageRating = calculateAverageRating();
-     //  System.out.println("Average rating: " + averageRating);
-             //Ajoutez ici le code pour stocker la note moyenne dans votre base de données ou ailleurs
-    
-
-ProductRating c = new ProductRating();
-
-c.setUserName(userName);
-c.setRating(rating);
-
-sc.ajouterRating(c);
-addRatingToDatabase(product.getId(), userName, (int) rating);
-      
+       
+    try {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Athlon", "root", "");
+        String query = "INSERT INTO ratings (id_produit, userName, rating) VALUES (?, ?, ?)";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, productId);
+        stmt.setString(2, userName);
+        stmt.setInt(3, rating);
+        stmt.executeUpdate();
+        conn.close();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
     }
-     
-    public void addRatingToDatabase(int id_produit, String userName, int rating) {
-  try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ratings");
-       PreparedStatement statement = connection.prepareStatement("INSERT INTO `ratings` (`id_produit`, `user_name`, `rating`) VALUES (?, ?, ?)")) {
-    statement.setInt(1, id_produit);
-    statement.setString(2, userName);
-    statement.setInt(3, rating);
-    statement.executeUpdate();
-  } catch (SQLException e) {
-    e.printStackTrace();
-  }
 }
     
-    
-   /* @FXML
-    private void addProductRating(ActionEvent event) throws SQLException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("path/to/Produit.fxml"));
-    ProduitController productController = loader.getController();
-        ActionEvent Produit = null;
+   /* public int saveRating(String productName, String userName, int rating) {
+    int productId = 0;
+    try {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Athlon", "root", "");
+        String query = "INSERT INTO produit (nom) VALUES (?)";
+        PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        stmt.setString(1, productName);
+        stmt.executeUpdate();
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()) {
+            productId = rs.getInt(1);
+        }
+        query = "INSERT INTO ratings (id_produit, userName, rating) VALUES (?, ?, ?)";
+        stmt = conn.prepareStatement(query);
+        stmt.setInt(1, productId);
+        stmt.setString(2, userName);
+        stmt.setInt(3, rating);
+        stmt.executeUpdate();
+        conn.close();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+    return productId;
+}
 
-    // Appelle la fonction du ProductController
-    productController.ajouterP(Produit);
+   */
+    
+    
+    @FXML
+    private void addProductRating(ActionEvent event) throws SQLException {
+       int productId = 1; // Replace with the actual product ID
+    String userName = userNameTextField.getText();
+    
+    saveRating(productId, userName, rating);
         
-    }*/
+    }
     }
 
 

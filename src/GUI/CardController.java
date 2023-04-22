@@ -42,7 +42,7 @@ public class CardController implements Initializable {
     private Label prixP;
     @FXML
     private Label catp;
-
+ private int productId;
 
     /**
      * Initializes the controller class.
@@ -58,6 +58,7 @@ public class CardController implements Initializable {
         ProduitName.setText(modele.getNom());
         description.setText(modele.getDescription());
        prixP.setText(String.valueOf(modele.getPrix()));
+        
           catp.setText(modele.getNomCategory());
         box.setStyle("-fx-background-color: #" +colors[(int)(Math.random()*colors.length)] 
                 +" ; -fx-background-radius: 15;"
@@ -66,12 +67,15 @@ public class CardController implements Initializable {
          
         
     }
-
-    @FXML
+ @FXML
     private void noteP(ActionEvent event) throws IOException {
      box.getChildren().clear();
         Parent Content = FXMLLoader.load(getClass().getResource("Rating.fxml"));
-        box.getChildren().setAll(Content);  
+        box.getChildren().setAll(Content); 
+            // Set the productId attribute with the ID of the current product
+    
+
     }
+
 
 }
