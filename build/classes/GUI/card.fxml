@@ -38,6 +38,7 @@
                </font>
             </Label>
             <Button mnemonicParsing="false" onAction="#noteP" text="Noter ce produit" />
+            
          </children>
       </VBox>
    </children>

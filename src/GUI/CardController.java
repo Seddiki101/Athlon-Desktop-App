@@ -42,7 +42,7 @@ public class CardController implements Initializable {
     private Label prixP;
     @FXML
     private Label catp;
- private int productId;
+
 
     /**
      * Initializes the controller class.
@@ -66,6 +66,9 @@ public class CardController implements Initializable {
         
          
         
+        
+         
+        
     }
  @FXML
     private void noteP(ActionEvent event) throws IOException {
@@ -74,7 +77,6 @@ public class CardController implements Initializable {
         box.getChildren().setAll(Content); 
             // Set the productId attribute with the ID of the current product
     
-
     }
 
 

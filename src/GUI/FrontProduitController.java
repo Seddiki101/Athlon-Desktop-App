@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -43,6 +44,12 @@ public class FrontProduitController implements Initializable {
 
        Connection cnx;
     Statement stmt;
+    @FXML
+    private Pagination pagination;
+    
+    
+    private int rowsPerPage = 2;
+private int pageCount;
     
      public FrontProduitController() {
         cnx = MyDB.getInstance().getCnx();
@@ -77,39 +84,39 @@ public class FrontProduitController implements Initializable {
 private VBox rowContainer;
       public void initialize(URL url, ResourceBundle rb) {
           
-      ServiceProduit sm = new ServiceProduit();
+     ServiceProduit sm = new ServiceProduit();
+    recentlyadd = new ArrayList<>(sm.afficherProduit());
+    pageCount = (int) Math.ceil((double) recentlyadd.size() / rowsPerPage);
+    pagination.setPageCount(pageCount);
+    pagination.setPageFactory(this::createPage);
+     
+      }
+     
+      
+      private Region createPage(int pageIndex) {
+    int startIndex = pageIndex * rowsPerPage;
+    int endIndex = Math.min(startIndex + rowsPerPage, recentlyadd.size());
+    List<Produit> pageProducts = recentlyadd.subList(startIndex, endIndex);
 
-        recentlyadd = new ArrayList<>(sm.afficherProduit());
-        rowContainer = new VBox();
-    rowContainer.setSpacing(20.0);
-    cardlayoout.getChildren().add(rowContainer);
-    
-    
+    VBox pageContainer = new VBox();
+    pageContainer.setSpacing(20.0);
+
     try {
-    for (Produit value : recentlyadd) {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("Card.fxml"));
-        HBox cardBox = fxmlLoader.load();
-        CardController cardController = fxmlLoader.getController();
-        cardController.setData(value);
-        
-        if (cardCount % 2 == 0) {
-            HBox row = new HBox();
-            row.setSpacing(20.0);
-            rowContainer.getChildren().add(row);
+        for (Produit value : pageProducts) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("Card.fxml"));
+            HBox cardBox = fxmlLoader.load();
+            CardController cardController = fxmlLoader.getController();
+            cardController.setData(value);
+            pageContainer.getChildren().add(cardBox);
         }
-        
-        HBox row = (HBox) rowContainer.getChildren().get(rowContainer.getChildren().size() - 1);
-        row.getChildren().add(cardBox);
-        
-        cardCount++;
+    } catch (IOException e) {
+        e.printStackTrace();
     }
-} catch (IOException e) {
-    e.printStackTrace();
-      }
-     
-      }
-     
+
+    return pageContainer;
+}
+      
     }    
 
      

@@ -29,6 +29,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javax.swing.JOptionPane;
 import org.controlsfx.control.Rating;
 
 /**
@@ -40,8 +41,6 @@ public class RatingController implements Initializable {
 
     @FXML
     private TextField userNameTextField;
-    @FXML
-    private Rating productRating;
    
  ServiceRating sc =new ServiceRating();
  
@@ -78,7 +77,7 @@ public class RatingController implements Initializable {
   
 
   
-    public void saveRating(int productId, String userName, int rating) {
+     public void saveRating(int productId, String userName, int rating) {
        
         
        
@@ -95,40 +94,16 @@ public class RatingController implements Initializable {
         System.out.println(e.getMessage());
     }
 }
-    
-   /* public int saveRating(String productName, String userName, int rating) {
-    int productId = 0;
-    try {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Athlon", "root", "");
-        String query = "INSERT INTO produit (nom) VALUES (?)";
-        PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        stmt.setString(1, productName);
-        stmt.executeUpdate();
-        ResultSet rs = stmt.getGeneratedKeys();
-        if (rs.next()) {
-            productId = rs.getInt(1);
-        }
-        query = "INSERT INTO ratings (id_produit, userName, rating) VALUES (?, ?, ?)";
-        stmt = conn.prepareStatement(query);
-        stmt.setInt(1, productId);
-        stmt.setString(2, userName);
-        stmt.setInt(3, rating);
-        stmt.executeUpdate();
-        conn.close();
-    } catch (SQLException e) {
-        System.out.println(e.getMessage());
-    }
-    return productId;
-}
-
-   */
-    
+   
     
     @FXML
     private void addProductRating(ActionEvent event) throws SQLException {
        int productId = 1; // Replace with the actual product ID
     String userName = userNameTextField.getText();
-    
+     if (userName.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Veuillez saisir votre nom svp .");
+        return;
+    }
     saveRating(productId, userName, rating);
         
     }

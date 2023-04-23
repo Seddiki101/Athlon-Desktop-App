@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
@@ -14,9 +15,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="878.0" prefWidth="1319.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontProduitController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="878.0" prefWidth="1319.0" style="-fx-background-color: #b13535;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontProduitController">
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="1300.0" spacing="20.0" style="-fx-background-color: black;" styleClass="white-background" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="1300.0" spacing="20.0" style="-fx-background-color: #b13535;" styleClass="white-background" stylesheets="@styles.css" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="59.0" prefWidth="217.0" text="SHOP" textFill="#f50f0f">
                <font>
@@ -24,17 +25,17 @@
                </font>
             </Label>
             <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
-            <Pane prefHeight="100.0" prefWidth="540.0" style="-fx-background-color: black;" HBox.hgrow="ALWAYS">
+            <Pane prefHeight="110.0" prefWidth="698.0" style="-fx-background-color: #b13535;" HBox.hgrow="ALWAYS">
                <children>
-                  <Text fill="#fff8f8" layoutX="95.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue à notre shop" wrappingWidth="513.025390625">
+                  <Text fill="#fff8f8" layoutX="180.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue à notre shop" wrappingWidth="582.025390625">
                      <font>
                         <Font name="System Bold" size="39.0" />
                      </font>
                   </Text>
                </children></Pane>
-            <HBox alignment="CENTER" prefHeight="110.0" prefWidth="598.0">
+            <HBox alignment="CENTER" prefHeight="111.0" prefWidth="485.0" style="-fx-background-color: #b13535;">
                <children>
-                  <ImageView fitHeight="110.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="140.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../GUI.images/logo2.png" />
                      </image>
@@ -52,19 +53,13 @@
       <String fx:value="selected" />
    </styleClass>
    <center>
-      <VBox prefHeight="763.0" prefWidth="1294.0" spacing="10.0" style="-fx-background-color: #b13535;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="720.0" prefWidth="1319.0" spacing="10.0" style="-fx-background-color: #b13535;" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="57.0" prefWidth="353.0" text="Nos Produits">
-               <font>
-                  <Font name="Berlin Sans FB" size="39.0" />
-               </font>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </Label>
-            <ScrollPane prefHeight="685.0" prefWidth="1319.0" styleClass="transparent" stylesheets="@styles.css">
+            <Separator prefWidth="200.0" />
+            <Pagination fx:id="pagination" prefHeight="53.0" prefWidth="1319.0" />
+            <ScrollPane prefHeight="685.0" prefWidth="1319.0" style="-fx-background-color: black;" styleClass="transparent" stylesheets="@styles.css">
                <content>
-                  <HBox fx:id="cardlayoout" alignment="CENTER_LEFT" prefHeight="333.0" prefWidth="1341.0" spacing="20.0" styleClass="transparent" stylesheets="@styles.css" />
+                  <HBox fx:id="cardlayoout" alignment="CENTER_LEFT" prefHeight="571.0" prefWidth="1341.0" spacing="20.0" style="-fx-background-color: black;" styleClass="transparent" stylesheets="@styles.css" />
                   
                </content>
             </ScrollPane>
