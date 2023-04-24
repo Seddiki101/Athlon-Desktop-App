@@ -30,15 +30,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -48,9 +43,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -58,14 +51,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Pagination;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -80,9 +67,7 @@ import static jdk.nashorn.internal.runtime.Debug.id;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import org.controlsfx.control.Notifications;
-import javafx.stage.Stage;
 
 
 /**
@@ -181,54 +166,7 @@ String path="";
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       ServiceProduit sc = new ServiceProduit();
-        produits = sc.afficherProduit();
-        
-        // calculer le nombre total de pages
-        int totalPages = (produits.size() / elementsParPage) + 1;
-        
-        // définir le nombre total de pages dans la pagination
-        pagination.setPageCount(totalPages);
-        
-        // ajouter un écouteur de propriété à la pagination pour détecter le changement de page courante
-        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
-            int debut = newIndex.intValue() * elementsParPage;
-            int fin = Math.min(debut + elementsParPage, produits.size());
-            
-            // mettre à jour les données affichées dans le TableView
-            TableView.setItems(FXCollections.observableArrayList(produits.subList(debut, fin)));
-        });
-        // mettre à jour le TableView avec toutes les données
-        updateTable();
-        
-        // afficher la première page par défaut
-        pagination.setCurrentPageIndex(0);
-        
-        // configurer les colonnes du TableView
-        /*TableColumn<Produit, Integer> idCol = new TableColumn<>("ID");
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        
-        TableColumn<Produit, String> nomCol = new TableColumn<>("Nom");
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        
-        TableColumn<Produit, String> brandCol = new TableColumn<>("Brand");
-        brandCol.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        
-        TableColumn<Produit, String> descCol = new TableColumn<>("Description");
-        descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        
-        TableColumn<Produit, Double> prixCol = new TableColumn<>("Prix");
-        prixCol.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        
-        TableColumn<Produit, String> imageCol = new TableColumn<>("Image");
-        imageCol.setCellValueFactory(new PropertyValueFactory<>("image"));
-        
-        TableColumn<Produit, String> catCol = new TableColumn<>("Catégorie");
-        catCol.setCellValueFactory(new PropertyValueFactory<>("nomCategory"));
-        
-        TableView.getColumns().addAll(idCol, nomCol, brandCol, descCol, prixCol, imageCol, catCol);
-     */
-       
+     
    show();
   }
         
@@ -237,79 +175,7 @@ String path="";
     
 public void show() {
    
-    // récupérer la liste complète des produits
-    List<Produit> allProduits = sc.afficherProduit();
-
-    // calculer le début et la fin de la plage de produits à afficher pour la page courante
-    int startIndex = pagination.getCurrentPageIndex() * elementsParPage;
-    int endIndex = Math.min(startIndex + elementsParPage, allProduits.size());
-
-    // extraire les produits pour la page courante
-    List<Produit> produitsForPage = allProduits.subList(startIndex, endIndex);
-
-    // créer une liste observable pour les produits de la page courante
-    ObservableList<Produit> produitList = FXCollections.observableArrayList(produitsForPage);
-
-    // configurer les colonnes du TableView
-    idProduit.setCellValueFactory(new PropertyValueFactory<>("id"));
-    NomProduit.setCellValueFactory(new PropertyValueFactory<>("nom"));
-    brandProduit.setCellValueFactory(new PropertyValueFactory<>("brand"));
-    DescriptionProduit.setCellValueFactory(new PropertyValueFactory<>("description"));
-    PrixProduit.setCellValueFactory(new PropertyValueFactory<>("prix"));
-    imageProduit.setCellValueFactory(new PropertyValueFactory<>("image"));
-    CategoryP.setCellValueFactory(new PropertyValueFactory<>("nomCategory"));
-
-      chercherProduit();
-        ServiceCategorie sc = new ServiceCategorie();
-        List<String> nomsCataegory = new ArrayList<>();
-        for (Categorie c : sc.afficherCategorie()) {
-            nomsCataegory.add(c.getNom());
-
-        }
-        catPField.setItems(FXCollections.observableArrayList(nomsCataegory));
-
-        catPField.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                // get the selected Personne object based on the selected nom value
-                Categorie selectedLibelle = null;
-                for (Categorie c: sc.afficherCategorie()) {
-                    if (c.getNom().equals(newValue)) {
-                        selectedLibelle = c;
-                        break;
-                    }
-                }
-                if (selectedLibelle != null) {
-                    int id = selectedLibelle.getId();
-                    System.out.println("Selected Categorie id: " + id);
-                    // do something with the id...
-                    setIdCategorieToadd(id);
-                }
-            }
-        });
-         
-        
-    // mettre à jour les données affichées dans le TableView
-    TableView.setItems(produitList);
-    
-
-    // configurer la pagination pour le nombre total de produits
-    pagination.setPageCount((allProduits.size() / elementsParPage) + 1);
-
-    // sélectionner la première page par défaut
-    pagination.setCurrentPageIndex(0);
-    
-  
-       
-      
-    
-}
-
-    
-
-    
-    /*
-    public void show() {
-        ObservableList<Produit> ProduitList = FXCollections.observableArrayList(sc.afficherProduit());
+   ObservableList<Produit> ProduitList = FXCollections.observableArrayList(sc.afficherProduit());
         System.out.println("affichage" + sc.afficherProduit());
         idProduit.setCellValueFactory(new PropertyValueFactory<>("id"));
         NomProduit.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -348,6 +214,53 @@ public void show() {
                 }
             }
         });
+       
+      
+    
+}
+
+    
+
+    
+    /*
+    public void show() {
+        ObservableList<Produit> ProduitList = FXCollections.observableArrayList(sc.afficherProduit());
+        System.out.println("affichage" + sc.afficherProduit());
+        idProduit.setCellValueFactory(new PropertyValueFactory<>("id"));
+        NomProduit.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        brandProduit.setCellValueFactory(new PropertyValueFactory<>("brand"));
+        DescriptionProduit.setCellValueFactory(new PropertyValueFactory<>("description"));
+        PrixProduit.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        imageProduit.setCellValueFactory(new PropertyValueFactory<>("image"));
+        CategoryP.setCellValueFactory(new PropertyValueFactory<>("nomCategory"));
+        TableView.setItems(ProduitList);
+       
+       chercherProduit();
+       
+        ServiceCategorie sc = new ServiceCategorie();
+        List<String> nomsCataegory = new ArrayList<>();
+        for (Categorie c : sc.afficherCategorie()) {
+            nomsCataegory.add(c.getNom());
+        }
+        catPField.setItems(FXCollections.observableArrayList(nomsCataegory));
+        catPField.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // get the selected Personne object based on the selected nom value
+                Categorie selectedLibelle = null;
+                for (Categorie c: sc.afficherCategorie()) {
+                    if (c.getNom().equals(newValue)) {
+                        selectedLibelle = c;
+                        break;
+                    }
+                }
+                if (selectedLibelle != null) {
+                    int id = selectedLibelle.getId();
+                    System.out.println("Selected Categorie id: " + id);
+                    // do something with the id...
+                    setIdCategorieToadd(id);
+                }
+            }
+        });
     }
 */
 
@@ -357,7 +270,7 @@ public void show() {
     @FXML
      void ajouterP(ActionEvent event) {
          
-                        Image photo=imageProduitView.getImage();
+      Image photo=imageProduitView.getImage();
 
     String nomProduit = nomProduitFiled.getText();
     String brandProduit = brandProduitFiled.getText();
@@ -415,7 +328,7 @@ public void show() {
     // try {
 
 //c.setPrix(Float.parseFloat(prixProduitFiled.getText()));
-  Notifications.create()
+ /* Notifications.create()
                     .title("Notification")
                     .text("produit ajoutè.")
                     .position(Pos.BOTTOM_RIGHT)
@@ -424,13 +337,17 @@ public void show() {
 //JOptionPane.showMessageDialog(null, "La quantité et le prix doivent être des nombres.");
 //return;
 //}
-     
+     */
     
    
 
     sc.ajouterProduit(c);
     
-    
+     Notifications.create()
+                    .title("Notification")
+                    .text("produit ajoutè.")
+                    .position(Pos.BOTTOM_RIGHT)
+                    .showInformation();
     updateTable();
    
     
@@ -607,22 +524,18 @@ public void show() {
 public void generateStatistics() {
     // Retrieve the list of products
     ObservableList<Produit> produitList = FXCollections.observableArrayList(sc.afficherProduit());
-
     // Calculate the number of products by category
     Map<String, Integer> countMap = getProduitCountByCategory(produitList);
-
     // Create the data for the chart
     XYChart.Series<String, Number> countData = new XYChart.Series<>();
     for (String category : countMap.keySet()) {
         countData.getData().add(new XYChart.Data<>(category, countMap.get(category)));
     }
-
     // Create the chart
     CategoryAxis xAxis = new CategoryAxis();
     NumberAxis yAxis = new NumberAxis();
     BarChart<String, Number> chart = new BarChart<>(xAxis, yAxis);
     chart.getData().add(countData);
-
     // Show the chart in a dialog box
     Alert chartAlert = new Alert(Alert.AlertType.INFORMATION);
     chartAlert.setTitle("Product Statistics");
@@ -774,20 +687,14 @@ public void generateStatistics() {
     private void pdfproduit(MouseEvent event) {
         
      Document document = new Document(PageSize.A4);
-
         try {
             PdfWriter.getInstance(document, new FileOutputStream("Liste des produits.pdf"));
-
             document.open();
-
             Paragraph paragraph = new Paragraph("Liste des produits");
             paragraph.setAlignment(Element.ALIGN_CENTER);
             document.add(paragraph);
-
             document.add(Chunk.NEWLINE);
-
             PdfPTable pdfTable = new PdfPTable(7);
-
             // ajouter les noms des colonnes sur le tableau
             pdfTable.addCell("ID");
             pdfTable.addCell("Nom du produit");
@@ -796,7 +703,6 @@ public void generateStatistics() {
             pdfTable.addCell("Prix");
             pdfTable.addCell("Catégorie");
           
-
             // inserer les valeurs de la tableview dans le tableau
             for (Produit produit : TableView.getItems()) {
                
@@ -808,11 +714,8 @@ public void generateStatistics() {
                 pdfTable.addCell(String.valueOf(produit.getPrix()));
                 pdfTable.addCell(produit.getNomCategory());
             }
-
             document.add(pdfTable);
-
             document.close();
-
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Export PDF");
             alert.setHeaderText(null);
@@ -823,6 +726,8 @@ public void generateStatistics() {
         }    
         
     }*/
+
+   
 
     
 

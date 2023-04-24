@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -105,6 +104,5 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
-      <Pagination fx:id="pagination" layoutX="441.0" layoutY="577.0" prefHeight="78.0" prefWidth="262.0" />
    </children>
 </AnchorPane>

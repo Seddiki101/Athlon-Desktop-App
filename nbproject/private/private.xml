@@ -3,17 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/Services/ServiceRating.java</file>
-            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/Services/ICService.java</file>
-            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/pi/NewFXMainCat.java</file>
-            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/Entities/Produit.java</file>
-            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/GUI/RatingController.java</file>
-            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/Entities/ProductRating.java</file>
             <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/GUI/ProduitController.java</file>
+            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/GUI/RatingController.java</file>
+            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/Services/ICService.java</file>
+            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/Entities/ProductRating.java</file>
+            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/Services/ServiceRating.java</file>
+            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/Services/ServiceProduit.java</file>
+            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/pi/NewFXMainCat.java</file>
+            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/GUI/FrontProduitController.java</file>
+            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/Entities/Produit.java</file>
             <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/GUI/CardController.java</file>
-            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/GUI/essai.fxml</file>
-            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/GUI/Produit.fxml</file>
-            <file>file:/C:/Users/msi/Desktop/DesktopJAVA/src/GUI/card.fxml</file>
         </group>
     </open-files>
 </project-private>
