@@ -79,9 +79,7 @@ public class RatingController implements Initializable {
   
      public void saveRating(int productId, String userName, int rating) {
        
-        
-       
-    try {
+        try {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Athlon", "root", "");
         String query = "INSERT INTO ratings (id_produit, userName, rating) VALUES (?, ?, ?)";
         PreparedStatement stmt = conn.prepareStatement(query);

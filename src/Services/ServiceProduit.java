@@ -5,6 +5,7 @@
  */
 package Services;
 import Entities.Produit;
+import Entities.ProduitLike;
 import Util.MyDB;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -162,6 +163,74 @@ public class ServiceProduit implements IService<Produit> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    private List<Produit> produits;
+
+    public List<ProduitLike> likes (int id){
+        List<ProduitLike> produits = new ArrayList<>();
+        try {
+            String req = "select * from produit_like where produit_id =" +id+";";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                ProduitLike p = new ProduitLike();
+                p.setId(rs.getInt("id"));
+                p.setIdproduit(rs.getInt("produit_id"));
+                //p.setIduser(rs.getInt("user_id"));
+                produits.add(p);
+            }
+            System.out.print(produits);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return produits ; 
+    }
+    public List<ProduitLike> islikedbyuser(int idp) {
+        
+        List<ProduitLike> produits = new ArrayList<>();
+        try {
+            String req = "Select * from produit_like where produit_id= '"+idp+"';";
+          
+             Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                ProduitLike p = new ProduitLike();
+                p.setId(rs.getInt("id"));
+                p.setIdproduit(rs.getInt("produit_id"));
+                produits.add(p);
+            }
+            System.out.println(produits.size());
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+       return produits;
+    }
+     public void Supprimerlike(int id) {
+    try
+    { 
+      Statement st = cnx.createStatement();
+      String req = "DELETE FROM produit_like WHERE produit_id = '"+id+"';";
+                st.executeUpdate(req);      
+      System.out.println("produit supprimer avec succès...");
+    } catch (SQLException ex) {
+                System.out.println(ex.getMessage());        
+              }
+    }
+     public boolean ajouterlike(int idp) {
+        boolean a=false;
+        try {
+            String req = "insert into produit_like(produit_id) values("+idp+")";
+          
+            Statement st = cnx.createStatement();
+            st.executeUpdate(req);
+            //System.out.println("like ajoutée");
+            a=true;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return a;
+    }
     
 }

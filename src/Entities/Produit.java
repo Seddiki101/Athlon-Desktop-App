@@ -11,9 +11,17 @@ package Entities;
  */
 public class Produit {
     
-     private int id,idCategory;
+     private int id,idCategory,likes;
     private String nom , brand,description,image,nomCategory ;
     private float prix;
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
 
     public Produit() {
     }
@@ -43,6 +51,10 @@ public class Produit {
         this.image = image;
         this.nomCategory = nomCategory;
         this.prix = prix;
+    }
+
+    public Produit(int aInt, String string, double aDouble) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
  

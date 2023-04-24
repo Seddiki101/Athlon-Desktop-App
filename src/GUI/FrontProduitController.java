@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -50,6 +51,14 @@ public class FrontProduitController implements Initializable {
     
     private int rowsPerPage = 2;
 private int pageCount;
+    @FXML
+    private TextField prixminFiled;
+    @FXML
+    private TextField prixmaxFiled;
+    @FXML
+    private Button filtrerPrixButton;
+    
+    
     
      public FrontProduitController() {
         cnx = MyDB.getInstance().getCnx();
@@ -116,6 +125,10 @@ private VBox rowContainer;
 
     return pageContainer;
 }
+
+    @FXML
+    private void filterPrxi(ActionEvent event) {
+    }
       
     }    
 
