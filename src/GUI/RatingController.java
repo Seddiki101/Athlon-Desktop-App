@@ -12,6 +12,8 @@ import Entities.ProductRating;
 import Entities.Produit;
 import Services.ServiceRating;
 import Util.MyDB;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,9 +31,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.Rating;
 
@@ -51,30 +57,19 @@ public class RatingController implements Initializable {
     private Connection connection;
     @FXML
     private AnchorPane pane;
-    @FXML
-    private RadioButton star3Button;
-    @FXML
-    private RadioButton star4Button;
-    @FXML
-    private RadioButton star5Button;
-    @FXML
-    private RadioButton star2Button;
-    @FXML
-    private RadioButton star1Button;
     /**
      * Initializes the controller class.
      */
     private int rating = 0;
     @FXML
     private Rating ratingFieldStar;
+    @FXML
+    private Button closeButton;
+     private Stage parentStage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        star1Button.setOnAction(e -> rating = 1);
-        star2Button.setOnAction(e -> rating = 2);
-        star3Button.setOnAction(e -> rating = 3);
-        star4Button.setOnAction(e -> rating = 4);
-        star5Button.setOnAction(e -> rating = 5);
+     
 
         ratingFieldStar.ratingProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -82,6 +77,7 @@ public class RatingController implements Initializable {
                 rating = newValue.intValue();
             }
         });
+        
 
     }
 
@@ -115,5 +111,18 @@ public class RatingController implements Initializable {
         saveRating(productId, userName, rating);
 
     }
+    
+    public void setParentStage(Stage stage) {
+        this.parentStage = stage;
+    }
 
-}
+    @FXML
+    private void handleCloseButton(ActionEvent event) {
+        
+        parentStage.show();
+        Stage currentStage = (Stage) closeButton.getScene().getWindow();
+        currentStage.close();
+    }
+    }
+
+

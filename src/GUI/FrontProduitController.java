@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TextField;
@@ -59,6 +60,8 @@ public class FrontProduitController implements Initializable {
     public FrontProduitController() {
         cnx = MyDB.getInstance().getCnx();
     }
+
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Rating.fxml"));
 
     /* @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -37,7 +37,7 @@
                   <Font name="Berlin Sans FB" size="17.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#noteP" text="Noter ce produit" />
+            <Button mnemonicParsing="false" onAction="#noteP" style="-fx-background-color: red;" text="Noter" />
             
          </children>
       </VBox>
