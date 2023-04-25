@@ -41,5 +41,10 @@
             
          </children>
       </VBox>
+      <Label fx:id="moyRating" prefHeight="27.0" prefWidth="229.0" text="moy">
+         <font>
+            <Font name="Berlin Sans FB" size="24.0" />
+         </font>
+      </Label>
    </children>
 </HBox>

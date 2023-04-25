@@ -10,10 +10,21 @@ package Entities;
  * @author msi
  */
 public class Produit {
-    
-     private int id,idCategory,likes;
-    private String nom , brand,description,image,nomCategory ;
+
+    private int id, idCategory, likes;
+    private String nom, brand, description, image, nomCategory;
     private float prix;
+    private float moyRating;
+
+    public float getMoyRating() {
+        return moyRating;
+    }
+
+    public void setMoyRating(float moyRating) {
+        this.moyRating = moyRating;
+    }
+    
+    
 
     public int getLikes() {
         return likes;
@@ -56,9 +67,6 @@ public class Produit {
     public Produit(int aInt, String string, double aDouble) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
- 
-    
 
     public void setIdCategory(int idCategory) {
         this.idCategory = idCategory;
@@ -128,17 +136,13 @@ public class Produit {
         this.prix = prix;
     }
 
-   // @Override
-   // public String toString() {
-     //   return "Produit{" + "id=" + id + ", nom=" + nom + ", brand=" + brand + ", description=" + description + ", image=" + image + ", prix=" + prix + '}';
-   // }
-
+    // @Override
+    // public String toString() {
+    //   return "Produit{" + "id=" + id + ", nom=" + nom + ", brand=" + brand + ", description=" + description + ", image=" + image + ", prix=" + prix + '}';
+    // }
     @Override
     public String toString() {
         return "Produit{" + "id=" + id + ", idCategory=" + idCategory + ", nom=" + nom + ", brand=" + brand + ", description=" + description + ", image=" + image + ", nomCategory=" + nomCategory + ", prix=" + prix + '}';
     }
-    
-    
-    
-    
+
 }

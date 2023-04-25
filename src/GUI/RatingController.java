@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
 import Entities.ProductRating;
 import Entities.Produit;
 import Services.ServiceRating;
@@ -62,6 +65,8 @@ public class RatingController implements Initializable {
      * Initializes the controller class.
      */
     private int rating = 0;
+    @FXML
+    private Rating ratingFieldStar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,6 +75,14 @@ public class RatingController implements Initializable {
         star3Button.setOnAction(e -> rating = 3);
         star4Button.setOnAction(e -> rating = 4);
         star5Button.setOnAction(e -> rating = 5);
+
+        ratingFieldStar.ratingProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                rating = newValue.intValue();
+            }
+        });
+
     }
 
     private List<ProductRating> productRatings = new ArrayList<>();

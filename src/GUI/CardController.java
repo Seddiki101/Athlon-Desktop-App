@@ -52,6 +52,8 @@ public class CardController implements Initializable {
 
     
     private int pickedId;
+    @FXML
+    private Label moyRating;
     /**
      * Initializes the controller class.
      */
@@ -67,7 +69,7 @@ public class CardController implements Initializable {
         ProduitName.setText(modele.getNom());
         description.setText(modele.getDescription());
         prixP.setText(String.valueOf(modele.getPrix()));
-
+moyRating.setText(String.valueOf(modele.getMoyRating()));
         catp.setText(modele.getNomCategory());
         box.setStyle("-fx-background-color: #" + colors[(int) (Math.random() * colors.length)]
                 + " ; -fx-background-radius: 15;"
