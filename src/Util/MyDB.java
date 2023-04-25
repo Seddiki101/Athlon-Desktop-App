@@ -5,7 +5,6 @@
  */
 package Util;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,33 +16,41 @@ import java.util.logging.Logger;
  * @author msi
  */
 public class MyDB {
-   private static MyDB instance ;
-    final String URL ="jdbc:mysql://127.0.0.1:3306/Athlon";
-    final String USERNAME ="root";
-    final String PWD ="";
-   private  Connection cnx;
-    
-    private MyDB(){
+
+    private static MyDB instance;
+
+    public static int getPickedPRoductId() {
+        return pickedPRoductId;
+    }
+
+    public static void setPickedPRoductId(int aPickedPRoductId) {
+        pickedPRoductId = aPickedPRoductId;
+    }
+    final String URL = "jdbc:mysql://127.0.0.1:3306/Athlon";
+    final String USERNAME = "root";
+    final String PWD = "";
+    private static int pickedPRoductId;
+
+    private Connection cnx;
+
+    private MyDB() {
         try {
-             cnx =DriverManager.getConnection(URL, USERNAME, PWD);
+            cnx = DriverManager.getConnection(URL, USERNAME, PWD);
             System.out.println("connected ......");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
-    
-    public  Connection getCnx (){
+
+    public Connection getCnx() {
         return this.cnx;
     }
-    public static MyDB getInstance (){
-        if (instance == null )
+
+    public static MyDB getInstance() {
+        if (instance == null) {
             instance = new MyDB();
-        
+        }
+
         return instance;
     }
-    }
-   
-   
-   
-   
+}

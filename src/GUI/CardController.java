@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
-
+import Util.MyDB;
 import Entities.Produit;
 import Entities.ProduitLike;
 import Services.ServiceProduit;
@@ -37,9 +37,8 @@ public class CardController implements Initializable {
 
     @FXML
     private HBox box;
-   
-    
-    private  String [] colors = {"B9E5FF","BDB2FE","FB9AA8","FF5056"} ;
+
+    private String[] colors = {"B9E5FF", "BDB2FE", "FB9AA8", "FF5056"};
     @FXML
     private Label ProduitName;
     @FXML
@@ -51,90 +50,89 @@ public class CardController implements Initializable {
     @FXML
     private Label catp;
 
-
+    
+    private int pickedId;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-     public void setData(Produit modele)
-    {
-      Image image = new Image(getClass().getResourceAsStream(modele.getImage())) ;
-       ProduitImg.setImage(image);
+    }
+
+    public void setData(Produit modele) {
+        pickedId = modele.getId();
+        Image image = new Image(getClass().getResourceAsStream(modele.getImage()));
+        ProduitImg.setImage(image);
         ProduitName.setText(modele.getNom());
         description.setText(modele.getDescription());
-       prixP.setText(String.valueOf(modele.getPrix()));
-        
-          catp.setText(modele.getNomCategory());
-        box.setStyle("-fx-background-color: #" +colors[(int)(Math.random()*colors.length)] 
-                +" ; -fx-background-radius: 15;"
-                +"-fx-effect : dropshadow(three-pass-box , rgba(0,0,0,0.1) , 10 , 0 ,0 , 10 ) ;");
-        
-         // Ajouter le code pour afficher les likes
-    ServiceProduit sm = new ServiceProduit();
-    HBox lc = new HBox();
-    FontAwesomeIconView like = new FontAwesomeIconView(FontAwesomeIcon.HEART_ALT);
-    like.setGlyphSize(25);
-    like.setCursor(Cursor.HAND);
-    if (sm.islikedbyuser(modele.getId()).isEmpty()) {
-        like.setGlyphName("HEART");
+        prixP.setText(String.valueOf(modele.getPrix()));
+
+        catp.setText(modele.getNomCategory());
+        box.setStyle("-fx-background-color: #" + colors[(int) (Math.random() * colors.length)]
+                + " ; -fx-background-radius: 15;"
+                + "-fx-effect : dropshadow(three-pass-box , rgba(0,0,0,0.1) , 10 , 0 ,0 , 10 ) ;");
+
+        // Ajouter le code pour afficher les likes
+        ServiceProduit sm = new ServiceProduit();
+        HBox lc = new HBox();
+        FontAwesomeIconView like = new FontAwesomeIconView(FontAwesomeIcon.HEART_ALT);
         like.setGlyphSize(25);
         like.setCursor(Cursor.HAND);
-    } else {
-        like.setGlyphName("HEART_ALT");
-        like.setGlyphSize(25);
-        like.setCursor(Cursor.HAND);
-    }
-    Label nblike = new Label("15");
-    nblike.setPrefSize(40, 25);
-    nblike.setTranslateX(10);
-    nblike.setTranslateY(-2);
-    int l = sm.likes(modele.getId()).size();
-    if (l == 0) {
-        nblike.setText("0");
-    } else {
-        nblike.setText(String.valueOf(l));  
-    }
-    like.setOnMouseClicked(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent lk) {
-            List<ProduitLike> test =sm.likes(modele.getId());
-            if(sm.islikedbyuser(modele.getId()).isEmpty()){
-                sm.ajouterlike(modele.getId());
-                like.setGlyphName("HEART");
-                like.setGlyphSize(25);
-                like.setCursor(Cursor.HAND);
-                int li=sm.likes(modele.getId()).size();
-                nblike.setText(String.valueOf(li)); 
-            } else {
-                sm.Supprimerlike(modele.getId());
-                like.setGlyphName("HEART_ALT");
-                like.setGlyphSize(25);
-                like.setCursor(Cursor.HAND);
-                int li=sm.likes(modele.getId()).size();
-                nblike.setText(String.valueOf(li)) ;
-            }
+        if (sm.islikedbyuser(modele.getId()).isEmpty()) {
+            like.setGlyphName("HEART");
+            like.setGlyphSize(25);
+            like.setCursor(Cursor.HAND);
+        } else {
+            like.setGlyphName("HEART_ALT");
+            like.setGlyphSize(25);
+            like.setCursor(Cursor.HAND);
         }
-    });
+        Label nblike = new Label("15");
+        nblike.setPrefSize(40, 25);
+        nblike.setTranslateX(10);
+        nblike.setTranslateY(-2);
+        int l = sm.likes(modele.getId()).size();
+        if (l == 0) {
+            nblike.setText("0");
+        } else {
+            nblike.setText(String.valueOf(l));
+        }
+        like.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent lk) {
+                List<ProduitLike> test = sm.likes(modele.getId());
+                if (sm.islikedbyuser(modele.getId()).isEmpty()) {
+                    sm.ajouterlike(modele.getId());
+                    like.setGlyphName("HEART");
+                    like.setGlyphSize(25);
+                    like.setCursor(Cursor.HAND);
+                    int li = sm.likes(modele.getId()).size();
+                    nblike.setText(String.valueOf(li));
+                } else {
+                    sm.Supprimerlike(modele.getId());
+                    like.setGlyphName("HEART_ALT");
+                    like.setGlyphSize(25);
+                    like.setCursor(Cursor.HAND);
+                    int li = sm.likes(modele.getId()).size();
+                    nblike.setText(String.valueOf(li));
+                }
+            }
+        });
 
-    lc.getChildren().add(like);
-    lc.getChildren().add(nblike);
-    box.getChildren().add(lc);
-        
-        
-         
-        
+        lc.getChildren().add(like);
+        lc.getChildren().add(nblike);
+        box.getChildren().add(lc);
+
     }
- @FXML
+
+    @FXML
     private void noteP(ActionEvent event) throws IOException {
-     box.getChildren().clear();
+        box.getChildren().clear();
         Parent Content = FXMLLoader.load(getClass().getResource("Rating.fxml"));
-        box.getChildren().setAll(Content); 
-            // Set the productId attribute with the ID of the current product
-    
+        box.getChildren().setAll(Content);
+        // Set the productId attribute with the ID of the current product
+        MyDB.setPickedPRoductId(pickedId);
     }
-
 
 }
