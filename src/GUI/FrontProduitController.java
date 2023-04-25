@@ -35,36 +35,32 @@ import javafx.scene.layout.VBox;
  */
 public class FrontProduitController implements Initializable {
 
-
     /**
      * Initializes the controller class.
      */
-      @FXML
+    @FXML
     private HBox cardlayoout;
-        private List<Produit> recentlyadd;
+    private List<Produit> recentlyadd;
 
-       Connection cnx;
+    Connection cnx;
     Statement stmt;
     @FXML
     private Pagination pagination;
-    
-    
+
     private int rowsPerPage = 2;
-private int pageCount;
+    private int pageCount;
     @FXML
     private TextField prixminFiled;
     @FXML
     private TextField prixmaxFiled;
     @FXML
     private Button filtrerPrixButton;
-    
-    
-    
-     public FrontProduitController() {
+
+    public FrontProduitController() {
         cnx = MyDB.getInstance().getCnx();
     }
-  
-   /* @Override
+
+    /* @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         ServiceProduit sm = new ServiceProduit();
@@ -87,49 +83,57 @@ private int pageCount;
             e.printStackTrace();
         }
     }
-*/
-     
-     private int cardCount = 0;
-private VBox rowContainer;
-      public void initialize(URL url, ResourceBundle rb) {
-          
-     ServiceProduit sm = new ServiceProduit();
-    recentlyadd = new ArrayList<>(sm.afficherProduit());
-    pageCount = (int) Math.ceil((double) recentlyadd.size() / rowsPerPage);
-    pagination.setPageCount(pageCount);
-    pagination.setPageFactory(this::createPage);
-     
-      }
-     
-      
-      private Region createPage(int pageIndex) {
-    int startIndex = pageIndex * rowsPerPage;
-    int endIndex = Math.min(startIndex + rowsPerPage, recentlyadd.size());
-    List<Produit> pageProducts = recentlyadd.subList(startIndex, endIndex);
+     */
+    private int cardCount = 0;
+    private VBox rowContainer;
 
-    VBox pageContainer = new VBox();
-    pageContainer.setSpacing(20.0);
+    public void initialize(URL url, ResourceBundle rb) {
 
-    try {
-        for (Produit value : pageProducts) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("Card.fxml"));
-            HBox cardBox = fxmlLoader.load();
-            CardController cardController = fxmlLoader.getController();
-            cardController.setData(value);
-            pageContainer.getChildren().add(cardBox);
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
+        ServiceProduit sm = new ServiceProduit();
+        recentlyadd = new ArrayList<>(sm.afficherProduit());
+        pageCount = (int) Math.ceil((double) recentlyadd.size() / rowsPerPage);
+        pagination.setPageCount(pageCount);
+        pagination.setPageFactory(this::createPage);
+
     }
 
-    return pageContainer;
-}
+    private Region createPage(int pageIndex) {
+        int startIndex = pageIndex * rowsPerPage;
+        int endIndex = Math.min(startIndex + rowsPerPage, recentlyadd.size());
+        List<Produit> pageProducts = recentlyadd.subList(startIndex, endIndex);
+
+        VBox pageContainer = new VBox();
+        pageContainer.setSpacing(20.0);
+
+        try {
+            for (Produit value : pageProducts) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("Card.fxml"));
+                HBox cardBox = fxmlLoader.load();
+                CardController cardController = fxmlLoader.getController();
+                cardController.setData(value);
+                pageContainer.getChildren().add(cardBox);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return pageContainer;
+    }
 
     @FXML
     private void filterPrxi(ActionEvent event) {
+        
+        float min = Float.parseFloat(prixminFiled.getText());
+        float max = Float.parseFloat(prixmaxFiled.getText());
+        System.out.println("min: "+ min);
+        System.out.println("max: "+ max);
+        ServiceProduit sm = new ServiceProduit();
+        recentlyadd = new ArrayList<>(sm.filterProduitsParPrix(min, max));
+        System.out.println("produits with filtre: " + sm.filterProduitsParPrix(min, max));
+        pageCount = (int) Math.ceil((double) recentlyadd.size() / rowsPerPage);
+        pagination.setPageCount(pageCount);
+        pagination.setPageFactory(this::createPage);
     }
-      
-    }    
 
-     
+}

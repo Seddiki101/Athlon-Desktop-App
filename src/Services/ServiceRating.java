@@ -25,7 +25,7 @@ public class ServiceRating {
     
     
      public void ajouterRating(ProductRating p) {
-   String qry = "INSERT INTO `ratings`(`userName`, `rating`) VALUES ('"+p.getUserName()+"','"+p.getRating()+"')";
+   String qry = "INSERT INTO `ratiings`(`userName`, `rating`) VALUES ('"+p.getUserName()+"','"+p.getRating()+"')";
         try {
             Statement stm = cnx.createStatement();
        

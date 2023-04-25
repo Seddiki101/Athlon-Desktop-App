@@ -105,6 +105,8 @@ public class RatingController implements Initializable {
     saveRating(productId, userName, rating);
         
     }
+   
+
     }
 
 
