@@ -86,11 +86,6 @@
       <ImageView fx:id="imageProduitView" fitHeight="41.0" fitWidth="135.0" layoutX="14.0" layoutY="524.0" pickOnBounds="true" preserveRatio="true" />
       <Pane layoutX="393.0" layoutY="174.0" prefHeight="434.0" prefWidth="6.0" style="-fx-background-color: #9d240b;" />
       <TextField fx:id="idProduitField" layoutX="360.0" layoutY="-89.0" />
-      <Button layoutX="1022.0" layoutY="680.0" mnemonicParsing="false" onAction="#produitFront" style="-fx-background-color: #b13535;" text="Voir produit" textFill="#fcf9f9">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Button>
       <Button layoutX="978.0" layoutY="593.0" mnemonicParsing="false" onAction="#stat" style="-fx-background-color: #b13535;" text="Statistique" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />

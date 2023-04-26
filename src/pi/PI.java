@@ -27,7 +27,7 @@ public class PI {
       // ServiceProduit sp = new ServiceProduit();
         ServiceRating sp = new ServiceRating();
        
-       sp.ajouterRating(p5);
+      // sp.ajouterRating(p5);
      // sp.supprimerProduit(p5);
   // sp.modifierProduit(p5);
      

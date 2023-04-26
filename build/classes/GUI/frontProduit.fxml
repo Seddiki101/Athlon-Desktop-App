@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -27,17 +26,17 @@
                </font>
             </Label>
             <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
-            <Pane prefHeight="110.0" prefWidth="698.0" style="-fx-background-color: #b13535;" HBox.hgrow="ALWAYS">
+            <Pane prefHeight="61.0" prefWidth="566.0" style="-fx-background-color: #b13535;" HBox.hgrow="ALWAYS">
                <children>
-                  <Text fill="#fff8f8" layoutX="180.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue à notre shop" wrappingWidth="582.025390625">
+                  <Text fill="#fff8f8" layoutX="106.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue à notre shop" wrappingWidth="708.025390625">
                      <font>
                         <Font name="System Bold" size="39.0" />
                      </font>
                   </Text>
-                  <Button fx:id="filtrerPrixButton" layoutX="14.0" layoutY="61.0" mnemonicParsing="false" onAction="#filterPrxi" text="Button" />
                </children></Pane>
             <HBox alignment="CENTER" prefHeight="111.0" prefWidth="485.0" style="-fx-background-color: #b13535;">
                <children>
+                  <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
                   <ImageView fitHeight="140.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../GUI.images/logo2.png" />
@@ -58,16 +57,15 @@
    <center>
       <VBox prefHeight="720.0" prefWidth="1319.0" spacing="10.0" style="-fx-background-color: #b13535;" BorderPane.alignment="CENTER">
          <children>
-            <Separator prefWidth="200.0" />
-            <Pagination fx:id="pagination" prefHeight="53.0" prefWidth="1319.0" />
-            <TextField fx:id="prixminFiled" maxWidth="-Infinity" promptText="Prix minimum" />
+            <Separator prefHeight="0.0" prefWidth="1319.0" />
             <TextField fx:id="prixmaxFiled" maxWidth="-Infinity" promptText="Prix maximum" />
-            <ScrollPane prefHeight="685.0" prefWidth="1319.0" style="-fx-background-color: black;" styleClass="transparent" stylesheets="@styles.css">
-               <content>
-                  <HBox fx:id="cardlayoout" alignment="CENTER_LEFT" prefHeight="571.0" prefWidth="1341.0" spacing="20.0" style="-fx-background-color: black;" styleClass="transparent" stylesheets="@styles.css" />
-                  
-               </content>
-            </ScrollPane>
+            <TextField fx:id="prixminFiled" maxWidth="-Infinity" promptText="Prix minimum" />
+            <Button fx:id="filtrerPrixButton" mnemonicParsing="false" onAction="#filterPrxi" style="-fx-background-color: #061e68;" text="Filtrer" textFill="#eff0f4">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Pagination fx:id="pagination" prefHeight="53.0" prefWidth="1319.0" />
          </children>
       </VBox>
    </center>

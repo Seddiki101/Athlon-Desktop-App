@@ -85,18 +85,8 @@ public class RatingController implements Initializable {
 
     public void saveRating(int productId, String userName, int rating) {
 
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Athlon", "root", "");
-            String query = "INSERT INTO ratings (id_produit, userName, rating) VALUES (?, ?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, productId);
-            stmt.setString(2, userName);
-            stmt.setInt(3, rating);
-            stmt.executeUpdate();
-            conn.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+       
+        sc.ajouterRating(productId,userName,rating);
     }
 
     @FXML

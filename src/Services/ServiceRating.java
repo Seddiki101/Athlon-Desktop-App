@@ -9,6 +9,8 @@ import Entities.ProductRating;
 import Entities.Produit;
 import Util.MyDB;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -24,15 +26,19 @@ public class ServiceRating {
     }
     
     
-     public void ajouterRating(ProductRating p) {
-   String qry = "INSERT INTO `ratiings`(`userName`, `rating`) VALUES ('"+p.getUserName()+"','"+p.getRating()+"')";
+     public void ajouterRating(int productId, String userName, int rating) {
+
         try {
-            Statement stm = cnx.createStatement();
-       
-        stm.executeUpdate(qry);
-        
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage()); 
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Athlon", "root", "");
+            String query = "INSERT INTO ratings (id_produit, userName, rating) VALUES (?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, productId);
+            stmt.setString(2, userName);
+            stmt.setInt(3, rating);
+            stmt.executeUpdate();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

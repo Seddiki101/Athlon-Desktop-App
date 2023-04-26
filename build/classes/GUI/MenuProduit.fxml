@@ -19,7 +19,7 @@
                <font>
                   <Font name="Baskerville Old Face" size="22.0" />
                </font></Button>
-            <ImageView fitHeight="171.0" fitWidth="308.0" layoutX="-29.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="171.0" fitWidth="308.0" layoutX="-29.0" layoutY="52.0" onMouseClicked="#front" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../GUI.images/logo2.png" />
                </image>

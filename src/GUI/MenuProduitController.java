@@ -63,6 +63,14 @@ public class MenuProduitController implements Initializable {
         catch (IOException ex) {
             System.out.println(ex);        }
     }
+
+    @FXML
+    private void front(MouseEvent event) throws IOException {
+        
+         mainPane.getChildren().clear();
+        Parent Content = FXMLLoader.load(getClass().getResource("frontProduit.fxml"));
+       mainPane.getChildren().setAll(Content);
+    }
     }
     
 

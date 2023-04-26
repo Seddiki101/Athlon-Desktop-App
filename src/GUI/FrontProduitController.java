@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
@@ -62,8 +63,8 @@ public class FrontProduitController implements Initializable {
     }
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("Rating.fxml"));
-
-    /* @Override
+/*
+     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         ServiceProduit sm = new ServiceProduit();
@@ -86,7 +87,7 @@ public class FrontProduitController implements Initializable {
             e.printStackTrace();
         }
     }
-     */
+   */  
     private int cardCount = 0;
     private VBox rowContainer;
 
@@ -105,8 +106,10 @@ public class FrontProduitController implements Initializable {
         int endIndex = Math.min(startIndex + rowsPerPage, recentlyadd.size());
         List<Produit> pageProducts = recentlyadd.subList(startIndex, endIndex);
 
-        VBox pageContainer = new VBox();
-        pageContainer.setSpacing(20.0);
+       HBox pageContainer = new HBox(); // wrap VBox in HBox
+    pageContainer.setSpacing(20.0);
+    pageContainer.setAlignment(Pos.CENTER); // set alignment to CENTER
+
 
         try {
             for (Produit value : pageProducts) {

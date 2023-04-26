@@ -90,8 +90,6 @@ public class ProduitController implements Initializable {
     private AnchorPane pane;
     @FXML
     private TextField Recherche;
-    @FXML
-    private Pagination pagination;
 
    
     
@@ -325,6 +323,7 @@ public void show() {
     c.setImage(imagePath);
      c.setIdCategory(idCategorieToadd);
      
+     chercherProduit();
     // try {
 
 //c.setPrix(Float.parseFloat(prixProduitFiled.getText()));
@@ -432,7 +431,6 @@ public void show() {
     }
     }
 
-    @FXML
     private void produitFront(ActionEvent event) throws IOException {
         
           pane.getChildren().clear();
