@@ -9,6 +9,7 @@ import edu.esprit.entities.Cours;
 import edu.esprit.entities.Exercices;
 import edu.esprit.services.ServiceExercices;
 import edu.esprit.services.ServiceCours;
+import java.io.IOException;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -21,7 +22,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -32,12 +35,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 public class FXMLexController implements Initializable {
 
     @FXML
     private TableView<Exercices> tableview;
-    
+    @FXML
+    private TextField videoLinkTextField; // champ de saisie de l'URL de la vidéo
+
     @FXML
     private TableColumn<Exercices, Integer> colid;
     
@@ -71,6 +79,8 @@ public class FXMLexController implements Initializable {
     @FXML private Button clearButton;
 
     @FXML private VBox inputFields;
+    @FXML
+    private MediaView videoView;
     
     private ObservableList<Exercices> observableList;
     private Exercices selectedExercices;
@@ -207,6 +217,8 @@ Cours selectedCours = selectedCoursList.get(0);
         Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
+
+
 
 
    @FXML

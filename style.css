@@ -27,4 +27,9 @@ label {
     -fx-text-fill: white;
 
 }
+#handleExercices{
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+
+}
 

@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import java.net.URL?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="425.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLclController">
   <stylesheets>
         <URL value="file:///C:/Users/lenovo/Documents/NetBeansProjects/PIDEV/style.css" />
    </stylesheets> 
     <children>
-        <Label layoutX="248.0" layoutY="14.0" text="Cours" style="-fx-text-fill: white;-fx-font-weight: bold;" />
+        <Label layoutX="248.0" layoutY="14.0" style="-fx-text-fill: white;-fx-font-weight: bold;" text="Cours" />
 <TableView fx:id="tableView" layoutX="25.0" layoutY="41.0" prefHeight="329.0" prefWidth="550.0" />
             <!-- Les colonnes du tableau ici -->
-              <Button fx:id="ConsultButton" layoutX="248.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleConsult" text="Consulter" />
+              <Button fx:id="ConsultButton" layoutX="289.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleConsult" text="Consulter" />
+<Button fx:id="ExercicesButton" layoutX="469.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleExercices" styleClass="handleExercices" text="Exercices" />
+      <Button fx:id="IMCButton" layoutX="23.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleIMC" prefHeight="31.0" prefWidth="237.0" text="Caluculez votre IMC" />
 
     </children>
 </AnchorPane>

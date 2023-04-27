@@ -12,9 +12,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.web.WebView;
 
 public class DetailsCoursController {
-
+@FXML
+private WebView webView;
     @FXML
     private Label nomLabel;
 
@@ -57,7 +59,9 @@ public class DetailsCoursController {
         niveau.set(selectedCourse.getNiveau_cours());
         capacite.set(selectedCourse.getCapacity());
         duree.set(selectedCourse.getDuree_cours());
+        
     }
+
 
    @FXML
 private void handleReservation() throws SQLException {

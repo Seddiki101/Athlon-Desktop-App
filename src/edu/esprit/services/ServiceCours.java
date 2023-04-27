@@ -7,6 +7,7 @@ package edu.esprit.services;
 
 import javax.mail.MessagingException;
 import edu.esprit.entities.Cours;
+import edu.esprit.entities.Exercices;
 import edu.esprit.utils.MyConnection;
 import java.net.PasswordAuthentication;
 import java.sql.Connection;
@@ -119,6 +120,23 @@ public class ServiceCours {
     return listeCrs;
 }
 
+public Cours getCoursById(int id) throws SQLException {
+    String query = "SELECT * FROM cours WHERE id=?";
+    PreparedStatement ps = con.prepareStatement(query);
+    ps.setInt(1, id);
+    ResultSet rs = ps.executeQuery();
+    if (rs.next()) {
+        Cours cours = new Cours();
+        cours.setId(rs.getInt("id"));
+        cours.setNom(rs.getString("nom"));
+        cours.setDescription_cours(rs.getString("description_cours"));
+        cours.setNiveau_cours(rs.getString("niveau_cours"));
+        cours.setCapacity(rs.getInt("capacity"));
+        cours.setDuree_cours(rs.getInt("duree_cours"));
+        return cours;
+    }
+    return null;
+}
 
     public ArrayList<Cours> afficherCrs() throws SQLException {
         ArrayList<Cours> coursList = new ArrayList<>();
@@ -137,4 +155,6 @@ public class ServiceCours {
         }
         return coursList;
     }
+    
+
 }

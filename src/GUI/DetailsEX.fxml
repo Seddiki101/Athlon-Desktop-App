@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DetailsEXController">
+    <stylesheets>
+        <URL value="file:///C:/Users/lenovo/Documents/NetBeansProjects/PIDEV/style.css" />
+   </stylesheets>
+    <children>
+      <VBox spacing="30" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <Label style="-fx-text-fill: #4CAF50;-fx-font-weight: bold; " text="Détails de l'exercice" textFill="#0d6efd">
+        <font>
+            <javafx.scene.text.Font size="18.0" />
+        </font>
+    </Label>
+    <HBox spacing="15">
+        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Nom du cours :" />
+        <Label fx:id="nomCoursLabel" style="-fx-text-fill: white;-fx-font-weight: bold;" text="${controller.selectedExercice.cours.nom}" />
+    </HBox>
+    <HBox spacing="15">
+        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Nom de l'exercice :" />
+        <Label fx:id="nomLabel" style="-fx-text-fill: white;-fx-font-weight: bold;" text="${controller.selectedExercice.nom}" />
+    </HBox>
+    <HBox spacing="15">
+        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Durée :" />
+        <Label fx:id="dureeLabel" style="-fx-text-fill: white;-fx-font-weight: bold;" text="${controller.selectedExercice.duree_exercices}" />
+    </HBox>
+    <HBox spacing="15">
+        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Nombre de répétitions :" />
+        <Label fx:id="repetitionsLabel" style="-fx-text-fill: white;-fx-font-weight: bold;" text="${controller.selectedExercice.nombre_repetitions}" />
+    </HBox>
+    <HBox spacing="15">
+        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Description :" />
+        <Label fx:id="descriptionLabel" style="-fx-text-fill: white;-fx-font-weight: bold;" text="${controller.selectedExercice.desc_exercices}" />
+    </HBox>
+    <HBox spacing="15">
+        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Machine :" />
+        <Label fx:id="machineLabel" style="-fx-text-fill: white;-fx-font-weight: bold;" text="${controller.selectedExercice.machine}" />
+    </HBox>
+    
+</VBox>
+
+    </children>
+</AnchorPane>

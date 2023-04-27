@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import GUI.DetailsCoursController;
 import edu.esprit.entities.Cours;
 import edu.esprit.services.ServiceCours;
 import java.io.IOException;
@@ -15,13 +16,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import java.util.List;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import edu.esprit.entities.Exercices;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FXMLclController {
     @FXML
@@ -33,7 +41,7 @@ private TableView<Cours> tableView;
     private Cours selectedCourse;
     
   public void initialize() throws SQLException {
-      
+     
     // Récupérer la liste des cours
     cours = serviceCours.afficherCrs();
 
@@ -74,5 +82,19 @@ private void handleConsult() throws IOException {
         alert.showAndWait();
     }
 }
+@FXML
+private void handleExercices() throws IOException {
+    // Charger l'interface Exercices.fxml
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Exercices.fxml"));
+    Parent root = loader.load();
+    Scene scene = new Scene(root);
+    
+    // Afficher la fenêtre
+    Stage stage = new Stage();
+    stage.setTitle("Liste des exercices");
+    stage.setScene(scene);
+    stage.show();
+}
+
 
 }

@@ -10,43 +10,43 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLController">
    <stylesheets>
         <URL value="file:///C:/Users/lenovo/Documents/NetBeansProjects/PIDEV/style.css" />
    </stylesheets>
     <children>
       <HBox layoutX="62.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="400.0" prefWidth="276.0">
+            <VBox prefHeight="582.0" prefWidth="302.0">
                <children>
                  
                   <HBox prefHeight="52.0" prefWidth="406.0">
                      <children>
-                        <Label text="NOM" style="-fx-text-fill: white;-fx-font-weight: bold;"/>
+                        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="NOM" />
                         <TextField fx:id="NOM" />
                      </children>
                   </HBox>
                   <HBox prefHeight="52.0" prefWidth="406.0">
                      <children>
-                        <Label text="Description" style="-fx-text-fill: white;-fx-font-weight: bold;" />
+                        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Description" />
                         <TextField fx:id="Description" />
                      </children>
                   </HBox>
                   <HBox prefHeight="52.0" prefWidth="270.0">
                      <children>
-                        <Label text="Duree" style="-fx-text-fill: white;-fx-font-weight: bold;" />
+                        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Duree" />
                         <TextField fx:id="Duree" />
                      </children>
                   </HBox>
                   <HBox prefHeight="52.0" prefWidth="406.0">
                      <children>
-                        <Label text="Capacity" style="-fx-text-fill: white;-fx-font-weight: bold;" />
+                        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Capacity" />
                         <TextField fx:id="Capacity" />
                      </children>
                   </HBox>
                   <HBox prefHeight="52.0" prefWidth="406.0">
                      <children>
-                        <Label text="Niveau" style="-fx-text-fill: white;-fx-font-weight: bold;" />
+                        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Niveau" />
                         <TextField fx:id="Niveau" />
                      </children>
                   </HBox>
@@ -64,7 +64,7 @@
                </children>
             </VBox>
             
-<TableView fx:id="tableview" prefHeight="200.0" prefWidth="330.0" style="-fx-font-size: 14pt;">
+<TableView fx:id="tableview" prefHeight="157.0" prefWidth="332.0" style="-fx-font-size: 14pt;">
               <columns>
              
                       <TableColumn fx:id="colnom" prefWidth="58.0" text="nom" />

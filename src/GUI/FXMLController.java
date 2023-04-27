@@ -1,6 +1,7 @@
 package GUI;
 
 
+
 import edu.esprit.entities.Cours;
 import edu.esprit.services.ServiceCours;
 import java.net.URL;
@@ -93,50 +94,49 @@ private VBox parent;
     }
     }
 
-    @FXML
-    private void addItem(ActionEvent event) throws MessagingException {
-        ServiceCours dao = new ServiceCours();
-        String nom = NOM.getText();
-        String description_cours = Description.getText();
-        int duree_cours = Integer.parseInt(Duree.getText());
-        int capacity = Integer.parseInt(Capacity.getText());
-        String niveau_cours = Niveau.getText();
+   @FXML
+private void addItem(ActionEvent event) throws MessagingException {
+    ServiceCours dao = new ServiceCours();
+    String nom = NOM.getText();
+    String description_cours = Description.getText();
+    int duree_cours = Integer.parseInt(Duree.getText());
+    int capacity = Integer.parseInt(Capacity.getText());
+    String niveau_cours = Niveau.getText();
+    String phoneNumber = "NUMERO DE TELEPHONE DE L'UTILISATEUR";
 
-
-
-        if (!validateFields(nom, description_cours, duree_cours, capacity, niveau_cours)) {
+    if (!validateFields(nom, description_cours, duree_cours, capacity, niveau_cours)) {
         return;
     }
 
+    Cours cour = new Cours(nom, description_cours, duree_cours, capacity, niveau_cours);
 
-        Cours cour = new Cours(nom, description_cours, duree_cours, capacity, niveau_cours);
+    try {
+        dao.ajouterCrs(cour);
 
+        // Refresh the TableView
+        tableview.getItems().clear();
 
-        try {
-            dao.ajouterCrs(cour);
-
-            // Refresh the TableView
-            tableview.getItems().clear();
-
-           try {
-                // Get the ArrayList from the service
-               ArrayList<Cours> cours = dao.afficherCrs();
+       try {
+            // Get the ArrayList from the service
+           ArrayList<Cours> cours = dao.afficherCrs();
 
 
-                // Convert the ArrayList to an ObservableList
-                observableList = FXCollections.observableArrayList(cours);
+            // Convert the ArrayList to an ObservableList
+            observableList = FXCollections.observableArrayList(cours);
 
-                // Set the ObservableList as the data source for the TableView
-                tableview.setItems(observableList);
+            // Set the ObservableList as the data source for the TableView
+            tableview.setItems(observableList);
 
-            } catch (SQLException ex) {
-                Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            tableview.refresh();
         } catch (SQLException ex) {
             Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        tableview.refresh();
+
+       
+    } catch (SQLException ex) {
+        Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
 
 
        @FXML
