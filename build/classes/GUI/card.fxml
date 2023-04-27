@@ -42,7 +42,10 @@
                   <Font name="Berlin Sans FB" size="17.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#noteP" style="-fx-background-color: red;" text="Noter" />
+            <Button mnemonicParsing="false" onAction="#noteP" style="-fx-background-color: white;" text="Noter">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
             
          </children>
       </VBox>

@@ -63,9 +63,8 @@ public class RatingController implements Initializable {
     private int rating = 0;
     @FXML
     private Rating ratingFieldStar;
-    @FXML
     private Button closeButton;
-     private Stage parentStage;
+    private Stage parentStage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -102,17 +101,7 @@ public class RatingController implements Initializable {
 
     }
     
-    public void setParentStage(Stage stage) {
-        this.parentStage = stage;
-    }
-
-    @FXML
-    private void handleCloseButton(ActionEvent event) {
-        
-        parentStage.show();
-        Stage currentStage = (Stage) closeButton.getScene().getWindow();
-        currentStage.close();
-    }
+   
     }
 
 

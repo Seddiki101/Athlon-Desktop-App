@@ -91,9 +91,9 @@ public class ServiceProduit implements IService<Produit> {
     }
 
     public List<Produit> filterProduitsParPrix(float min, float max) {
-        List<Produit> produits = new ArrayList();
+         List<Produit> produits = new ArrayList();
         //String qry ="SELECT * FROM `produit`";
-        String qry = "SELECT p.id , p.brand,p.description,p.prix,p.image,p.nom,c.nom, (SELECT AVG(rating) from ratings where ratings.id_produit = p.id) as moyRating  FROM categorie c JOIN produit p ON c.id = p.categories_id; WHERE p.prix BETWEEN " + min + " AND " + max + ";";
+        String qry = "SELECT p.id , p.brand,p.description,p.prix,p.image,p.nom,c.nom  FROM categorie c JOIN produit p ON c.id = p.categories_id WHERE p.prix BETWEEN " + min + " AND " + max + ";";
         try {
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
@@ -108,7 +108,6 @@ public class ServiceProduit implements IService<Produit> {
                 p.setImage(rs.getString("image"));
                 p.setNom(rs.getString("nom"));
                 p.setNomCategory(rs.getString(7));
-                p.setMoyRating(rs.getFloat(8));
 
                 produits.add(p);
             }
@@ -120,6 +119,7 @@ public class ServiceProduit implements IService<Produit> {
 
         return produits;
     }
+
 
     /*
     @Override

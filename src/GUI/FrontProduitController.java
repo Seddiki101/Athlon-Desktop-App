@@ -37,11 +37,6 @@ import javafx.scene.layout.VBox;
  */
 public class FrontProduitController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    @FXML
-    private HBox cardlayoout;
     private List<Produit> recentlyadd;
 
     Connection cnx;
@@ -102,7 +97,7 @@ public class FrontProduitController implements Initializable {
     }
 
     private Region createPage(int pageIndex) {
-        int startIndex = pageIndex * rowsPerPage;
+       int startIndex = pageIndex * rowsPerPage;
         int endIndex = Math.min(startIndex + rowsPerPage, recentlyadd.size());
         List<Produit> pageProducts = recentlyadd.subList(startIndex, endIndex);
 
@@ -126,11 +121,10 @@ public class FrontProduitController implements Initializable {
 
         return pageContainer;
     }
-
     @FXML
     private void filterPrxi(ActionEvent event) {
         
-        float min = Float.parseFloat(prixminFiled.getText());
+       float min = Float.parseFloat(prixminFiled.getText());
         float max = Float.parseFloat(prixmaxFiled.getText());
         System.out.println("min: "+ min);
         System.out.println("max: "+ max);

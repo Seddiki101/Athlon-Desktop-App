@@ -16,9 +16,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="878.0" prefWidth="1319.0" style="-fx-background-color: #b13535;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontProduitController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="878.0" prefWidth="1319.0" style="-fx-background-color: black;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontProduitController">
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="1300.0" spacing="20.0" style="-fx-background-color: #b13535;" styleClass="white-background" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="1300.0" spacing="20.0" style="-fx-background-color: black;" styleClass="white-background" stylesheets="@styles.css" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="59.0" prefWidth="217.0" text="SHOP" textFill="#f50f0f">
                <font>
@@ -26,7 +26,7 @@
                </font>
             </Label>
             <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
-            <Pane prefHeight="61.0" prefWidth="566.0" style="-fx-background-color: #b13535;" HBox.hgrow="ALWAYS">
+            <Pane prefHeight="61.0" prefWidth="566.0" style="-fx-background-color: black;" HBox.hgrow="ALWAYS">
                <children>
                   <Text fill="#fff8f8" layoutX="106.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue à notre shop" wrappingWidth="708.025390625">
                      <font>
@@ -34,7 +34,7 @@
                      </font>
                   </Text>
                </children></Pane>
-            <HBox alignment="CENTER" prefHeight="111.0" prefWidth="485.0" style="-fx-background-color: #b13535;">
+            <HBox alignment="CENTER" prefHeight="111.0" prefWidth="485.0" style="-fx-background-color: black;">
                <children>
                   <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
                   <ImageView fitHeight="140.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true">
@@ -55,11 +55,11 @@
       <String fx:value="selected" />
    </styleClass>
    <center>
-      <VBox prefHeight="720.0" prefWidth="1319.0" spacing="10.0" style="-fx-background-color: #b13535;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="720.0" prefWidth="1319.0" spacing="10.0" style="-fx-background-color: #9d240b;" BorderPane.alignment="CENTER">
          <children>
             <Separator prefHeight="0.0" prefWidth="1319.0" />
-            <TextField fx:id="prixmaxFiled" maxWidth="-Infinity" promptText="Prix maximum" />
             <TextField fx:id="prixminFiled" maxWidth="-Infinity" promptText="Prix minimum" />
+            <TextField fx:id="prixmaxFiled" maxWidth="-Infinity" promptText="Prix maximum" />
             <Button fx:id="filtrerPrixButton" mnemonicParsing="false" onAction="#filterPrxi" style="-fx-background-color: #061e68;" text="Filtrer" textFill="#eff0f4">
                <font>
                   <Font name="System Bold" size="16.0" />

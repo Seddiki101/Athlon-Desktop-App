@@ -10,6 +10,7 @@ import Entities.ProduitLike;
 import Services.ServiceProduit;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -38,7 +39,7 @@ public class CardController implements Initializable {
     @FXML
     private HBox box;
 
-    private String[] colors = {"B9E5FF", "BDB2FE", "FB9AA8", "FF5056"};
+    private String[] colors = {"FF5056"};
     @FXML
     private Label ProduitName;
     @FXML
@@ -50,7 +51,6 @@ public class CardController implements Initializable {
     @FXML
     private Label catp;
 
-    
     private int pickedId;
     @FXML
     private Label moyRating;
@@ -69,7 +69,7 @@ public class CardController implements Initializable {
         ProduitName.setText(modele.getNom());
         description.setText(modele.getDescription());
         prixP.setText(String.valueOf(modele.getPrix()));
-moyRating.setText(String.valueOf(modele.getMoyRating()));
+        moyRating.setText(String.valueOf(modele.getMoyRating()));
         catp.setText(modele.getNomCategory());
         box.setStyle("-fx-background-color: #" + colors[(int) (Math.random() * colors.length)]
                 + " ; -fx-background-radius: 15;"
@@ -82,11 +82,13 @@ moyRating.setText(String.valueOf(modele.getMoyRating()));
         like.setGlyphSize(25);
         like.setCursor(Cursor.HAND);
         if (sm.islikedbyuser(modele.getId()).isEmpty()) {
-            like.setGlyphName("HEART");
+            like.setGlyphName("HEART_ALT");
+            like.setFill(Color.RED);
             like.setGlyphSize(25);
             like.setCursor(Cursor.HAND);
         } else {
-            like.setGlyphName("HEART_ALT");
+           like.setGlyphName("HEART");
+           like.setFill(Color.RED);
             like.setGlyphSize(25);
             like.setCursor(Cursor.HAND);
         }
@@ -107,6 +109,7 @@ moyRating.setText(String.valueOf(modele.getMoyRating()));
                 if (sm.islikedbyuser(modele.getId()).isEmpty()) {
                     sm.ajouterlike(modele.getId());
                     like.setGlyphName("HEART");
+                    like.setFill(Color.RED);
                     like.setGlyphSize(25);
                     like.setCursor(Cursor.HAND);
                     int li = sm.likes(modele.getId()).size();
@@ -114,6 +117,7 @@ moyRating.setText(String.valueOf(modele.getMoyRating()));
                 } else {
                     sm.Supprimerlike(modele.getId());
                     like.setGlyphName("HEART_ALT");
+                    like.setFill(Color.RED);
                     like.setGlyphSize(25);
                     like.setCursor(Cursor.HAND);
                     int li = sm.likes(modele.getId()).size();
