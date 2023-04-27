@@ -51,7 +51,7 @@ public class setupController implements Initializable {
             oublie = FXMLLoader.load(getClass().getResource("ForgotPass.fxml"));
             setNode(signin);
             
-            stream = new FileInputStream("B:/project/jav/fx/athlon/src/media/logo.png");
+            stream = new FileInputStream("C:/Users/auo1/Desktop/javaFXvf/athlon/src/media/logo.png");
             Image image = new Image(stream);
             ivLogo.setImage(image);
             

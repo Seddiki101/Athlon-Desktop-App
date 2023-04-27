@@ -6,11 +6,11 @@ import java.util.Date;
 public class conge {
     private int id;
     private int employe_id;
-    private String date_d;
-    private String date_f;
+    private Date date_d;
+    private Date date_f;
     private String type;
 
-    public conge(int id, int employe_id, String date_d, String date_f, String type) {
+    public conge(int id, int employe_id, Date date_d, Date date_f, String type) {
         this.id = id;
         this.employe_id = employe_id;
         this.date_d = date_d;
@@ -34,19 +34,19 @@ public class conge {
     this.employe_id = employe_id;
 }
 
-    public String getDateDebut() {
+    public Date getDateDebut() {
         return date_d;
     }
 
-    public void setDateDebut(String date_d) {
+    public void setDateDebut(Date date_d) {
         this.date_d = date_d;
     }
 
-    public String getDateFin() {
+    public Date getDateFin() {
         return date_f;
     }
 
-    public void setDateFin(String date_f) {
+    public void setDateFin(Date date_f) {
         this.date_f = date_f;
     }
 

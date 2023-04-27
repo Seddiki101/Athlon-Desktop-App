@@ -14,9 +14,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -103,7 +106,7 @@ IdEmploye.setItems(obsEmployesList);
     
     
     
-      @FXML
+ @FXML
     private void createConge()
     {
              cnx = ConnectionDB.getInstance().getCnx();
@@ -112,56 +115,67 @@ IdEmploye.setItems(obsEmployesList);
             
          //
                      
-            try {
-                if( type.getText().isEmpty())
-                {
-                  //empty fields
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Athlon :: Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Entrer all blank fields !!");
-                alert.showAndWait();  
-                }
-                
-                else if ( type.getText().length() < 3  ){
-                //user bs
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Athlon :: Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Nom  doit etre significative !!");
-                alert.showAndWait();  
-                }
-                
-                else{
+           try {
+    if (type.getText().isEmpty()) {
+        //empty fields
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Athlon :: Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Enter all blank fields!!");
+        alert.showAndWait();
+    } else if (type.getText().length() < 3) {
+        //user bs
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Athlon :: Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Nom doit être significative!!");
+        alert.showAndWait();
+    } else {
+        // Get the start and end date values from the UI components
+        LocalDate startDate = textdateD.getValue();
+        LocalDate endDate = textdateF.getValue();
+        int employeeId = IdEmploye.getValue().getId();
+        
 
-                     PreparedStatement smt = cnx.prepareStatement(query);
-           smt.setInt(1, IdEmploye.getValue().getId());
-             smt.setDate(2, java.sql.Date.valueOf(textdateD.getValue()));
-             smt.setDate(3, java.sql.Date.valueOf(textdateF.getValue()));
-            smt.setString(4, type.getText());
-            // maybe add condition if null dont send //SessionManager.getUser().getId() // big problem
-             //getting current user id // 35 
+        // Retrieve all the conge requests for the given dates
+String selectQuery = "SELECT COUNT(DISTINCT employe_id) FROM conge WHERE date_d <= ? AND date_f >= ?";
+PreparedStatement selectStmt = cnx.prepareStatement(selectQuery);
+selectStmt.setDate(1, java.sql.Date.valueOf(endDate));
+selectStmt.setDate(2, java.sql.Date.valueOf(startDate));
+ResultSet resultSet = selectStmt.executeQuery();
+int count = 0;
+if (resultSet.next()) {
+    count = resultSet.getInt(1);
+}
 
-            //System.out.print("hehe");    
-            
-            smt.executeUpdate();
-             
-                System.out.println("ajout avec succee");
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Athlon :: BIENVENNUE");
-                alert.setHeaderText(null);
-                alert.setContentText("Conger Ajouter");
-                alert.showAndWait();
-                
-                }
-                
-                
-            }catch(SQLException ex){
-         System.out.println(ex.getMessage());
-            }
+if (count >= 3) {
+    // Display an error message indicating that the maximum number of conge requests has been reached.
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Athlon :: Error Message");
+    alert.setHeaderText(null);
+    alert.setContentText("Maximum number of conge requests reached for different employees between the selected dates!!");
+    alert.showAndWait();
+} else {
+    // Insert the new conge request into the database.
+    PreparedStatement insertStmt = cnx.prepareStatement(query);
+    insertStmt.setInt(1, employeeId);
+    insertStmt.setDate(2, java.sql.Date.valueOf(startDate));
+    insertStmt.setDate(3, java.sql.Date.valueOf(endDate));
+    insertStmt.setString(4, type.getText());
+    insertStmt.executeUpdate();
 
-         //
-            
+    System.out.println("ajout avec succee");
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Athlon :: BIENVENNUE");
+    alert.setHeaderText(null);
+    alert.setContentText("Conger Ajouter");
+    alert.showAndWait();
+}
+
+    }
+} catch (SQLException ex) {
+    System.out.println(ex.getMessage());
+}
     }
 
     
@@ -205,16 +219,20 @@ private void updateConge() {
     }
 }
 
-    public void setCongeData(conge congee) {
+  public void setCongeData(conge congee) {
     if (congee != null) {
         // Set the data of the selected conge in the form fields
         textidconge.setText(String.valueOf(congee.getId()));
         IdEmploye.setValue(new employe(congee.getEmployeId(), 0, null, null, 0));
-        textdateD.setValue(LocalDate.parse(congee.getDateDebut()));
-        textdateF.setValue(LocalDate.parse(congee.getDateFin()));
-       type.setText(String.valueOf(congee.getType()));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateDebutStr = dateFormat.format(congee.getDateDebut());
+        String dateFinStr = dateFormat.format(congee.getDateFin());
+        textdateD.setValue(LocalDate.parse(dateDebutStr));
+        textdateF.setValue(LocalDate.parse(dateFinStr));
+        type.setText(String.valueOf(congee.getType()));
     }
 }
+
     
     
   

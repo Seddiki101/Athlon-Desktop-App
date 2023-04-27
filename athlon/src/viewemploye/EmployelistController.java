@@ -80,6 +80,8 @@ public class EmployelistController implements Initializable {
     private TableColumn<?, ?> Collidemploye;
     @FXML
     private TextField searchInput;
+    @FXML
+    private TableColumn<?, ?> Colletatemploye;
     /**
      * Initializes the controller class.
      */
@@ -125,6 +127,7 @@ public class EmployelistController implements Initializable {
          Collnomemploye.setCellValueFactory(new PropertyValueFactory<>("nom"));
           Collprenomemploye.setCellValueFactory(new PropertyValueFactory<>("prenom"));
           Collsalaireemploye.setCellValueFactory(new PropertyValueFactory<>("salaire"));
+          
         tableemploye.setItems(list);
     }
     

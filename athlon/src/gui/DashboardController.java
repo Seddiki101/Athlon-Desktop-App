@@ -63,7 +63,7 @@ public class DashboardController implements Initializable {
           //  setNode(listUsr);
           
                                 //image adding         
-            stream = new FileInputStream("B:/project/jav/fx/athlon/src/media/profil.png");
+            stream = new FileInputStream("C:/Users/auo1/Desktop/javaFXvf/athlon/src/media/profil.png");
             Image image = new Image(stream);
             ivProfile.setImage(image);
             //handling the bound on mouse click

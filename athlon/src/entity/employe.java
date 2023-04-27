@@ -15,13 +15,20 @@ public class employe {
     String nom;
     String prenom;
     float salaire;
+ 
 
-    public employe(int id, int cin, String nom, String prenom, float salaire) {
+   
+  
+
+
+
+    public employe(int id, int cin, String nom, String prenom, float salaire ) {
         this.id = id;
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
         this.salaire = salaire;
+          
     }
 
     public int getId() {
@@ -66,8 +73,11 @@ public class employe {
 
     @Override
     public String toString() {
-        return "employe{" + "id=" + Integer.toString(id) + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", salaire=" + salaire + '}';
+        return "employe{" + "id=" + id + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", salaire=" + salaire + '}';
     }
+
+    
+   
   
    
    

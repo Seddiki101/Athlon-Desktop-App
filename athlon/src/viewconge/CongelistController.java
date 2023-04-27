@@ -3,6 +3,7 @@ package viewconge;
 import entity.conge;
 import entity.employe;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -80,8 +81,8 @@ private TableColumn<?, ?> Colltypeconge;
 
             while (rs.next()) {
                
-                mohamed = new conge(rs.getInt("id"), rs.getInt("employe_id"),rs.getString("date_d"),
-                        rs.getString("date_f"), rs.getString("type"));
+                mohamed = new conge(rs.getInt("id"), rs.getInt("employe_id"),rs.getDate("date_d"),
+                        rs.getDate("date_f"), rs.getString("type"));
                 
                 
                 CongeList.add(mohamed);
@@ -196,5 +197,26 @@ private void handleDeleteButton(ActionEvent event) {
             }
         }
     }
+    
+    
+   @FXML
+private void handleCalendrierbutton(ActionEvent event) {
+       try {
+            // Load the "add employee" FXML file and create a new scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewconge/Calendar.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            // Create a new stage and set the scene
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            // Show the stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+}
+
 
 }
