@@ -19,10 +19,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import util.ConnectionDB;
 import util.SessionManager;
 
@@ -109,5 +114,42 @@ public class ProfileController implements Initializable {
                 System.out.println(ex.getMessage());
             }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    public void showMap()
+    {        
+    WebView wbVw = new WebView();
+    WebEngine wbEngine = wbVw.getEngine();
+    wbEngine.load("https://www.openstreetmap.org");
+        // add a listener to the web engine's location property
+    wbEngine.locationProperty().addListener((observable, oldValue, newValue) -> {
+        // newValue will contain the URL of the selected location
+        String selectedLocation = newValue;
+        //System.out.println("Selected location: " + selectedLocation);
+        tfAdress.setText(selectedLocation);
+    });
+    
+    AnchorPane pane = new AnchorPane(wbVw);
+    Scene scene = new Scene(pane);
+    Stage stage = new Stage();
+    stage.setTitle("Zoom In to your location . It will be saved");
+    stage.setScene(scene);
+    stage.show();
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

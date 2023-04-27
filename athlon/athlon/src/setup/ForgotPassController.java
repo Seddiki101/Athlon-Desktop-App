@@ -160,12 +160,14 @@ public class ForgotPassController implements Initializable {
          
          if(! fpVcode.getText().isEmpty() )
          {
-             if( s==fpVcode.getText() ){
+             if( s.equals(fpVcode.getText() ) ){
 
              apForgotpss.setVisible(true);
              apForgotVerification.setVisible(false);
              apForgotpss.setVisible(true);
+             //System.out.println("meta\n");
              }
+             
              //System.out.println("preliminary " + apForgotpss.isVisible() );
              
          }   
@@ -183,7 +185,7 @@ public class ForgotPassController implements Initializable {
              lblErrorFP.setVisible(true);
          }
          else{
-              if( fpass.getText().equals( fpassC.getText() ) )
+              if( ! fpass.getText().equals( fpassC.getText() ) )
               {
                 //msg error  
                   System.out.println("password not match ");
@@ -204,7 +206,7 @@ public class ForgotPassController implements Initializable {
             smt.setInt(2, i );
             
             smt.executeUpdate();
-            System.out.println("test 55");
+            //System.out.println("test 55");
             
             }catch (SQLException ex) {
                 System.out.println(ex.getMessage());
@@ -217,6 +219,7 @@ public class ForgotPassController implements Initializable {
                      alert.setHeaderText(null);
                      alert.setContentText("Proceed to sign in");
                      alert.showAndWait();
+                     apForgotpss.setVisible(false);
                      
                 //now change the anchorpane here
                 //FXMLLoader loader = new FXMLLoader(getClass().getResource("/setup/setup.fxml"));
