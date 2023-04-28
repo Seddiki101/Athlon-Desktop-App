@@ -80,12 +80,12 @@ List<String> ids = new ArrayList<>();
 try {
     cnx = ConnectionDB.getInstance().getCnx();
 
-    String sql = "SELECT id,cin, nom, prenom,salaire FROM employe";
+    String sql = "SELECT id,cin, nom, prenom,salaire,etat FROM employe";
     PreparedStatement st = cnx.prepareStatement(sql);
     ResultSet rs = st.executeQuery();
 
     while (rs.next()) {
-        employe emp = new employe(rs.getInt("id"),rs.getInt("cin"), rs.getString("nom"), rs.getString("prenom"),rs.getFloat("salaire"));
+        employe emp = new employe(rs.getInt("id"),rs.getInt("cin"), rs.getString("nom"), rs.getString("prenom"),rs.getFloat("salaire"),rs.getString("etat"));
         employesList.add(emp);
         ids.add(String.valueOf(emp.getId()));
     }
@@ -107,76 +107,86 @@ IdEmploye.setItems(obsEmployesList);
     
     
  @FXML
-    private void createConge()
-    {
-             cnx = ConnectionDB.getInstance().getCnx();
-            String query="INSERT INTO conge ( employe_id, date_d, date_f, type)"
-                    + "VALUES (?, ?, ?, ?)";   
-            
-         //
-                     
-           try {
-    if (type.getText().isEmpty()) {
-        //empty fields
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Athlon :: Error Message");
-        alert.setHeaderText(null);
-        alert.setContentText("Enter all blank fields!!");
-        alert.showAndWait();
-    } else if (type.getText().length() < 3) {
-        //user bs
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Athlon :: Error Message");
-        alert.setHeaderText(null);
-        alert.setContentText("Nom doit être significative!!");
-        alert.showAndWait();
-    } else {
-        // Get the start and end date values from the UI components
-        LocalDate startDate = textdateD.getValue();
-        LocalDate endDate = textdateF.getValue();
-        int employeeId = IdEmploye.getValue().getId();
-        
+private void createConge() {
+    cnx = ConnectionDB.getInstance().getCnx();
+    String query = "INSERT INTO conge (employe_id, date_d, date_f, type) VALUES (?, ?, ?, ?)";
 
-        // Retrieve all the conge requests for the given dates
-String selectQuery = "SELECT COUNT(DISTINCT employe_id) FROM conge WHERE date_d <= ? AND date_f >= ?";
-PreparedStatement selectStmt = cnx.prepareStatement(selectQuery);
-selectStmt.setDate(1, java.sql.Date.valueOf(endDate));
-selectStmt.setDate(2, java.sql.Date.valueOf(startDate));
-ResultSet resultSet = selectStmt.executeQuery();
-int count = 0;
-if (resultSet.next()) {
-    count = resultSet.getInt(1);
-}
+    try {
+        if (type.getText().isEmpty()) {
+            //empty fields
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Athlon :: Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Enter all blank fields!!");
+            alert.showAndWait();
+        } else if (type.getText().length() < 3) {
+            //user bs
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Athlon :: Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Nom doit être significative!!");
+            alert.showAndWait();
+        } else {
+            // Get the start and end date values from the UI components
+            LocalDate startDate = textdateD.getValue();
+            LocalDate endDate = textdateF.getValue();
+            int employeeId = IdEmploye.getValue().getId();
+            String selectQuery2 = "SELECT COUNT(*) FROM conge WHERE employe_id = ? AND date_f >= ? AND date_d <= ?";
+            PreparedStatement selectStmt2 = cnx.prepareStatement(selectQuery2);
+            selectStmt2.setInt(1, employeeId);
+            selectStmt2.setDate(2, java.sql.Date.valueOf(startDate));
+            selectStmt2.setDate(3, java.sql.Date.valueOf(endDate));
+            ResultSet resultSet2 = selectStmt2.executeQuery();
 
-if (count >= 3) {
-    // Display an error message indicating that the maximum number of conge requests has been reached.
-    Alert alert = new Alert(Alert.AlertType.ERROR);
-    alert.setTitle("Athlon :: Error Message");
-    alert.setHeaderText(null);
-    alert.setContentText("Maximum number of conge requests reached for different employees between the selected dates!!");
-    alert.showAndWait();
-} else {
-    // Insert the new conge request into the database.
-    PreparedStatement insertStmt = cnx.prepareStatement(query);
-    insertStmt.setInt(1, employeeId);
-    insertStmt.setDate(2, java.sql.Date.valueOf(startDate));
-    insertStmt.setDate(3, java.sql.Date.valueOf(endDate));
-    insertStmt.setString(4, type.getText());
-    insertStmt.executeUpdate();
+            if (resultSet2.next() && resultSet2.getInt(1) > 0) {
+                // Display an error message indicating that the employee already has a conge for the selected date range.
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Athlon :: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Employee already has a conge for the selected date range!");
+                alert.showAndWait();
+            } else {
+                // Retrieve all the conge requests for the given dates
+                String selectQuery = "SELECT COUNT(DISTINCT employe_id) FROM conge WHERE date_d <= ? AND date_f >= ?";
+                PreparedStatement selectStmt = cnx.prepareStatement(selectQuery);
+                selectStmt.setDate(1, java.sql.Date.valueOf(endDate));
+                selectStmt.setDate(2, java.sql.Date.valueOf(startDate));
+                ResultSet resultSet = selectStmt.executeQuery();
+                int count = 0;
+                if (resultSet.next()) {
+                    count = resultSet.getInt(1);
+                }
 
-    System.out.println("ajout avec succee");
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Athlon :: BIENVENNUE");
-    alert.setHeaderText(null);
-    alert.setContentText("Conger Ajouter");
-    alert.showAndWait();
-}
+                if (count >= 3) {
+                    // Display an error message indicating that the maximum number of conge requests has been reached.
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Athlon :: Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Maximum number of conge requests reached for different employees between the selected dates!!");
+                    alert.showAndWait();
+                } else {
+                    // Insert the new conge request into the database.
+                    PreparedStatement insertStmt = cnx.prepareStatement(query);
+                    insertStmt.setInt(1, employeeId);
+                    insertStmt.setDate(2, java.sql.Date.valueOf(startDate));
+                    insertStmt.setDate(3, java.sql.Date.valueOf(endDate));
+                    insertStmt.setString(4, type.getText());
+                    insertStmt.executeUpdate();
 
+                    System.out.println("ajout avec succee");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Athlon :: BIENVENNUE");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Conger Ajouter");
+                    alert.showAndWait();
+                }
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
     }
-} catch (SQLException ex) {
-    System.out.println(ex.getMessage());
 }
-    }
+
 
     
     @FXML
@@ -223,7 +233,7 @@ private void updateConge() {
     if (congee != null) {
         // Set the data of the selected conge in the form fields
         textidconge.setText(String.valueOf(congee.getId()));
-        IdEmploye.setValue(new employe(congee.getEmployeId(), 0, null, null, 0));
+        IdEmploye.setValue(new employe(congee.getEmployeId(), 0, null, null, 0,null));
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateDebutStr = dateFormat.format(congee.getDateDebut());
         String dateFinStr = dateFormat.format(congee.getDateFin());

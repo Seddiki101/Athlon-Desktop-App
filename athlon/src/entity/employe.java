@@ -15,6 +15,7 @@ public class employe {
     String nom;
     String prenom;
     float salaire;
+    String etat;
  
 
    
@@ -22,13 +23,21 @@ public class employe {
 
 
 
-    public employe(int id, int cin, String nom, String prenom, float salaire ) {
+    public employe(int id, int cin, String nom, String prenom, float salaire, String etat ) {
         this.id = id;
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
         this.salaire = salaire;
-          
+          this.etat = etat ; 
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    public String getEtat() {
+        return etat;
     }
 
     public int getId() {

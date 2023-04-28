@@ -33,6 +33,18 @@ public class CalendarActivity {
     public ZonedDateTime getEndDate() {
         return endDate;
     }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public void setStartDate(ZonedDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(ZonedDateTime endDate) {
+        this.endDate = endDate;
+    }
 }
 
   

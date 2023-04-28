@@ -105,7 +105,7 @@ public class EmployelistController implements Initializable {
 
             while (rs.next()) {
                 // public employe(int id, int cin, String nom, String prenom, String salaire)
-                mohamed = new employe(rs.getInt("id"), rs.getInt("cin"), rs.getString("nom"),rs.getString("prenom"),rs.getFloat("salaire"));
+                mohamed = new employe(rs.getInt("id"), rs.getInt("cin"), rs.getString("nom"),rs.getString("prenom"),rs.getFloat("salaire"),rs.getString("etat"));
                 EmployeList.add(mohamed);
             }
         } catch (SQLException ex) {
@@ -217,7 +217,7 @@ public void generatePDF(ActionEvent event) {
 List<String> content = new ArrayList<>();
 
 // Add header row to the content list
-content.add("FirstName   Last Name   Email   Etat   ");
+content.add("FirstName   Last Name   Email   Salaire  ");
 
 // Populate table content from userList TableView
 for (employe employee : tableemploye.getItems()) {

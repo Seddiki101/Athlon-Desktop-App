@@ -22,7 +22,10 @@ public class At extends Application {
         //Parent root = FXMLLoader.load(getClass().getResource("/setup/ForgotPass.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/setup/setup.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/viewconge/congelist.fxml"));
+          // Parent root = FXMLLoader.load(getClass().getResource("/viewemploye/employelist.fxml"));
+           // Parent root = FXMLLoader.load(getClass().getResource("/viewemploye/employefront.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/gui/Dashboard.fxml"));
+    
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

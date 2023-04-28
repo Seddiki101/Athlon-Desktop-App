@@ -12,13 +12,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import util.ConnectionDB;
 import util.SessionManager;
 
@@ -53,12 +63,13 @@ public class AjouteremployeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       employe emp ;
     }    
-    
-      @FXML
+    @FXML
     private void createEmploye()
     {
+    
+
              cnx = ConnectionDB.getInstance().getCnx();
             String query="INSERT INTO employe ( cin, nom, prenom, salaire)"
                     + "VALUES (?, ?, ?, ?)";   
@@ -105,6 +116,22 @@ public class AjouteremployeController implements Initializable {
                 alert.setTitle("Athlon :: BIENVENNUE");
                 alert.setHeaderText(null);
                 alert.setContentText("Employe Ajouter");
+                    String destinataire = "mohamedaymen.ghrab@esprit.tn";
+                     String cinText = textcinemploye.getText();
+String salaireText = textsalaireemploye.getText();
+
+int cin = Integer.parseInt(cinText);
+float salaire = Float.parseFloat(salaireText);
+                    employe emp = new employe(0,0,null,null,0,null);
+emp.setCin(cin);
+emp.setNom(textnomemploye.getText());
+emp.setPrenom(textprenomemploye.getText());
+emp.setSalaire(salaire);
+                     try {
+            sendEmail(destinataire,emp);
+        } catch (MessagingException ex) {
+            Logger.getLogger(employe.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 alert.showAndWait();
                 
                 }
@@ -118,7 +145,39 @@ public class AjouteremployeController implements Initializable {
             
     }
     
-    
+    public void sendEmail(String destinataire, employe emp) throws MessagingException, MessagingException {
+        String username = "contact.fithealth23@gmail.com";
+        String password = "qavkrnciihzjmtkp";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            @Override
+            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                return new javax.mail.PasswordAuthentication(username, password);
+            }
+        });
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(destinataire));
+        message.setSubject("Nouveau employe ajouté");
+        message.setText("L Employe " + emp.getNom() + " a été ajouté avec succès !\n\n" +
+               "Détails du Employe :\n" +
+               "CIN : " + emp.getCin() + "\n" +
+               "Nom : " + emp.getNom() + "\n" +
+               "Prenom : " + emp.getPrenom() + "\n" +
+               "Salaire : " + emp.getSalaire() + "\n");
+        Transport transport = session.getTransport("smtp");
+        transport.connect(username, password);
+        Transport.send(message);
+        transport.close();
+
+        System.out.println("Le message a été envoyé avec succès à " + destinataire);
+    }
      @FXML
 public void updateEmployee() {
     cnx = ConnectionDB.getInstance().getCnx();
@@ -174,6 +233,7 @@ public void updateEmployee() {
        textsalaireemploye.setText(String.valueOf(employee.getSalaire()));
     }
 }
+
 
     
 }

@@ -10,9 +10,9 @@
 
 <AnchorPane prefHeight="642.0" prefWidth="900.0" style="-fx-background-color: #f2fafc;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewconge.CalendarController">
    <FlowPane fx:id="calendar" hgap="10.0" layoutX="81.0" layoutY="116.0" prefHeight="498.0" prefWidth="870.0" vgap="5.0" />
-   <HBox alignment="CENTER" layoutX="307.0" layoutY="14.0" prefHeight="44.0" prefWidth="419.0" spacing="5.0">
+   <HBox alignment="CENTER" layoutX="344.0" layoutY="14.0" prefHeight="44.0" prefWidth="419.0" spacing="5.0">
       <children>
-         <Button mnemonicParsing="false" onAction="#backOneMonth" text="&lt;" />
+         <Button mnemonicParsing="false" onAction="#backOneMonth" styleClass="redline" stylesheets="@../style/custom.css" text="&lt;" />
          <Text fx:id="year" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
             <font>
                <Font size="22.0" />
@@ -23,7 +23,7 @@
                <Font size="22.0" />
             </font>
          </Text>
-         <Button mnemonicParsing="false" onAction="#forwardOneMonth" text="&gt;" />
+         <Button mnemonicParsing="false" onAction="#forwardOneMonth" styleClass="redline" stylesheets="@../style/custom.css" text="&gt;" />
       </children>
    </HBox>
    <HBox alignment="CENTER" layoutX="-75.0" layoutY="72.0" prefHeight="44.0" prefWidth="1182.0" spacing="105.0">
