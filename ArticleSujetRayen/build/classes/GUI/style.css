@@ -1,0 +1,72 @@
+
+.table-view .table-cell{
+    -fx-font-size:15px;           
+
+}
+.parent {
+    -fx-background-color:#fff;
+}
+
+.sidebar{
+    -fx-background-color : #333645;
+}
+
+.btns{
+    -fx-background-color: transparent;
+}
+.btns:hover, .btn-selected{
+    -fx-background-color: #202332;
+}
+
+.card-01{
+    -fx-background-color: rgba(0,162,211,0.3);
+}
+.round-box{
+    -fx-background-radius: 100%;
+    -fx-border-radius:100%;
+    -fx-border-width: 5px;
+}
+
+.red{
+    -fx-background-color: red;
+}
+.blue{
+    -fx-background-color: #72D3FE;
+}
+
+
+.button
+{
+-fx-background-color : #FFF;
+-fx-border-color: #355ECE;
+-fx-text-fill:  #0C3988;
+}
+.button:hover
+{
+-fx-background-color : #355ECE ;
+-fx-text-fill:  #FFF;
+}
+.button:pressed
+{
+-fx-background-color : #0C39FF ;
+-fx-text-fill: #FFF;
+}
+
+.button2
+{
+-fx-background-color :  #0C39FF;
+-fx-border-color: #FFF;
+-fx-text-fill:  #FFF;
+}
+.button2:hover
+{
+-fx-background-color : #0C3988 ;
+-fx-text-fill:   #FFF;
+}
+.button2:pressed
+{
+-fx-background-color : #0C3400 ;
+-fx-text-fill: #FFF;
+}
+
+
