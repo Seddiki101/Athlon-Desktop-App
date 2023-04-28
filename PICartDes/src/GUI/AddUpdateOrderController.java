@@ -27,7 +27,7 @@ import service.OrderService;
  * @author Houssem Charef
  */
 public class AddUpdateOrderController implements Initializable {
-    
+
     OrderService orderService;
     Order order;
     String type;
@@ -51,27 +51,27 @@ public class AddUpdateOrderController implements Initializable {
         list.addAll("pending", "placed");
         statutCB.setItems(list);
     }
-    
+
     @FXML
     private void ajoutOrDelete(ActionEvent event) {
         if (controleDeSaisie()) {
             if (type.equals("Update")) {
-                
+
                 order.setState(statutCB.getSelectionModel().getSelectedItem());
                 update(order);
             } else {
                 order = new Order();
                 order.setDate(new Timestamp(System.currentTimeMillis()));
                 order.setState(statutCB.getSelectionModel().getSelectedItem());
-                
+
                 ajout(order);
             }
             gestionOrderController.refreshTable();
         }
     }
-    
+
     private void update(Order o) {
-        
+
         if (orderService.update(o)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("mise à jour avec succès");
@@ -84,38 +84,38 @@ public class AddUpdateOrderController implements Initializable {
             alert.show();
         }
     }
-    
+
     private void ajout(Order o) {
-        
+
         if (orderService.insert(o)) {
-            
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("ajout avec succès");
             alert.setTitle("Succès");
             alert.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("mise à jour fail ");
+            alert.setContentText("ajout fail ");
             alert.setTitle("fail");
             alert.show();
         }
-        
+
     }
-    
+
     public void setWindowType(String type) {
         this.type = type;
         actionButton.setText(type);
         TitleLabel1.setText(type + " order");
     }
-    
+
     public void initializeTextField(Order o) {
         order = o;
         statutCB.getSelectionModel().select(o.getState());
-        
+
     }
-    
+
     private boolean controleDeSaisie() {
-        
+
         if (statutCB.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Veuillez saisir le statut");
@@ -123,12 +123,12 @@ public class AddUpdateOrderController implements Initializable {
             alert.show();
             return false;
         }
-        
+
         return true;
     }
-    
+
     void initializeOrderController(GestionOrderController gestionOrderController) {
         this.gestionOrderController = gestionOrderController;
     }
-    
+
 }

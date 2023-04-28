@@ -7,7 +7,7 @@ package entite;
 
 /**
  *
- * @author Houssem Charef
+ * @author Seif Boulabiar
  */
 public class User {
 

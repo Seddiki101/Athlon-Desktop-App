@@ -7,13 +7,14 @@ package entite;
 
 /**
  *
- * @author Houssem Charef
+ * @author Seif Boulabiar
  */
 public class Produit {
 
     int id;
 
     String marque;
+    float prix;
 
     public Produit() {
     }
@@ -37,6 +38,14 @@ public class Produit {
 
     public void setMarque(String marque) {
         this.marque = marque;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+
+    public void setPrix(float prix) {
+        this.prix = prix;
     }
 
 }

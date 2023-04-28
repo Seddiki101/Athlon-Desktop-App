@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Houssem Charef
+ * @author Seif Boulabiar
  */
 public class PICartDes extends Application {
 
@@ -30,7 +30,7 @@ public class PICartDes extends Application {
         try {
             Rectangle2D screenBounds = Screen.getPrimary().getBounds();
 
-            root = FXMLLoader.load(getClass().getResource("/GUI/GestionOrder.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/GUI/Base.fxml"));
             Scene scene = new Scene(root);
 
             primaryStage.setTitle("");

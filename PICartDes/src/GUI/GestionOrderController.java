@@ -5,16 +5,9 @@
  */
 package GUI;
 
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Element;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entite.Order;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,7 +26,6 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -45,16 +37,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-//import javax.swing.text.Document;
 import service.OrderService;
-import com.itextpdf.text.Document;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.collections.transformation.SortedList;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 public class GestionOrderController implements Initializable {
 
@@ -74,7 +57,7 @@ public class GestionOrderController implements Initializable {
     @FXML
     private TableColumn<Order, String> actionCell;
     @FXML
-    private TextField searchInput;
+    private TextField searchTextField;
 
     /**
      * Initializes the controller class.
@@ -84,7 +67,6 @@ public class GestionOrderController implements Initializable {
         gestionOrderController = this;
         orderService = new OrderService();
         LoadData();
-        searchEmploye() ;
     }
 
     public void refreshTable() {
@@ -92,6 +74,11 @@ public class GestionOrderController implements Initializable {
         listOrders.clear();
         listOrders.addAll(orderService.getAll());
         commandeTableView.setItems(listOrders);
+        if (listOrders.size() > 0) {
+            FilteredList<Order> filterData = recherche(listOrders);
+            String a = searchTextField.getText();
+            commandeTableView.setItems(filterData);
+        }
 
     }
 
@@ -210,126 +197,25 @@ public class GestionOrderController implements Initializable {
         }
     }
 
-    
-    
-    
-    
-    public void searchEmploye() {
-        FilteredList<Order> filteredData = new FilteredList<>(listOrders, p -> true);
-        searchInput.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(Order -> {
-                if (newValue == null || newValue.isEmpty()) {
+    private FilteredList<Order> recherche(ObservableList matchList) {
+        FilteredList<Order> filterData = new FilteredList<Order>(matchList, b -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterData.setPredicate(SearchModel -> {
+
+                if (newValue.isEmpty() || newValue == null) {
                     return true;
                 }
-                String lowerCaseFilter = newValue.toLowerCase();
-                if (Order.getState().toLowerCase().contains(lowerCaseFilter)) {
+                String serachKeeyword = newValue.toLowerCase();
+                if (((Order) SearchModel).getState().toLowerCase().contains(serachKeeyword)) {
                     return true;
-                } else if (Integer.toString(Order.getId()).contains(lowerCaseFilter)) {
-                    return true;
-                } else {
-                    return false;
                 }
+
+                return false;
             });
+
         });
-        // wrap the filtered list in a SortedList
-        SortedList<Order> sortedData = new SortedList<>(filteredData);
-        // bind the SortedList comparator to the TableView comparator
-        sortedData.comparatorProperty().bind(commandeTableView.comparatorProperty());
-        // add sorted (and filtered) data to the table
-        commandeTableView.setItems(sortedData);
+
+        return filterData;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    @FXML
-    public void generatePDF(ActionEvent event) {
-    
-    // Create content list
-List<String> content = new ArrayList<>();
-
-// Add header row to the content list
-content.add("First   Name   Last Name   Email   Phone   DateIns");
-
-// Populate table content from userList TableView
-for (Order user : commandeTableView.getItems()) {
-    String row = user.toString() ;
-    content.add(row);
-}
-
-// Create a new PDF document
-PDDocument document = new PDDocument();
-
-// Add a new page to the document
-PDPage page = new PDPage();
-document.addPage(page);
-
-// Create a new font for the header
-PDType1Font font = PDType1Font.HELVETICA;
-
-// Add content to the PDF document
-try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-    // Add the title
-    contentStream.beginText();
-    contentStream.setFont(font, 36);
-    contentStream.newLineAtOffset(50, 650);
-    contentStream.showText("User List");
-    contentStream.endText();
-
-    // Add the table data
-    contentStream.beginText();
-    contentStream.setFont(font, 12);
-    contentStream.newLineAtOffset(50, 600);
-
-    for (int i = 0; i < content.size(); i++) {
-        contentStream.showText(content.get(i));
-        contentStream.newLineAtOffset(0, -20);
-    }
-
-    contentStream.endText();
-    contentStream.close();
-}catch(Exception e) {
-        e.printStackTrace();
-}
-
-// Save the PDF document to a file or stream
-    try {
-        document.save("order_list.pdf");
-        document.close();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-
 
 }
-    
-    
-    
-    
-    
-    
-    
-    
-
-        
-    }
-
-   
-    
-    
-

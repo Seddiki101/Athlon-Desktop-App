@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="703.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GestionOrderController">
+<AnchorPane id="AnchorPane" prefHeight="703.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GestionOrderController">
    <children>
       <TableView fx:id="commandeTableView" layoutX="7.0" layoutY="62.0" prefHeight="642.0" prefWidth="1063.0" stylesheets="@../../../zedPrintDesktop/src/GUI/style.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="56.0">
          <columns>
@@ -22,13 +26,27 @@
       </TableView>
       <Button layoutX="889.0" layoutY="8.0" mnemonicParsing="false" onAction="#OpenAjoutDialog" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #00A2D3;" text="Ajouter Commande" textFill="WHITE" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="8.0">
          <graphic>
-          
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="1.7em" />
          </graphic>
          <font>
             <Font name="Calibri Light" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="798.0" layoutY="15.0" mnemonicParsing="false" onAction="#generatePDF" text="pdf" />
-      <TextField fx:id="searchInput" layoutX="55.0" layoutY="15.0" />
+      <HBox alignment="CENTER_LEFT" layoutX="28.0" layoutY="13.0" style="-fx-border-style: solid; -fx-border-color: #7c8184;">
+         <children>
+            <FontAwesomeIconView glyphName="SEARCH" glyphStyle="-fx-fill:#7c8184" size="1.3em" />
+            <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="310.0" promptText="Recherche" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </TextField>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </HBox>
    </children>
 </AnchorPane>

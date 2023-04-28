@@ -6,6 +6,7 @@
 package service;
 
 import entite.Order;
+import entite.Produit;
 import entite.User;
 import utils.DataSource;
 
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Houssem Charef
+ * @author Seif Boulabiar
  */
 public class OrderService implements IService<Order> {
 
@@ -29,6 +30,32 @@ public class OrderService implements IService<Order> {
 
     public OrderService() {
         cnx = DataSource.getInstance().getCnx();
+    }
+
+    public int insertID(Order order) {
+        String generatedColumns[] = {"ID"};
+
+        String sql = "insert into commande (statue,date,user,remise) values (?,?,?,?)";
+
+        try {
+            PreparedStatement ps = cnx.prepareStatement(sql, generatedColumns);
+
+            ps.setString(1, order.getState());
+            ps.setTimestamp(2, order.getDate());
+            ps.setInt(3, 1);// current user
+            ps.setInt(4, order.getRemise());
+            int affectedRows = ps.executeUpdate();
+            ResultSet result = ps.getGeneratedKeys();
+            if (result.next()) {
+                return result.getInt(1);
+            } else {
+                return -1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return -1;
     }
 
     @Override

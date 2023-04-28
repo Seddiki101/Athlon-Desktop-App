@@ -27,7 +27,7 @@ import service.OrderService;
 /**
  * FXML Controller class
  *
- * @author Houssem Charef
+ * @author Seif Boulabiar
  */
 public class AddUpdateOrderItemController implements Initializable {
 
@@ -131,7 +131,7 @@ public class AddUpdateOrderItemController implements Initializable {
 
         if (OrderCB.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Veuillez saisir le evenement");
+            alert.setContentText("Veuillez saisir l' order");
             alert.setTitle("fail");
             alert.show();
             return false;

@@ -7,12 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="703.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GestionOrderItemController">
+<AnchorPane id="AnchorPane" prefHeight="703.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GestionProduitController">
    <children>
       <TableView fx:id="commandeItemTableView" layoutX="7.0" layoutY="62.0" prefHeight="642.0" prefWidth="1063.0" stylesheets="@../../../zedPrintDesktop/src/GUI/style.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="56.0">
          <columns>
-            <TableColumn fx:id="orderIdCell" prefWidth="75.0" text="Order Id" />
-            <TableColumn fx:id="StatutCell" prefWidth="30.0" text="Order statut" />
             <TableColumn fx:id="ProduitCell" prefWidth="75.0" text="Produit" />
             <TableColumn fx:id="quantiteCell" prefWidth="75.0" text="quantite" />
             <TableColumn fx:id="actionCell" prefWidth="75.0" text="Action" />

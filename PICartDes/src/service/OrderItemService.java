@@ -18,8 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Seif Boulabiar
  *
+ * @author Seif Boulabiar
  */
 public class OrderItemService implements IService<OrderItem> {
 
@@ -119,5 +119,25 @@ public class OrderItemService implements IService<OrderItem> {
         }
         return null;
 
+    }
+
+    public List<Produit> produit() {
+        String req = "select * from produit";
+        List<Produit> ordersList = new ArrayList<>();
+        try {
+            pst = cnx.prepareStatement(req);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Produit p = new Produit();
+                p.setId(rs.getInt("id_p"));
+                p.setMarque(rs.getString("brand"));
+                p.setPrix(rs.getFloat("prix"));
+                ordersList.add(p);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ordersList;
     }
 }
