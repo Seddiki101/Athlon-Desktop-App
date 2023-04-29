@@ -5,7 +5,9 @@
  */
 package GUI;
 
+import Entities.Categorie;
 import Entities.Produit;
+import Services.ServiceCategorie;
 import Services.ServiceProduit;
 import Util.MyDB;
 import java.io.IOException;
@@ -19,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -55,9 +58,16 @@ public class FrontProduitController implements Initializable {
     @FXML
     private VBox categoriesBox;
 
+    
+    private List<Categorie> categories;
+private int selectedCategoryId;
     public FrontProduitController() {
         cnx = MyDB.getInstance().getCnx();
     }
+    
+   
+    
+    
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("Rating.fxml"));
 /*
@@ -93,7 +103,48 @@ public class FrontProduitController implements Initializable {
         pageCount = (int) Math.ceil((double) recentlyadd.size() / rowsPerPage);
         pagination.setPageCount(pageCount);
         pagination.setPageFactory(this::createPage);
+         // Récupérer les catégories depuis la base de données
+    ServiceCategorie sc = new ServiceCategorie();
+    categories = sc.afficherCategorie();
+   
+    // Ajouter des boutons pour chaque catégorie
+    for (Categorie categorie : categories) {
+        Button button = new Button(categorie.getNom());
+        button.setOnAction(event -> {
+            // Enregistrer l'ID de la catégorie sélectionnée
+            selectedCategoryId = categorie.getId();
+            // Afficher les produits associés à la catégorie sélectionnée
+            displayProduits();
+        });
+       HBox.setMargin(button, new Insets(10, 10, 10, 10)); // marge autour du bouton
+categoriesBox.getChildren().add(button);
+    }
 
+    // Afficher les produits par défaut (toutes les catégories)
+    selectCategory(selectedCategoryId);
+    selectedCategoryId = 0;
+    displayProduits();
+
+
+    }
+    private void displayProduits() {
+    // Récupérer les produits depuis la base de données pour la catégorie sélectionnée
+    ServiceProduit sm = new ServiceProduit();
+    List<Produit> produits;
+    if (selectedCategoryId == 0) {
+        produits = sm.afficherProduit();
+    } else {
+        produits = sm.afficherProduitParCategorie(selectedCategoryId);
+    }
+
+    // Mettre à jour la liste de produits récents
+    recentlyadd.clear();
+    recentlyadd.addAll(produits);
+
+    // Afficher les produits avec la pagination
+    pageCount = (int) Math.ceil((double) recentlyadd.size() / rowsPerPage);
+    pagination.setPageCount(pageCount);
+    pagination.setPageFactory(this::createPage);
     }
 
     private Region createPage(int pageIndex) {
@@ -136,5 +187,12 @@ public class FrontProduitController implements Initializable {
         pagination.setPageFactory(this::createPage);
     }
 
+public void selectCategory(int categoryId) {
+    // Mettre à jour la variable selectedCategoryId avec l'ID de la catégorie sélectionnée
+    selectedCategoryId = categoryId;
+    System.out.println("Catégorie sélectionnée : " + selectedCategoryId);
 
+    // Appeler la méthode displayProduits() pour afficher les produits de la catégorie sélectionnée
+    displayProduits();
+}
 }

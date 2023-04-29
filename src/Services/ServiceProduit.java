@@ -62,11 +62,11 @@ public class ServiceProduit implements IService<Produit> {
     public List<Produit> afficherProduit() {
         List<Produit> produits = new ArrayList();
         //String qry ="SELECT * FROM `produit`";
-        String qry = "SELECT p.id, p.brand, p.description, p.prix, p.image, p.nom, c.nom, \n" +
-"  (SELECT AVG(rating) from ratings where ratings.id_produit = p.id) as moyRating,\n" +
-"  p.quantite\n" +
-"FROM categorie c \n" +
-"JOIN produit p ON c.id = p.categories_id;";
+        String qry = "SELECT p.id, p.brand, p.description, p.prix, p.image, p.nom, c.nom, \n"
+                + "  (SELECT AVG(rating) from ratings where ratings.id_produit = p.id) as moyRating,\n"
+                + "  p.quantite\n"
+                + "FROM categorie c \n"
+                + "JOIN produit p ON c.id = p.categories_id;";
         try {
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
@@ -95,7 +95,7 @@ public class ServiceProduit implements IService<Produit> {
     }
 
     public List<Produit> filterProduitsParPrix(float min, float max) {
-         List<Produit> produits = new ArrayList();
+        List<Produit> produits = new ArrayList();
         //String qry ="SELECT * FROM `produit`";
         String qry = "SELECT p.id , p.brand,p.description,p.prix,p.image,p.nom,p.quantite,c.nom  FROM categorie c JOIN produit p ON c.id = p.categories_id WHERE p.prix BETWEEN " + min + " AND " + max + ";";
         try {
@@ -143,7 +143,6 @@ public class ServiceProduit implements IService<Produit> {
 
    
      */
-
     @Override
     public boolean modifierProduit(Produit t) {
         try {
@@ -225,6 +224,31 @@ public class ServiceProduit implements IService<Produit> {
         return produits;
     }
 
+    public List<Produit> afficherProduitParCategorie(int idCategorie) {
+        List<Produit> produits = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM produit WHERE categories_id = ?";
+            PreparedStatement statement = cnx.prepareStatement(query);
+            statement.setInt(1, idCategorie);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Produit produit = new Produit();
+                //    produit.setId(rs.getInt("id"));
+                produit.setNom(rs.getString("nom"));
+                produit.setPrix(rs.getFloat("prix"));
+                produit.setImage(rs.getString("image"));
+                ;
+                produit.setNomCategory(rs.getString(7));
+                produit.setQuantite(rs.getInt("quantite"));
+                // et ainsi de suite pour les autres attributs du produit
+                produits.add(produit);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return produits;
+    }
+
     public List<ProduitLike> islikedbyuser(int idp) {
 
         List<ProduitLike> produits = new ArrayList<>();
@@ -272,7 +296,7 @@ public class ServiceProduit implements IService<Produit> {
         }
         return a;
     }
-    
+
     /*public List<Produit> chercherProduit(String motCle) {
     List<Produit> produits = new ArrayList<>();
     String query = "SELECT * FROM produit WHERE nom LIKE '%" + motCle + "%'";
@@ -294,5 +318,5 @@ public class ServiceProduit implements IService<Produit> {
     }
     return produits;
 }
-   */
+     */
 }

@@ -27,7 +27,7 @@
             <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
             <Pane prefHeight="61.0" prefWidth="566.0" style="-fx-background-color: black;" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox fx:id="categoriesBox" layoutX="54.0" layoutY="4.0" prefHeight="111.0" prefWidth="355.0" />
+                  <VBox fx:id="categoriesBox" layoutX="7.0" layoutY="23.0" prefHeight="63.0" prefWidth="538.0" />
                </children></Pane>
             <HBox alignment="CENTER" prefHeight="111.0" prefWidth="485.0" style="-fx-background-color: black;">
                <children>
