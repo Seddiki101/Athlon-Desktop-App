@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewCour.ExercicesController">
+     <stylesheets>
+       <URL value="file:///B:/project/jav/fx/equipa/Athlon-Desktop-App-Employe/athlon/src/style/style.css" />
+   </stylesheets> 
+    <children>
+        <Label layoutX="29.0" layoutY="14.0" text="Liste des exercices">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+      <TableView fx:id="tblExercices" layoutX="19.0" layoutY="52.0" prefHeight="287.0" prefWidth="559.0">
+        <columns>
+          <TableColumn fx:id="colExercice" prefWidth="276.0" text="Exercices" />
+            <TableColumn fx:id="colNomCours" prefWidth="276.0" text="Nom cours" />
+        </columns>
+      </TableView>
+                    <Button fx:id="ConstButton" layoutX="248.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleConst" text="Consulter" />
+
+    </children>
+</AnchorPane>

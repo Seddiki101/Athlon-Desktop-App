@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="at.jnlp">
+  <information>
+    <title>at</title>
+    <vendor>k</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="at.jar" size="947519" download="eager" />
+    <jar href="lib\argon2-jvm-2.4.jar" size="388865" download="eager" />
+    <jar href="lib\bcrypt-0.10.2.jar" size="40575" download="eager" />
+    <jar href="lib\bytes-1.5.0.jar" size="80919" download="eager" />
+    <jar href="lib\jackson-annotations-2.15.0.jar" size="75564" download="eager" />
+    <jar href="lib\jackson-core-2.15.0.jar" size="542635" download="eager" />
+    <jar href="lib\jackson-databind-2.15.0.jar" size="1619579" download="eager" />
+    <jar href="lib\javax.mail.jar" size="659033" download="eager" />
+    <jar href="lib\jna-5.6.0.jar" size="1509440" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.48.jar" size="1006956" download="eager" />
+    <jar href="lib\pdfbox-app-2.0.27.jar" size="10083036" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="at" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="ath.Ath"  name="at" />
+  <update check="always"/>
+</jnlp>

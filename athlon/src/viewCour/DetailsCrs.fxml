@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewCour.DetailsCoursController">
+    <stylesheets>
+        <URL value="file:///B:/project/jav/fx/equipa/Athlon-Desktop-App-Employe/athlon/src/style/style.css" />
+   </stylesheets>
+    <children>
+      <VBox spacing="30" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <Label style="-fx-text-fill: #4CAF50;-fx-font-weight: bold; " text="Détails du cours" textFill="#0d6efd">
+        <font>
+            <javafx.scene.text.Font size="18.0" />
+        </font>
+    </Label>
+    <HBox spacing="15">
+        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Nom :" />
+        <Label fx:id="nomLabel" style="-fx-text-fill: white;-fx-font-weight: bold;" text="${controller.selectedCourse.nom}" />
+    </HBox>
+    <HBox spacing="15">
+        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Description :" />
+        <Label fx:id="descriptionLabel" style="-fx-text-fill: white;-fx-font-weight: bold;" text="${controller.selectedCourse.description_cours}" />
+    </HBox>
+    <HBox spacing="15">
+        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Niveau :" />
+        <Label fx:id="niveauLabel" style="-fx-text-fill: white;-fx-font-weight: bold;" text="${controller.selectedCourse.niveau_cours}" />
+    </HBox>
+    <HBox spacing="15">
+        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Capacité :" />
+        <Label fx:id="capaciteLabel" style="-fx-text-fill: white;-fx-font-weight: bold;" text="${controller.selectedCourse.capacity}" />
+    </HBox>
+    <HBox spacing="15">
+        <Label style="-fx-text-fill: white;-fx-font-weight: bold;" text="Durée :" />
+        <Label fx:id="dureeLabel" style="-fx-text-fill: white;-fx-font-weight: bold;" text="${controller.selectedCourse.duree_cours}" />
+    </HBox>
+    <Button fx:id="reserverButton" mnemonicParsing="false" onAction="#handleReservation" text="Réserver" />
+</VBox>
+      <WebView fx:id="webView" layoutX="386.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" />
+
+    </children>
+</AnchorPane>
