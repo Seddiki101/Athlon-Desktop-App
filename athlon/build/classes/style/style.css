@@ -1,0 +1,35 @@
+.root {
+    -fx-background-image: url("Gym2.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+label {
+    -fx-font-weight: bold;
+  }
+
+.Button {
+    -fx-font-size: 14pt;
+    -fx-padding: 5px;
+}
+
+#addButton, #deleteButton, #updateButton {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+#clearButton {
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+}
+
+#ConsultButton{
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+
+}
+#handleExercices{
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+
+}
+

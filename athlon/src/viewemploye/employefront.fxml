@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewemploye.EmployefrontController">
+   <children>
+      <TableView fx:id="tableFront" layoutX="7.0" layoutY="47.0" onSort="#afficheremploye" prefHeight="489.0" prefWidth="786.0">
+        <columns>
+          <TableColumn fx:id="frontprenom" prefWidth="388.79998779296875" text="Coach name" />
+          <TableColumn fx:id="idetat" prefWidth="396.800048828125" text="Etat" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
