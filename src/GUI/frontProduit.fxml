@@ -29,8 +29,12 @@
                   <HBox alignment="CENTER" layoutX="360.0" layoutY="-1.0" prefHeight="111.0" prefWidth="485.0" style="-fx-background-color: black;">
                      <children>
                         <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
-                        <TextField fx:id="searchField" />
-                        <Button mnemonicParsing="false" onAction="#searchProduit" text="Button" />
+                        <TextField fx:id="searchField" promptText="Rechercher ..." />
+                        <Button mnemonicParsing="false" onAction="#searchProduit" style="-fx-background-color: #061e68;" text="Rechercher" textFill="#f5efef">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
                      </children>
                   </HBox>
                </children></Pane>

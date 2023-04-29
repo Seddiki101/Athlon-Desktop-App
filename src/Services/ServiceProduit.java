@@ -237,6 +237,7 @@ public class ServiceProduit implements IService<Produit> {
                 //    produit.setId(rs.getInt("id"));
                 produit.setNom(rs.getString("nom"));
                 produit.setPrix(rs.getFloat("prix"));
+                produit.setDescription(rs.getString("description"));
                 produit.setImage(rs.getString("image"));
                 
                 produit.setNomCategory(rs.getString(7));
