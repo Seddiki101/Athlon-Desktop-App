@@ -9,11 +9,14 @@ import Entities.ProductRating;
 import Services.ServiceProduit;
 import Entities.Produit;
 import Services.ServiceCategorie;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.print.PrinterException;
@@ -90,6 +93,10 @@ public class ProduitController implements Initializable {
     private AnchorPane pane;
     @FXML
     private TextField Recherche;
+    @FXML
+    private TableColumn<Produit, Integer> quantiteP;
+    @FXML
+    private TextField quantiteProduitFiled;
 
    
     
@@ -158,6 +165,7 @@ String path="";
         PrixProduit.setCellValueFactory(new PropertyValueFactory<>("prix"));
        imageProduit.setCellValueFactory(new PropertyValueFactory<>("image"));
        CategoryP.setCellValueFactory(new PropertyValueFactory<>("nomCategory"));
+        quantiteP.setCellValueFactory(new PropertyValueFactory<>("quantite"));
         System.out.println("affichage" + sc.afficherProduit());
          TableView.setItems(Produit);
      }
@@ -182,6 +190,7 @@ public void show() {
         PrixProduit.setCellValueFactory(new PropertyValueFactory<>("prix"));
         imageProduit.setCellValueFactory(new PropertyValueFactory<>("image"));
         CategoryP.setCellValueFactory(new PropertyValueFactory<>("nomCategory"));
+        quantiteP.setCellValueFactory(new PropertyValueFactory<>("quantite"));
         TableView.setItems(ProduitList);
        
        chercherProduit();
@@ -274,6 +283,7 @@ public void show() {
     String brandProduit = brandProduitFiled.getText();
     String descriptionProduit = descriptionProduitFiled.getText();
     Float prixProduit =(  Float.parseFloat(prixProduitFiled.getText()));
+     Integer quantiteP =( Integer.parseInt( quantiteProduitFiled.getText()));
     
                 String imagePath = path.substring(path.lastIndexOf("/img/"));
           Produit u = new Produit(nomProduit, brandProduit, descriptionProduit, imagePath,prixProduit);
@@ -319,6 +329,7 @@ public void show() {
     c.setBrand(brandProduit);
     c.setDescription(descriptionProduit);
     c.setPrix(Float.parseFloat(prixProduitFiled.getText()));
+   c.setQuantite (Integer.parseInt( quantiteProduitFiled.getText()));
   
     c.setImage(imagePath);
      c.setIdCategory(idCategorieToadd);
@@ -368,6 +379,7 @@ public void show() {
         brandProduitFiled.setText(brandProduit.getCellData(index));
         descriptionProduitFiled.setText(DescriptionProduit.getCellData(index));
         prixProduitFiled.setText(PrixProduit.getCellData(index).toString());
+        quantiteProduitFiled.setText(quantiteP.getCellData(index).toString());
         Image image = new Image(new File(c.getImage()).toURI().toString());
             imageProduitView.setImage(image);         //coachingField.setValue(coursR.getCellData(index));
         // catPField.setValue(CategoryP.getCellData(index).toString());
@@ -387,6 +399,7 @@ public void show() {
         c.setImage(path);
         c.setNomCategory(catPField.getValue());
         c.setIdCategory(idCategorieToadd);
+        c.setQuantite (Integer.parseInt( quantiteProduitFiled.getText()));
         sc.modifierProduit(c);
         updateTable();
         JOptionPane.showMessageDialog(null, "Produit modifié");
@@ -404,6 +417,7 @@ public void show() {
         c.setPrix(Float.parseFloat(prixProduitFiled.getText()));
         c.setImage(imageProduitFiled.getText());
         c.setNomCategory( catPField.getValue());
+        c.setQuantite (Integer.parseInt( quantiteProduitFiled.getText()));
         sc.supprimerProduit(c);
         updateTable();
         JOptionPane.showMessageDialog(null, "Produit supprimé");
@@ -625,61 +639,83 @@ public void generateStatistics() {
     }
     }
 
-    @FXML
-    private void pdfproduit(MouseEvent event) {
-         Document document = new Document(PageSize.A4);
+    
+   @FXML
+private void pdfproduit(MouseEvent event) {
+    Document document = new Document(PageSize.A4);
 
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream("Détail du produit.pdf"));
+    try {
+        PdfWriter.getInstance(document, new FileOutputStream("Liste des produits.pdf"));
 
-            document.open();
+        document.open();
 
-            Paragraph paragraph = new Paragraph("Détails du produit");
-            paragraph.setAlignment(Element.ALIGN_CENTER);
-            document.add(paragraph);
+        Paragraph paragraph = new Paragraph("Liste des produits");
+        paragraph.setAlignment(Element.ALIGN_CENTER);
+        document.add(paragraph);
 
-            document.add(Chunk.NEWLINE);
+        document.add(Chunk.NEWLINE);
 
-            PdfPTable pdfTable = new PdfPTable(2);
+        PdfPTable pdfTable = new PdfPTable(6);
 
-            Produit produit = TableView.getSelectionModel().getSelectedItem();
+        // Créer une ligne pour les en-têtes de colonnes
+       
+        pdfTable.addCell("Marque");
+        pdfTable.addCell("Nom Produit");
+        pdfTable.addCell("Description");
+        pdfTable.addCell("Catégorie");
+        pdfTable.addCell("Prix");
+        pdfTable.addCell("Quantite");
+        
 
-            pdfTable.addCell("Nom du champ");
-            pdfTable.addCell("Valeur");
-
-            pdfTable.addCell("ID");
-            pdfTable.addCell(String.valueOf(produit.getId()));
-
-            pdfTable.addCell("Marque");
-            pdfTable.addCell(String.valueOf(produit.getBrand()));
-
-            pdfTable.addCell("Nom Produit");
-            pdfTable.addCell(String.valueOf(produit.getNom()));
-
-            pdfTable.addCell("Description");
-            pdfTable.addCell(produit.getDescription());
-
-            pdfTable.addCell("Nom Categorie");
-            pdfTable.addCell(produit.getNomCategory());
-
-            pdfTable.addCell("Prix");
-            pdfTable.addCell(String.valueOf(produit.getPrix()));
-
+        // Ajouter une ligne pour chaque produit dans la liste
+        ObservableList<Produit> produits = TableView.getItems();
+        float totalPrix = 0;
+        int totalQuantite = 0;
+        for (Produit produit : produits) {
            
+            pdfTable.addCell(String.valueOf(produit.getBrand()));
+            pdfTable.addCell(String.valueOf(produit.getNom()));
+            pdfTable.addCell(produit.getDescription());
+            pdfTable.addCell(produit.getNomCategory());
+            pdfTable.addCell(String.valueOf(produit.getPrix()));
+            pdfTable.addCell(String.valueOf(produit.getQuantite()));
 
-            document.add(pdfTable);
-
-            document.close();
-
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Export PDF");
-            alert.setHeaderText(null);
-            alert.setContentText("Le fichier PDF a été généré avec succès !");
-            alert.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
+            totalPrix += produit.getPrix();
+            totalQuantite += produit.getQuantite();
         }
+        // Ajouter une ligne pour les totaux des quantités et des prix
+PdfPCell cellTotalQuantite = new PdfPCell(new Phrase("Total Quantité"));
+PdfPCell cellTotalPrix = new PdfPCell(new Phrase("Total Prix"));
+
+cellTotalQuantite.setBackgroundColor(BaseColor.LIGHT_GRAY);
+cellTotalPrix.setBackgroundColor(BaseColor.LIGHT_GRAY);
+
+pdfTable.addCell("");
+pdfTable.addCell("");
+pdfTable.addCell("");
+pdfTable.addCell("");
+pdfTable.addCell(cellTotalQuantite);
+pdfTable.addCell(String.valueOf(totalQuantite));
+
+pdfTable.addCell("");
+pdfTable.addCell("");
+pdfTable.addCell("");
+pdfTable.addCell("");
+pdfTable.addCell(cellTotalPrix);
+pdfTable.addCell(String.valueOf(totalPrix));
+        document.add(pdfTable);
+
+        document.close();
+
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Export PDF");
+        alert.setHeaderText(null);
+        alert.setContentText("Le fichier PDF a été généré avec succès !");
+        alert.showAndWait();
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
 
    /*  @FXML
     private void pdfproduit(MouseEvent event) {

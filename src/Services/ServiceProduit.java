@@ -34,7 +34,7 @@ public class ServiceProduit implements IService<Produit> {
 
     @Override
     public void ajouterProduit(Produit t) {
-        String qry = "INSERT INTO `produit`(`brand`, `description`, `prix`, `image`, `nom`, `categories_id`) VALUES ('" + t.getBrand() + "','" + t.getDescription() + "','" + t.getPrix() + "','" + t.getImage() + "','" + t.getNom() + "','" + t.getIdCategory() + "')";
+        String qry = "INSERT INTO `produit`(`brand`, `description`, `prix`, `image`, `nom`, `categories_id`, `quantite`) VALUES ('" + t.getBrand() + "','" + t.getDescription() + "','" + t.getPrix() + "','" + t.getImage() + "','" + t.getNom() + "','" + t.getIdCategory() + "','" + t.getQuantite() + "')";
         try {
             Statement stm = cnx.createStatement();
 
@@ -62,7 +62,11 @@ public class ServiceProduit implements IService<Produit> {
     public List<Produit> afficherProduit() {
         List<Produit> produits = new ArrayList();
         //String qry ="SELECT * FROM `produit`";
-        String qry = "SELECT p.id , p.brand,p.description,p.prix,p.image,p.nom,c.nom, (SELECT AVG(rating) from ratings where ratings.id_produit = p.id) as moyRating  FROM categorie c JOIN produit p ON c.id = p.categories_id;";
+        String qry = "SELECT p.id, p.brand, p.description, p.prix, p.image, p.nom, c.nom, \n" +
+"  (SELECT AVG(rating) from ratings where ratings.id_produit = p.id) as moyRating,\n" +
+"  p.quantite\n" +
+"FROM categorie c \n" +
+"JOIN produit p ON c.id = p.categories_id;";
         try {
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
@@ -78,7 +82,7 @@ public class ServiceProduit implements IService<Produit> {
                 p.setNom(rs.getString("nom"));
                 p.setNomCategory(rs.getString(7));
                 p.setMoyRating(rs.getFloat(8));
-
+                p.setQuantite(rs.getInt("quantite"));
                 produits.add(p);
             }
 
@@ -93,7 +97,7 @@ public class ServiceProduit implements IService<Produit> {
     public List<Produit> filterProduitsParPrix(float min, float max) {
          List<Produit> produits = new ArrayList();
         //String qry ="SELECT * FROM `produit`";
-        String qry = "SELECT p.id , p.brand,p.description,p.prix,p.image,p.nom,c.nom  FROM categorie c JOIN produit p ON c.id = p.categories_id WHERE p.prix BETWEEN " + min + " AND " + max + ";";
+        String qry = "SELECT p.id , p.brand,p.description,p.prix,p.image,p.nom,p.quantite,c.nom  FROM categorie c JOIN produit p ON c.id = p.categories_id WHERE p.prix BETWEEN " + min + " AND " + max + ";";
         try {
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
@@ -108,7 +112,7 @@ public class ServiceProduit implements IService<Produit> {
                 p.setImage(rs.getString("image"));
                 p.setNom(rs.getString("nom"));
                 p.setNomCategory(rs.getString(7));
-
+                p.setQuantite(rs.getInt("quantite"));
                 produits.add(p);
             }
 
@@ -144,7 +148,7 @@ public class ServiceProduit implements IService<Produit> {
     public boolean modifierProduit(Produit t) {
         try {
             // String qry = "UPDATE produit SET nom = '" + t.getNom()+ "',`category_id` = '" + t.getIdCategory()+ "', description = '" + t.getDescription() + "',`quantite` = '" + t.getQuantite() + "',`prix` = '" + t.getPrix() + "',`image` = '" + t.getImage() + "' WHERE id = '" + t.getId() + "'";
-            String qry = "UPDATE `produit` SET `brand` = '" + t.getBrand() + "', `description` = '" + t.getDescription() + "',`prix` = '" + t.getPrix() + "', `image` = '" + t.getImage() + "', `nom` = '" + t.getNom() + "',`categories_id` = '" + t.getIdCategory() + "'  WHERE `id` = '" + t.getId() + "'";
+            String qry = "UPDATE `produit` SET `brand` = '" + t.getBrand() + "', `description` = '" + t.getDescription() + "',`prix` = '" + t.getPrix() + "', `image` = '" + t.getImage() + "', `nom` = '" + t.getNom() + "',`categories_id` = '" + t.getIdCategory() + "',`quantite` = '" + t.getQuantite() + "'  WHERE `id` = '" + t.getId() + "'";
             Statement stm = cnx.createStatement();
 
             stm.executeUpdate(qry);
@@ -268,5 +272,27 @@ public class ServiceProduit implements IService<Produit> {
         }
         return a;
     }
-
+    
+    /*public List<Produit> chercherProduit(String motCle) {
+    List<Produit> produits = new ArrayList<>();
+    String query = "SELECT * FROM produit WHERE nom LIKE '%" + motCle + "%'";
+    try {
+        PreparedStatement ps = cnx.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Produit produit = new Produit();
+            produit.setId(rs.getInt("id"));
+            produit.setNom(rs.getString("nom"));
+            produit.setDescription(rs.getString("description"));
+            produit.setPrix(rs.getFloat("prix"));
+            produit.setImage(rs.getString("image"));
+            // Ajouter d'autres propriétés du produit si nécessaire
+            produits.add(produit);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return produits;
+}
+   */
 }

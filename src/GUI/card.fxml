@@ -17,9 +17,9 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="266.0" prefWidth="297.0" spacing="15.0">
          <children>
-            <Label fx:id="ProduitName" prefHeight="39.0" prefWidth="292.0" text="         Tapis     ">
+            <Label fx:id="ProduitName" prefHeight="39.0" prefWidth="249.0" text="         Tapis     ">
                <font>
-                  <Font name="Berlin Sans FB Bold" size="28.0" />
+                  <Font name="Berlin Sans FB Bold" size="21.0" />
                </font>
             </Label>
             <Label fx:id="description" prefHeight="27.0" prefWidth="296.0" text="Blue">

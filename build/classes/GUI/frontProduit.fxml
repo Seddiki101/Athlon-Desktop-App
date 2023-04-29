@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="878.0" prefWidth="1319.0" style="-fx-background-color: black;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FrontProduitController">
    <top>
@@ -28,11 +27,7 @@
             <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
             <Pane prefHeight="61.0" prefWidth="566.0" style="-fx-background-color: black;" HBox.hgrow="ALWAYS">
                <children>
-                  <Text fill="#fff8f8" layoutX="106.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue à notre shop" wrappingWidth="708.025390625">
-                     <font>
-                        <Font name="System Bold" size="39.0" />
-                     </font>
-                  </Text>
+                  <VBox fx:id="categoriesBox" layoutX="54.0" layoutY="4.0" prefHeight="111.0" prefWidth="355.0" />
                </children></Pane>
             <HBox alignment="CENTER" prefHeight="111.0" prefWidth="485.0" style="-fx-background-color: black;">
                <children>

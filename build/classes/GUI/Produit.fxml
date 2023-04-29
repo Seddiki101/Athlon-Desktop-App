@@ -54,7 +54,7 @@
          <font>
             <Font name="System Bold" size="21.0" />
          </font></Label>
-      <TableView fx:id="TableView" layoutX="438.0" layoutY="175.0" onMouseClicked="#getSelected" prefHeight="387.0" prefWidth="676.0" style="-fx-border-color: #ee0404;">
+      <TableView fx:id="TableView" layoutX="403.0" layoutY="164.0" onMouseClicked="#getSelected" prefHeight="387.0" prefWidth="711.0" style="-fx-border-color: #ee0404;">
         <columns>
           <TableColumn fx:id="idProduit" prefWidth="42.0" text="id" />
           <TableColumn fx:id="NomProduit" prefWidth="76.0" text="Nom" />
@@ -62,14 +62,15 @@
             <TableColumn fx:id="DescriptionProduit" prefWidth="146.0" text="Description" />
             <TableColumn fx:id="PrixProduit" prefWidth="64.0" text="Prix" />
             <TableColumn fx:id="imageProduit" minWidth="0.0" prefWidth="89.0" text="Image" />
-            <TableColumn fx:id="CategoryP" maxWidth="1000.0" prefWidth="240.0" text="Categorie" />
+            <TableColumn fx:id="CategoryP" maxWidth="1000.0" prefWidth="101.0" text="Categorie" />
+            <TableColumn fx:id="quantiteP" prefWidth="112.0" text="Quantité" />
         </columns>
       </TableView>
-      <Button fx:id="modifierProduit" layoutX="136.0" layoutY="589.0" mnemonicParsing="false" onAction="#ModifierProduit" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: orange;" text="Modifier" textFill="#eee9e9">
+      <Button fx:id="modifierProduit" layoutX="136.0" layoutY="660.0" mnemonicParsing="false" onAction="#ModifierProduit" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: orange;" text="Modifier" textFill="#eee9e9">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Button>
-      <Button fx:id="supprimerProduit" layoutX="254.0" layoutY="589.0" mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="38.0" prefWidth="116.0" style="-fx-background-color: #b13535;" text="Supprimer" textFill="#fcf7f7">
+      <Button fx:id="supprimerProduit" layoutX="261.0" layoutY="660.0" mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="38.0" prefWidth="116.0" style="-fx-background-color: #b13535;" text="Supprimer" textFill="#fcf7f7">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Button>
@@ -78,12 +79,12 @@
             <Font name="System Bold" size="21.0" />
          </font></Label>
       <ComboBox fx:id="catPField" layoutX="168.0" layoutY="468.0" prefHeight="31.0" prefWidth="187.0" />
-      <Button fx:id="AddP" layoutX="16.0" layoutY="589.0" mnemonicParsing="false" onAction="#ajouterP" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: green;" text="Ajouter" textFill="WHITE">
+      <Button fx:id="AddP" layoutX="16.0" layoutY="660.0" mnemonicParsing="false" onAction="#ajouterP" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: green;" text="Ajouter" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
-      <Button fx:id="selectImageBtn" layoutX="167.0" layoutY="529.0" mnemonicParsing="false" onMouseClicked="#selectImage" prefHeight="31.0" prefWidth="187.0" style="-fx-background-color: #f4f0ef;" text="Ajouter une image" textFill="#220701" />
-      <ImageView fx:id="imageProduitView" fitHeight="41.0" fitWidth="135.0" layoutX="14.0" layoutY="524.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="selectImageBtn" layoutX="168.0" layoutY="597.0" mnemonicParsing="false" onMouseClicked="#selectImage" prefHeight="31.0" prefWidth="187.0" style="-fx-background-color: #f4f0ef;" text="Ajouter une image" textFill="#220701" />
+      <ImageView fx:id="imageProduitView" fitHeight="41.0" fitWidth="135.0" layoutX="3.0" layoutY="592.0" pickOnBounds="true" preserveRatio="true" />
       <Pane layoutX="393.0" layoutY="174.0" prefHeight="434.0" prefWidth="6.0" style="-fx-background-color: #9d240b;" />
       <TextField fx:id="idProduitField" layoutX="360.0" layoutY="-89.0" />
       <Button layoutX="978.0" layoutY="593.0" mnemonicParsing="false" onAction="#stat" style="-fx-background-color: #b13535;" text="Statistique" textFill="WHITE">
@@ -99,5 +100,11 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
+      <Label layoutX="28.0" layoutY="536.0" text="Quantité" textFill="#f8f5f5">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="quantiteProduitFiled" layoutX="168.0" layoutY="536.0" />
    </children>
 </AnchorPane>

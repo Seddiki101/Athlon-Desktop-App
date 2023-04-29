@@ -52,6 +52,8 @@ public class FrontProduitController implements Initializable {
     private TextField prixmaxFiled;
     @FXML
     private Button filtrerPrixButton;
+    @FXML
+    private VBox categoriesBox;
 
     public FrontProduitController() {
         cnx = MyDB.getInstance().getCnx();
@@ -63,7 +65,6 @@ public class FrontProduitController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         ServiceProduit sm = new ServiceProduit();
-
         recentlyadd = new ArrayList<>(sm.afficherProduit());
         try {
             for (Produit value : recentlyadd) {
@@ -73,7 +74,6 @@ public class FrontProduitController implements Initializable {
                 CardController cardController = fxmlLoader.getController();
                 cardController.setData(value);
                 cardlayoout.getChildren().add(cardBox);
-
         
             
             
@@ -135,5 +135,6 @@ public class FrontProduitController implements Initializable {
         pagination.setPageCount(pageCount);
         pagination.setPageFactory(this::createPage);
     }
+
 
 }

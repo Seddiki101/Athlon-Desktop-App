@@ -11,10 +11,45 @@ package Entities;
  */
 public class Produit {
 
-    private int id, idCategory, likes;
+    private int id, idCategory, likes,quantite;
     private String nom, brand, description, image, nomCategory;
     private float prix;
     private float moyRating;
+
+    public Produit(int idCategory, int likes, int quantite, String nom, String brand, String description, String image, String nomCategory, float prix, float moyRating) {
+        this.idCategory = idCategory;
+        this.likes = likes;
+        this.quantite = quantite;
+        this.nom = nom;
+        this.brand = brand;
+        this.description = description;
+        this.image = image;
+        this.nomCategory = nomCategory;
+        this.prix = prix;
+        this.moyRating = moyRating;
+    }
+
+    public Produit(int id, int idCategory, int likes, int quantite, String nom, String brand, String description, String image, String nomCategory, float prix, float moyRating) {
+        this.id = id;
+        this.idCategory = idCategory;
+        this.likes = likes;
+        this.quantite = quantite;
+        this.nom = nom;
+        this.brand = brand;
+        this.description = description;
+        this.image = image;
+        this.nomCategory = nomCategory;
+        this.prix = prix;
+        this.moyRating = moyRating;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
 
     public float getMoyRating() {
         return moyRating;
