@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entities.Categorie;
 import Entities.Produit;
 import Entities.ProduitLike;
 import Util.MyDB;
@@ -237,7 +238,7 @@ public class ServiceProduit implements IService<Produit> {
                 produit.setNom(rs.getString("nom"));
                 produit.setPrix(rs.getFloat("prix"));
                 produit.setImage(rs.getString("image"));
-                ;
+                
                 produit.setNomCategory(rs.getString(7));
                 produit.setQuantite(rs.getInt("quantite"));
                 // et ainsi de suite pour les autres attributs du produit
@@ -319,4 +320,33 @@ public class ServiceProduit implements IService<Produit> {
     return produits;
 }
      */
+    
+    
+    public List<Produit> filterProduitsParNom(String nom) {
+    List<Produit> produits = new ArrayList<>();
+    String query = "SELECT * FROM produit WHERE nom LIKE '%" + nom + "%'";
+    try {
+        PreparedStatement ps = cnx.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Produit produit = new Produit();
+            produit.setId(rs.getInt("id"));
+            produit.setNom(rs.getString("nom"));
+            produit.setDescription(rs.getString("description"));
+            produit.setPrix(rs.getFloat("prix"));
+            produit.setImage(rs.getString("image"));
+            
+                
+                produit.setNomCategory(rs.getString(7));
+                produit.setQuantite(rs.getInt("quantite"));
+            // Ajouter d'autres propriétés du produit si nécessaire
+            produits.add(produit);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return produits;
+}
+    
+    
 }

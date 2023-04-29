@@ -7,8 +7,6 @@
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -28,17 +26,14 @@
             <Pane prefHeight="61.0" prefWidth="566.0" style="-fx-background-color: black;" HBox.hgrow="ALWAYS">
                <children>
                   <VBox fx:id="categoriesBox" layoutX="7.0" layoutY="23.0" prefHeight="63.0" prefWidth="538.0" />
+                  <HBox alignment="CENTER" layoutX="360.0" layoutY="-1.0" prefHeight="111.0" prefWidth="485.0" style="-fx-background-color: black;">
+                     <children>
+                        <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
+                        <TextField fx:id="searchField" />
+                        <Button mnemonicParsing="false" onAction="#searchProduit" text="Button" />
+                     </children>
+                  </HBox>
                </children></Pane>
-            <HBox alignment="CENTER" prefHeight="111.0" prefWidth="485.0" style="-fx-background-color: black;">
-               <children>
-                  <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
-                  <ImageView fitHeight="140.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../GUI.images/logo2.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
          </children>
          <BorderPane.margin>
             <Insets left="20.0" right="20.0" />

@@ -75,61 +75,7 @@ public class CardController implements Initializable {
                 + " ; -fx-background-radius: 15;"
                 + "-fx-effect : dropshadow(three-pass-box , rgba(0,0,0,0.1) , 10 , 0 ,0 , 10 ) ;");
 
-        // Ajouter le code pour afficher les likes
-        ServiceProduit sm = new ServiceProduit();
-        HBox lc = new HBox();
-        FontAwesomeIconView like = new FontAwesomeIconView(FontAwesomeIcon.HEART_ALT);
-        like.setGlyphSize(25);
-        like.setCursor(Cursor.HAND);
-        if (sm.islikedbyuser(modele.getId()).isEmpty()) {
-            like.setGlyphName("HEART_ALT");
-            like.setFill(Color.RED);
-            like.setGlyphSize(25);
-            like.setCursor(Cursor.HAND);
-        } else {
-           like.setGlyphName("HEART");
-           like.setFill(Color.RED);
-            like.setGlyphSize(25);
-            like.setCursor(Cursor.HAND);
-        }
-        Label nblike = new Label("15");
-        nblike.setPrefSize(40, 25);
-        nblike.setTranslateX(10);
-        nblike.setTranslateY(-2);
-        int l = sm.likes(modele.getId()).size();
-        if (l == 0) {
-            nblike.setText("0");
-        } else {
-            nblike.setText(String.valueOf(l));
-        }
-        like.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent lk) {
-                List<ProduitLike> test = sm.likes(modele.getId());
-                if (sm.islikedbyuser(modele.getId()).isEmpty()) {
-                    sm.ajouterlike(modele.getId());
-                    like.setGlyphName("HEART");
-                    like.setFill(Color.RED);
-                    like.setGlyphSize(25);
-                    like.setCursor(Cursor.HAND);
-                    int li = sm.likes(modele.getId()).size();
-                    nblike.setText(String.valueOf(li));
-                } else {
-                    sm.Supprimerlike(modele.getId());
-                    like.setGlyphName("HEART_ALT");
-                    like.setFill(Color.RED);
-                    like.setGlyphSize(25);
-                    like.setCursor(Cursor.HAND);
-                    int li = sm.likes(modele.getId()).size();
-                    nblike.setText(String.valueOf(li));
-                }
-            }
-        });
-
-        lc.getChildren().add(like);
-        lc.getChildren().add(nblike);
-        box.getChildren().add(lc);
-
+        
     }
 
     @FXML
