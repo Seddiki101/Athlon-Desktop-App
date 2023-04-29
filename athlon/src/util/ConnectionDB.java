@@ -19,6 +19,9 @@ public class ConnectionDB {
     public String login="root";
     public String pwd=""; 
     Connection cnx;
+    
+        private static int pickedPRoductId;
+    
     public static ConnectionDB instance;
 
     public ConnectionDB() {
@@ -43,6 +46,13 @@ public class ConnectionDB {
         return instance;
     }
     
+        public static int getPickedPRoductId() {
+        return pickedPRoductId;
+    }
+
+    public static void setPickedPRoductId(int aPickedPRoductId) {
+        pickedPRoductId = aPickedPRoductId;
+    }
     
     
     

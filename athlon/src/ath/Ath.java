@@ -19,7 +19,7 @@ public class Ath extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("/viewCour/FXML.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/viewProduit/frontProduit.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/setup/setup.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/gui/Dashboard.fxml"));
         Scene scene = new Scene(root);

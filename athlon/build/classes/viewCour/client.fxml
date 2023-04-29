@@ -16,7 +16,7 @@
             <!-- Les colonnes du tableau ici -->
               <Button fx:id="ConsultButton" layoutX="289.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleConsult" text="Consulter" />
 <Button fx:id="ExercicesButton" layoutX="469.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleExercices" styleClass="handleExercices" text="Exercices" />
-      <Button fx:id="IMCButton" layoutX="23.0" layoutY="380.0" mnemonicParsing="false" onAction="" prefHeight="31.0" prefWidth="237.0" text="Caluculez votre IMC" />
+      <Button fx:id="IMCButton" layoutX="23.0" layoutY="380.0" mnemonicParsing="false"  prefHeight="31.0" prefWidth="237.0" text="Caluculez votre IMC" />
 
     </children>
 </AnchorPane>

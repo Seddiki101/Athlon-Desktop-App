@@ -41,7 +41,7 @@ public class LauncherController implements Initializable {
     @FXML
     private AnchorPane apLauncher;
     
-    AnchorPane profileL,addrecL,verifyL,gymBot,coachL,courf;
+    AnchorPane profileL,addrecL,verifyL,gymBot,coachL,courf,prodf;
 
     /**
      * Initializes the controller class.
@@ -75,6 +75,7 @@ public class LauncherController implements Initializable {
             gymBot = FXMLLoader.load(getClass().getResource("/Advanced/chi.fxml"));
             coachL = FXMLLoader.load(getClass().getResource("/viewemploye/employefront.fxml"));
             courf  = FXMLLoader.load(getClass().getResource("/viewCour/client.fxml"));
+            prodf = FXMLLoader.load(getClass().getResource("/viewProduit/MenuProduit.fxml"));
             
             
             if(SessionManager.getUser().getVerified()!=1)
@@ -126,5 +127,9 @@ public class LauncherController implements Initializable {
     }                  
       
 
+           public void switchProduitfront(ActionEvent event) {
+           setNode(prodf);
+    }                
+                        
 
 }

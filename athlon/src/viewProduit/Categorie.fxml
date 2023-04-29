@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="754.0" prefWidth="1049.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewProduit.CategorieController">
+   <children>
+      <BorderPane layoutX="17.0" layoutY="16.0" prefHeight="72.0" prefWidth="1080.0" style="-fx-border-color: white;">
+         <right>
+            <ImageView fitHeight="85.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../GUI.images/logo2.png" />
+               </image>
+            </ImageView>
+         </right></BorderPane>
+      <TextField fx:id="nomCatFiled" layoutX="175.0" layoutY="272.0" />
+      <TextField fx:id="imageCatFiled" layoutX="702.0" layoutY="-67.0" />
+      <Text fill="#fbf8f8" layoutX="66.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font></Text>
+      <Text fill="#f8eeee" layoutX="933.0" layoutY="-43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font></Text>
+      <Button fx:id="AjouterCat" layoutX="372.0" layoutY="465.0" mnemonicParsing="false" onAction="#AjouterCat" style="-fx-background-color: #b13535;" text="Ajouter" />
+      <TableView fx:id="TableViewCat" layoutX="519.0" layoutY="213.0" onMouseClicked="#getSelectedCat" prefHeight="200.0" prefWidth="309.0">
+        <columns>
+          <TableColumn fx:id="idCat" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="nomCat" prefWidth="75.0" text="nom" />
+        </columns>
+      </TableView>
+      <Button fx:id="modifierCat" layoutX="533.0" layoutY="465.0" mnemonicParsing="false" onAction="#modifierCat" style="-fx-background-color: #b13535;" text="Modifier" />
+      <Button fx:id="supprimerCat" layoutX="673.0" layoutY="465.0" mnemonicParsing="false" onAction="#supprimerCat" style="-fx-background-color: #b13535;" text="Supprimer" />
+      <Pane layoutX="487.0" layoutY="146.0" prefHeight="516.0" prefWidth="4.0" style="-fx-background-color: #9d240b;" />
+      <Text fill="#9d240b" layoutX="27.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CATEGORIE" wrappingWidth="196.6708984375">
+         <font>
+            <Font name="Baskerville Old Face" size="32.0" />
+         </font>
+      </Text>
+      <BorderPane layoutX="341.0" layoutY="32.0" prefHeight="32.0" prefWidth="200.0" style="-fx-background-color: #eeeded;">
+         <center>
+            <TextField promptText="Search" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+      <TextField fx:id="IdCatFiled" layoutX="549.0" layoutY="-83.0" />
+     
+   </children>
+</AnchorPane>

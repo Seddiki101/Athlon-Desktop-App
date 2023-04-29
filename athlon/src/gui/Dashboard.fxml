@@ -26,12 +26,12 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Produit" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#switchProduitBack" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Produit" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="118.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Categorie" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="118.0" mnemonicParsing="false" onAction="#switchCatBack" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Categorie" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

@@ -23,7 +23,7 @@
             <Label fx:id="tfUsernameLauncher" layoutX="106.0" layoutY="40.0" text="username" textFill="WHITE" />
             <HBox layoutX="224.0" layoutY="22.0" prefHeight="54.0" prefWidth="362.0">
                <children>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Articles" textFill="WHITE">
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchProduitfront" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Articles" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

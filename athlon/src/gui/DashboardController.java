@@ -44,7 +44,7 @@ public class DashboardController implements Initializable {
     @FXML
     private ImageView ivProfile;
 
-    AnchorPane profile,listUsr,listRecs,listemploye,listconge;
+    AnchorPane profile,listUsr,listRecs,listemploye,listconge,listprod,listcat;
 
     /**
      * Initializes the controller class.
@@ -60,6 +60,8 @@ public class DashboardController implements Initializable {
             listRecs = FXMLLoader.load(getClass().getResource("/viewReclamation/ListReclamation.fxml"));
              listemploye = FXMLLoader.load(getClass().getResource("/viewemploye/employelist.fxml"));
              listconge = FXMLLoader.load(getClass().getResource("/viewconge/congelist.fxml"));
+             listprod = FXMLLoader.load(getClass().getResource("/viewProduit/MenuProduit.fxml"));
+             listcat = FXMLLoader.load(getClass().getResource("/viewProduit/Categorie.fxml"));
           //  setNode(listUsr);
           
                                 //image adding         
@@ -116,6 +118,18 @@ public class DashboardController implements Initializable {
         //this won t work unless you login
            setNode(listconge);
     }
-    
+ 
+             public void switchProduitBack(ActionEvent event) {
+           setNode(listprod);
+    }
+             
+                 public void switchCatBack(ActionEvent event) {
+           setNode(listcat);
+    }         
+             
+             
+             
+        
+        
     
 }
