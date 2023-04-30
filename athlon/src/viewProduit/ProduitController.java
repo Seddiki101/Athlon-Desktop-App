@@ -158,7 +158,7 @@ String path="";
         PrixProduit.setCellValueFactory(new PropertyValueFactory<>("prix"));
        imageProduit.setCellValueFactory(new PropertyValueFactory<>("image"));
        CategoryP.setCellValueFactory(new PropertyValueFactory<>("nomCategory"));
-        System.out.println("affichage" + sc.afficherProduit());
+      //  System.out.println("affichage" + sc.afficherProduit());
          TableView.setItems(Produit);
      }
     
@@ -174,7 +174,7 @@ String path="";
 public void show() {
    
    ObservableList<Produit> ProduitList = FXCollections.observableArrayList(sc.afficherProduit());
-        System.out.println("affichage" + sc.afficherProduit());
+    //    System.out.println("affichage" + sc.afficherProduit());
         idProduit.setCellValueFactory(new PropertyValueFactory<>("id"));
         NomProduit.setCellValueFactory(new PropertyValueFactory<>("nom"));
         brandProduit.setCellValueFactory(new PropertyValueFactory<>("brand"));

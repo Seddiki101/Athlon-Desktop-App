@@ -27,7 +27,7 @@
          <right>
             <ImageView fitHeight="119.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../GUI.images/logo2.png" />
+                  <Image url="@../img/logo2.png" />
                </image>
             </ImageView>
          </right>

@@ -30,6 +30,7 @@ import javafx.util.Callback;
 import entity.Exercices;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.Node;
 
 public class FXMLclController {
     @FXML
@@ -95,6 +96,19 @@ private void handleExercices() throws IOException {
     stage.setScene(scene);
     stage.show();
 }
+
+
+
+
+@FXML
+private void handleIMC(ActionEvent event) throws IOException {
+    Parent root = FXMLLoader.load(getClass().getResource("IMC.fxml"));
+    Scene scene = new Scene(root);
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    stage.setScene(scene);
+    stage.show();
+}
+
 
 
 }

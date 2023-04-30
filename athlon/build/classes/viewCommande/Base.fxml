@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="863.0" prefWidth="1260.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewCommande.BaseController">
+   <top>
+      <AnchorPane style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox accessibleRole="BUTTON" alignment="CENTER_RIGHT" layoutX="1080.0" layoutY="22.0" spacing="20.0" AnchorPane.bottomAnchor="22.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="22.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/USER.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="ConnectedUserNameLabel" alignment="CENTER" prefHeight="37.0" text="User" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </HBox>
+            <Label fx:id="TitreLabel" layoutX="326.0" layoutY="26.0" text="Gestion Order" textFill="#7c8184" AnchorPane.bottomAnchor="22.0" AnchorPane.topAnchor="22.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="81.0" prefWidth="291.0" style="-fx-background-color: #00A2D3;" text="Admin Panel" textFill="WHITE">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Ebrima" size="19.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="logoImageview" fitHeight="71.0" fitWidth="76.0" layoutX="3.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <VBox prefHeight="874.0" prefWidth="292.0" styleClass="sidebar" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox fx:id="gestionOrderButton" alignment="CENTER_LEFT" onMouseClicked="#LoadGestionOrder" prefHeight="50.0" prefWidth="292.0" styleClass="btns" stylesheets="@style.css">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView glyphName="DASHBOARD" glyphStyle="-fx-fill:#7c8184" size="1.3em" />
+                  <Label stylesheets="@style.css" text="Gestion Order" textFill="#7c8184">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox fx:id="GestionOrderItemButon" alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" onMouseClicked="#LoadGestionOrderItem" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@style.css">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView glyphName="USERS" glyphStyle="-fx-fill:#7c8184" size="1.3em" />
+                  <Label stylesheets="@style.css" text="Gestion OrderItem" textFill="#7c8184">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox fx:id="cartButon" alignment="CENTER_LEFT" onMouseClicked="#LoadCart" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@style.css">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView glyphName="USERS" glyphStyle="-fx-fill:#7c8184" size="1.3em" />
+                  <Label stylesheets="@style.css" text="Panier" textFill="#7c8184">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox fx:id="produitButton" alignment="CENTER_LEFT" onMouseClicked="#LoadProduit" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@style.css">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView glyphName="USERS" glyphStyle="-fx-fill:#7c8184" size="1.3em" />
+                  <Label fx:id="Produit" stylesheets="@style.css" text="Produit" textFill="#7c8184">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <StackPane fx:id="AnchorePaneLayout" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

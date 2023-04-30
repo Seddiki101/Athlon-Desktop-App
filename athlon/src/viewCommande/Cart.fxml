@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="paine" prefHeight="799.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewCommande.CartController">
+   <children>
+      <Pane layoutX="700.0" layoutY="8.0" prefHeight="319.0" prefWidth="262.0">
+         <children>
+            <Label fx:id="totale1Label" layoutX="29.0" layoutY="28.0" prefHeight="37.0" prefWidth="89.0" text="Totale" />
+            <Label fx:id="Rtotale2Label" layoutX="29.0" layoutY="102.0" prefHeight="37.0" prefWidth="89.0" text="Totale" />
+            <Label fx:id="RemiseLabel" layoutX="29.0" layoutY="65.0" prefHeight="37.0" prefWidth="89.0" text="Remise" />
+         </children>
+      </Pane>
+      <GridPane fx:id="gridPane" alignment="TOP_RIGHT" layoutX="7.0" layoutY="8.0" prefHeight="793.0" prefWidth="970.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="8.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="695.0" minWidth="10.0" prefWidth="564.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="695.0" minWidth="10.0" prefWidth="406.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#add_Commande" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #00A2D3;" text="Commander" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="1.7em" />
+               </graphic>
+               <font>
+                  <Font name="Calibri Light" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

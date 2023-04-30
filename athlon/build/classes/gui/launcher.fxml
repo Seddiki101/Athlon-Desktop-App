@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LauncherController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LauncherController">
    <center>
       <AnchorPane fx:id="apLauncher" prefHeight="312.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -21,16 +21,26 @@
          <children>
             <ImageView fx:id="ivProfileLauncher" fitHeight="84.0" fitWidth="92.0" layoutX="14.0" layoutY="14.0" onMousePressed="#switchProfileL" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="tfUsernameLauncher" layoutX="106.0" layoutY="40.0" text="username" textFill="WHITE" />
-            <HBox layoutX="224.0" layoutY="22.0" prefHeight="54.0" prefWidth="362.0">
+            <HBox layoutX="224.0" layoutY="22.0" prefHeight="54.0" prefWidth="628.0">
                <children>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchProduitfront" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Articles" textFill="WHITE">
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchProduitfront" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Produit" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
                  
-                        <Button mnemonicParsing="false" onAction="#switchBot" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Bot" textFill="WHITE">
+                                          <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Article" textFill="WHITE">
                       <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#switchCourfront" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Cour" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="92.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchExercicefront" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Exercice" textFill="WHITE">
+                     <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
@@ -39,12 +49,12 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="92.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchCourfront" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Cour" textFill="WHITE">
+                  <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Panier" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="92.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchAddRecL" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Reclamer" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#switchAddRecL" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 0px 2px;" text="Reclamer" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

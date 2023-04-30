@@ -16,6 +16,7 @@ public class Produit {
     private float prix;
     private float moyRating;
 
+    
     public float getMoyRating() {
         return moyRating;
     }
@@ -35,6 +36,11 @@ public class Produit {
     }
 
     public Produit() {
+    }
+    
+        public Produit(int i,String s) {
+            this.id=i;
+            this.nom=s;
     }
 
     public Produit(int id, String nom, String brand, String description, String image, float prix) {

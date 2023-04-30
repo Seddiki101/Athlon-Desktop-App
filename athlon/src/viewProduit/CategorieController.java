@@ -69,13 +69,13 @@ ServiceCategorie sc =new ServiceCategorie();
          
       // imageCat.setCellValueFactory(new PropertyValueFactory<>("image"));
 
-        System.out.println("affichage" + sc.afficherCategorie());
+    //    System.out.println("affichage" + sc.afficherCategorie());
          TableViewCat.setItems(Categorie);
      }
     
     public void show() {
         ObservableList<Categorie> CategorieList = FXCollections.observableArrayList(sc.afficherCategorie());
-        System.out.println("affichage" + sc.afficherCategorie());
+       // System.out.println("affichage" + sc.afficherCategorie());
               idCat.setCellValueFactory(new PropertyValueFactory<>("id"));
        nomCat.setCellValueFactory(new PropertyValueFactory<>("nom"));
       

@@ -36,12 +36,12 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="154.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Commandes" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="154.0" mnemonicParsing="false" onAction="#switchPanierback" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Commandes" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="334.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Cour" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="334.0" mnemonicParsing="false" onAction="#switchCourBack" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Cour" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -51,7 +51,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="262.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Article" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="262.0" mnemonicParsing="false" onAction="#switchArticleback" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Article" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
