@@ -97,6 +97,7 @@ public class ListUserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        refreshing();
     }
 
     public ObservableList<User> getUserList() {

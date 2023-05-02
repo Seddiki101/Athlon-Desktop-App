@@ -26,22 +26,32 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Produit" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#switchEmploye" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Employe" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="118.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Categorie" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="226.0" mnemonicParsing="false" onAction="#switchConge" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Conge" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="154.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Commandes" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#switchProduitBack" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Produit" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="334.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Cour" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="118.0" mnemonicParsing="false" onAction="#switchCatBack" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Categorie" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="154.0" mnemonicParsing="false" onAction="#switchPanierback" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Commandes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="334.0" mnemonicParsing="false" onAction="#switchCourBack" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Cour" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -51,22 +61,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="262.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Article" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="10.0" layoutY="370.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Sujet" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#switchEmploye" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Employe" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="10.0" layoutY="226.0" mnemonicParsing="false" onAction="#switchConge" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Conge" textFill="WHITE">
+            <Button layoutX="10.0" layoutY="262.0" mnemonicParsing="false" onAction="#switchArticleback" prefHeight="36.0" prefWidth="129.0" styleClass="nav-button" stylesheets="@../style/custom.css" text="Article" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

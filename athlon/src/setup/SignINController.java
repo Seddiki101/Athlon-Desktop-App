@@ -217,7 +217,10 @@ public class SignINController implements Initializable {
                     }      
                     
                     
-                }  
+                }  else {
+                       
+                        lblErrorLogin.setText("verify your email or password");
+                    }  
                     //here teleport
                 }
                         else {

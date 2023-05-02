@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,13 +19,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import util.SessionManager;
+import viewCour.ExercicesController;
 
 /**
  * FXML Controller class
@@ -41,7 +47,7 @@ public class LauncherController implements Initializable {
     @FXML
     private AnchorPane apLauncher;
     
-    AnchorPane profileL,addrecL,verifyL,gymBot,coachL,courf;
+    AnchorPane profileL,addrecL,verifyL,gymBot,coachL,courf,exercicef,prodf,panierf;
 
     /**
      * Initializes the controller class.
@@ -75,7 +81,10 @@ public class LauncherController implements Initializable {
             gymBot = FXMLLoader.load(getClass().getResource("/Advanced/chi.fxml"));
             coachL = FXMLLoader.load(getClass().getResource("/viewemploye/employefront.fxml"));
             courf  = FXMLLoader.load(getClass().getResource("/viewCour/client.fxml"));
+            exercicef  = FXMLLoader.load(getClass().getResource("/viewCour/Exercices.fxml"));
+            //prodf = FXMLLoader.load(getClass().getResource("frontProduit.fxml"));
             
+            setNode(coachL);
             
             if(SessionManager.getUser().getVerified()!=1)
             {
@@ -108,6 +117,7 @@ public class LauncherController implements Initializable {
            setNode(profileL);
     }
         
+    @FXML
             public void switchAddRecL(ActionEvent event) {
            setNode(addrecL);
     }
@@ -116,15 +126,113 @@ public class LauncherController implements Initializable {
            setNode(gymBot);
     }    
     
+    @FXML
                     public void switchEmployefront(ActionEvent event) {
            setNode(coachL);
     }
                     
                     
-                        public void switchCourfront(ActionEvent event) {
-           setNode(courf);
+    @FXML
+        public void switchCourfront(ActionEvent event) {
+           //setNode(courf);
+           
+                     try {
+                 //FXMLLoader loader = new FXMLLoader(getClass().getResource("B:/project/jav/fx/equipa/Athlon-Desktop-App-Employe/athlon/src/viewCour/detailsEX.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewCour/client.fxml"));
+                 Parent root69 = loader.load();
+                 Scene scene69 = new Scene(root69);
+                 Stage newStage69 = new Stage();
+                 newStage69.setScene(scene69); 
+                 newStage69.show();
+             } catch (IOException ex) {
+                 System.out.println(ex);
+             }
+           
     }                  
       
+     
 
+    @FXML
+        public void switchExercicefront(ActionEvent event) {
+           //setNode(exercicef);
+
+                        try {
+                 //FXMLLoader loader = new FXMLLoader(getClass().getResource("B:/project/jav/fx/equipa/Athlon-Desktop-App-Employe/athlon/src/viewCour/detailsEX.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewCour/Exercices.fxml"));
+                 Parent root69 = loader.load();
+                 Scene scene69 = new Scene(root69);
+                 Stage newStage69 = new Stage();
+                 newStage69.setScene(scene69); 
+                 newStage69.show();
+             } catch (IOException ex) {
+                 System.out.println(ex);
+             }
+           
+           
+    }   
+
+    @FXML
+    private void switchProfileL(MouseEvent event) {
+    }
+    
+    
+    
+    @FXML
+           public void switchProduitfront(ActionEvent event) throws IOException {
+          // setNode(prodf);
+           
+                                try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/frontProduit.fxml"));
+                 Parent root69 = loader.load();
+                 Scene scene69 = new Scene(root69);
+                 Stage newStage69 = new Stage();
+                 newStage69.setScene(scene69); 
+                 newStage69.show();
+             } catch (IOException ex) {
+                 System.out.println(ex);
+             }
+                            
+           }
+    
+            
+               @FXML
+           public void switchPanierfront(ActionEvent event) {
+           //setNode(prodf);
+   
+                                try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewCommande/Base.fxml"));
+                 Parent root69 = loader.load();
+                 Scene scene69 = new Scene(root69);
+                 Stage newStage69 = new Stage();
+                 newStage69.setScene(scene69); 
+                 newStage69.show();
+             } catch (IOException ex) {
+                 System.out.println(ex);
+             }
+           
+           
+           }
+           
+           
+           
+           
+              @FXML
+           public void switchArticlefront(ActionEvent event) {
+           //setNode(prodf);
+   
+                                try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewArticle/Base.fxml"));
+                 Parent root69 = loader.load();
+                 Scene scene69 = new Scene(root69);
+                 Stage newStage69 = new Stage();
+                 newStage69.setScene(scene69); 
+                 newStage69.show();
+             } catch (IOException ex) {
+                 System.out.println(ex);
+             }
+           
+           
+           }
+           
 
 }

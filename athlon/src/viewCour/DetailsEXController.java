@@ -50,12 +50,14 @@ private StringProperty machine = new SimpleStringProperty();
 
 public void initialize() {
     // Liens entre les propriétés et les labels
+    
     nomCoursLabel.textProperty().bind(nomCours);
     nomLabel.textProperty().bind(nom);
     descriptionLabel.textProperty().bind(description);
     dureeLabel.textProperty().bind(duree.asString());
     repetitionsLabel.textProperty().bind(nombreRepetitions.asString());
     machineLabel.textProperty().bind(machine);
+    
     
 }
 

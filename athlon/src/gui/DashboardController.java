@@ -44,7 +44,7 @@ public class DashboardController implements Initializable {
     @FXML
     private ImageView ivProfile;
 
-    AnchorPane profile,listUsr,listRecs,listemploye,listconge;
+    AnchorPane profile,listUsr,listRecs,listemploye,listconge,listprod,listcat,listcour,listex;
 
     /**
      * Initializes the controller class.
@@ -54,13 +54,19 @@ public class DashboardController implements Initializable {
             InputStream stream; 
             // preparing the pages
             try {
-          //        profile = FXMLLoader.load(getClass().getResource("/gui/page.fxml"));
+
             profile = FXMLLoader.load(getClass().getResource("/viewUser/Profile.fxml"));
             listUsr = FXMLLoader.load(getClass().getResource("/viewUser/ListUser.fxml"));
             listRecs = FXMLLoader.load(getClass().getResource("/viewReclamation/ListReclamation.fxml"));
              listemploye = FXMLLoader.load(getClass().getResource("/viewemploye/employelist.fxml"));
              listconge = FXMLLoader.load(getClass().getResource("/viewconge/congelist.fxml"));
-          //  setNode(listUsr);
+             listprod = FXMLLoader.load(getClass().getResource("/gui/Produit.fxml"));
+             listcat = FXMLLoader.load(getClass().getResource("/gui/Categorie.fxml"));
+             listcour = FXMLLoader.load(getClass().getResource("/viewCour/FXML.fxml"));
+            // listex = FXMLLoader.load(getClass().getResource("/viewCour/Fxmlex.fxml"));
+             
+             
+             setNode(listUsr);
           
                                 //image adding         
             stream = new FileInputStream("B:/project/jav/fx/athlon/src/media/profil.png");
@@ -95,10 +101,12 @@ public class DashboardController implements Initializable {
     }
     
     
+    @FXML
     public void switchUserList(ActionEvent event) {
         setNode(listUsr);
     }
     
+    @FXML
     public void switchRecList(ActionEvent event) {
         setNode(listRecs);
     }
@@ -107,15 +115,72 @@ public class DashboardController implements Initializable {
         //this won t work unless you login
            setNode(profile);
     }
+    @FXML
       public void switchEmploye(ActionEvent event) {
         //this won t work unless you login
            setNode(listemploye);
     }
       
+    @FXML
         public void switchConge(ActionEvent event) {
-        //this won t work unless you login
            setNode(listconge);
     }
+ 
+    @FXML
+             public void switchProduitBack(ActionEvent event) {
+           setNode(listprod);
+    }
+             
+    @FXML
+                 public void switchCatBack(ActionEvent event) {
+           setNode(listcat);
+    }         
+
+    @FXML
+                     public void switchCourBack(ActionEvent event) {
+           setNode(listcour);
+    }         
+                          
+             
     
+                     
+                     
+                     
+                  
+              @FXML
+           public void switchArticleback(ActionEvent event) {
+           //setNode(prodf);
+   
+                                try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewArticle/Base.fxml"));
+                 Parent root69 = loader.load();
+                 Scene scene69 = new Scene(root69);
+                 Stage newStage69 = new Stage();
+                 newStage69.setScene(scene69); 
+                 newStage69.show();
+             } catch (IOException ex) {
+                 System.out.println(ex);
+             }
+           
+           
+           }              
+        
+    @FXML
+           public void switchPanierback(ActionEvent event) {
+           //setNode(prodf);
+   
+                                try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewCommande/Base.fxml"));
+                 Parent root69 = loader.load();
+                 Scene scene69 = new Scene(root69);
+                 Stage newStage69 = new Stage();
+                 newStage69.setScene(scene69); 
+                 newStage69.show();
+             } catch (IOException ex) {
+                 System.out.println(ex);
+             }
+           
+           
+           }
     
 }

@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewCour.FXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewCour.FXMLController">
    <stylesheets>
        <URL value="file:///B:/project/jav/fx/equipa/Athlon-Desktop-App-Employe/athlon/src/style/style.css" />
    </stylesheets>
     <children>
       <HBox layoutX="62.0" layoutY="75.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="582.0" prefWidth="302.0">
+            <VBox prefHeight="600.0" prefWidth="600.0">
                <children>
                  
                   <HBox prefHeight="52.0" prefWidth="406.0">
@@ -54,24 +54,24 @@
                   
                   <HBox prefHeight="32.0" prefWidth="208.0">
                      <children>
-                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#addItem" text="Add" />
-                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteItem" text="Del" />
-                        <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateItem" text="Update" />
-                        <Button fx:id="clearButton" onAction="#handleClearButtonAction" text="Clear" />
+                        <Button fx:id="addButton" minWidth="70.0" mnemonicParsing="false" onAction="#addItem" text="Add" />
+                        <Button fx:id="deleteButton" minWidth="70.0" mnemonicParsing="false" onAction="#deleteItem" text="Del" />
+                        <Button fx:id="updateButton" minWidth="70.0" mnemonicParsing="false" onAction="#updateItem" text="Update" />
+                        <Button fx:id="clearButton" minWidth="70.0" onAction="#handleClearButtonAction" text="Clear" />
 
                      </children>
                   </HBox>
                </children>
             </VBox>
             
-<TableView fx:id="tableview" prefHeight="157.0" prefWidth="332.0" style="-fx-font-size: 14pt;">
+<TableView fx:id="tableview" prefHeight="160.0" prefWidth="800.0" style="-fx-font-size: 14pt;">
               <columns>
              
                       <TableColumn fx:id="colnom" prefWidth="58.0" text="nom" />
-                  <TableColumn fx:id="coldescription_cours" prefWidth="55.0" text="description_cours" />
-                  <TableColumn fx:id="colduree_cours" prefWidth="66.0" text="duree_cours" />
-                  <TableColumn fx:id="colcapacity" prefWidth="39.0" text="capacity" />
-                  <TableColumn fx:id="colniveau_cours" prefWidth="52.0" text="niveau_cours" />
+                  <TableColumn fx:id="coldescription_cours" prefWidth="123.99992370605469" text="description_cours" />
+                  <TableColumn fx:id="colduree_cours" prefWidth="115.20001220703125" text="duree_cours" />
+                  <TableColumn fx:id="colcapacity" prefWidth="84.0" text="capacity" />
+                  <TableColumn fx:id="colniveau_cours" prefWidth="132.0" text="niveau_cours" />
               </columns>
             </TableView>
 </children>

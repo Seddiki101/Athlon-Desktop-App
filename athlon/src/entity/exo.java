@@ -10,13 +10,71 @@ package entity;
  * @author k
  */
 public class exo {
+    public String id;
+    public String bodyParts;
+    public String equipment;
+    public String gifUrl;
     public String name;
-    public String desc;
+    public String target;        
 
-    public exo(String name, String desc) {
+    public exo(String id, String bodyParts, String equipment, String gifUrl, String name, String target) {
+        this.id = id;
+        this.bodyParts = bodyParts;
+        this.equipment = equipment;
+        this.gifUrl = gifUrl;
         this.name = name;
-        this.desc = desc;
+        this.target = target;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getBodyParts() {
+        return bodyParts;
+    }
+
+    public void setBodyParts(String bodyParts) {
+        this.bodyParts = bodyParts;
+    }
+
+    public String getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(String equipment) {
+        this.equipment = equipment;
+    }
+
+    public String getGifUrl() {
+        return gifUrl;
+    }
+
+    public void setGifUrl(String gifUrl) {
+        this.gifUrl = gifUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+
     
     
     

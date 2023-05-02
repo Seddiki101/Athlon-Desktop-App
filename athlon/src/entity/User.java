@@ -27,6 +27,10 @@ public class User {
 
     public User() {
     }
+    
+    public User(int i) {
+        this.id=i;
+    }
 
     /*
     public User(int id, String nom, String email, String roles ) {

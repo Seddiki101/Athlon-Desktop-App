@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="878.0" prefWidth="1319.0" style="-fx-background-color: black;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FrontProduitController">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="1300.0" spacing="20.0" style="-fx-background-color: black;" styleClass="white-background" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="59.0" prefWidth="217.0" text="SHOP" textFill="#f50f0f">
+               <font>
+                  <Font name="Baskerville Old Face" size="36.0" />
+               </font>
+            </Label>
+            <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
+            <Pane prefHeight="61.0" prefWidth="566.0" style="-fx-background-color: black;" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox fx:id="categoriesBox" layoutX="7.0" layoutY="23.0" prefHeight="63.0" prefWidth="538.0" />
+                  <HBox alignment="CENTER" layoutX="360.0" layoutY="-1.0" prefHeight="111.0" prefWidth="485.0" style="-fx-background-color: black;">
+                     <children>
+                        <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="83.0" prefWidth="18.0" />
+                        <TextField fx:id="searchField" promptText="Rechercher ..." />
+                        <Button mnemonicParsing="false" onAction="#searchProduit" style="-fx-background-color: #061e68;" text="Rechercher" textFill="#f5efef">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children></Pane>
+         </children>
+         <BorderPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+   <styleClass>
+      <String fx:value="mouse-moved" />
+      <String fx:value="selected" />
+   </styleClass>
+   <center>
+      <VBox prefHeight="720.0" prefWidth="1319.0" spacing="10.0" style="-fx-background-color: #9d240b;" BorderPane.alignment="CENTER">
+         <children>
+            <Separator prefHeight="0.0" prefWidth="1319.0" />
+            <TextField fx:id="prixminFiled" maxWidth="-Infinity" promptText="Prix minimum" />
+            <TextField fx:id="prixmaxFiled" maxWidth="-Infinity" promptText="Prix maximum" />
+            <Button fx:id="filtrerPrixButton" mnemonicParsing="false" onAction="#filterPrxi" style="-fx-background-color: #061e68;" text="Filtrer" textFill="#eff0f4">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Pagination fx:id="pagination" prefHeight="53.0" prefWidth="1319.0" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

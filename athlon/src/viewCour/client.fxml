@@ -4,19 +4,27 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="425.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewCour.FXMLclController">
   <stylesheets>
         <URL value="file:///B:/project/jav/fx/equipa/Athlon-Desktop-App-Employe/athlon/src/style/style.css" />
    </stylesheets> 
     <children>
+        
         <Label layoutX="248.0" layoutY="14.0" style="-fx-text-fill: white;-fx-font-weight: bold;" text="Cours" />
-<TableView fx:id="tableView" layoutX="25.0" layoutY="41.0" prefHeight="329.0" prefWidth="550.0" />
+        <TableView fx:id="tableView" layoutX="25.0" layoutY="41.0" prefHeight="329.0" prefWidth="550.0" stylesheets="@../../style.css" />
             <!-- Les colonnes du tableau ici -->
-              <Button fx:id="ConsultButton" layoutX="289.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleConsult" text="Consulter" />
-<Button fx:id="ExercicesButton" layoutX="469.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleExercices" styleClass="handleExercices" text="Exercices" />
-      <Button fx:id="IMCButton" layoutX="23.0" layoutY="380.0" mnemonicParsing="false" onAction="" prefHeight="31.0" prefWidth="237.0" text="Caluculez votre IMC" />
+        <Button fx:id="ConsultButton" layoutX="353.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleConsult" text="Consulter" />
+        <Button fx:id="ExercicesButton" layoutX="469.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleExercices" style="-fx-background-color: #4CAF50;-fx-text-fill: white; " text="Exercices" />
+
+        <Button fx:id="IMCButton" layoutX="25.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleIMC" prefHeight="31.0" prefWidth="232.0" style="-fx-background-color: #4CAF50;-fx-text-fill: white;" text="Calculer votre IMC" />
+        <HBox layoutX="25.0" layoutY="10.0">
+            <TextField fx:id="searchField" promptText="Rechercher par nom..." />
+            <Button fx:id="searchButton"  style="-fx-background-color: #4CAF50;-fx-text-fill: white;" text="Rechercher" />
+        </HBox>
 
     </children>
 </AnchorPane>
