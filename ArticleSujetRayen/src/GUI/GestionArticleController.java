@@ -42,7 +42,7 @@ import services.ArticleService;
 /**
  * FXML Controller class
  *
- * @author Houssem Charef
+ * @author Wasli rayen
  */
 public class GestionArticleController implements Initializable {
 
@@ -101,7 +101,12 @@ public class GestionArticleController implements Initializable {
     private void LoadData() {
 
         refreshTable();
-        titreCell.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        FontAwesomeIconView logoIcon = new FontAwesomeIconView(FontAwesomeIcon.FIRE);
+
+        titreCell.setCellValueFactory(cellData
+                -> {
+            return new SimpleStringProperty(cellData.getValue().index < 3 ? ((Article) cellData.getValue()).getTitre() + "       (most liked)" : cellData.getValue().getTitre());
+        });
         sujetCell1.setCellValueFactory(cellData
                 -> {
             return new SimpleStringProperty(cellData.getValue().getSujet().getNom());

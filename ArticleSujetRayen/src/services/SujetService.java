@@ -20,7 +20,7 @@ import utils.DataSource;
 
 /**
  *
- * @author wasli rayen
+ * @author Wasli rayen
  */
 public class SujetService implements IService<Sujet> {
     

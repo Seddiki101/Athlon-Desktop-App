@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="739.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddUpdateSujetController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="739.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddUpdateSujetController">
    <children>
       <Label fx:id="TitleLabel" alignment="CENTER" layoutX="-1.0" layoutY="14.0" prefHeight="43.0" prefWidth="654.0" text="Sujet">
          <font>
@@ -46,7 +46,7 @@
             </Label>
             <Label GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <TextField fx:id="imageFiled" prefHeight="30.0" prefWidth="163.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label alignment="CENTER" prefHeight="33.0" prefWidth="164.0" text="importance" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label alignment="CENTER" prefHeight="33.0" prefWidth="164.0" text="image" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="17.0" />
                </font>

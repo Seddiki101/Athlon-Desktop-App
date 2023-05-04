@@ -7,7 +7,7 @@ package entites;
 
 /**
  *
- * @author wasli rayen
+ * @author Wasli rayen
  */
 public class Article {
 
@@ -19,6 +19,7 @@ public class Article {
     String img;
     private int like;
     private int dislike;
+    public int index;
 
     public Article() {
     }
@@ -76,7 +77,7 @@ public class Article {
         return img;
     }
 
-    public void setImg(String importance) {
+    public void setImg(String img) {
         this.img = img;
     }
 

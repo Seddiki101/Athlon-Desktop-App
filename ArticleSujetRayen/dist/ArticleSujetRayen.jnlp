@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ArticleSujetRayen.jar" size="50008" download="eager" />
+    <jar href="ArticleSujetRayen.jar" size="50504" download="eager" />
     <jar href="lib\fontawesomefx-glyphsbrowser-all-1.0.jar" size="1662483" download="eager" />
     <jar href="lib\mysql-connector-java-8.0.27.jar" size="2475087" download="eager" />
     <jar href="lib\twilio-8.9.0-jar-with-dependencies.jar" size="8358946" download="eager" />

@@ -20,7 +20,7 @@ import utils.DataSource;
 
 /**
  *
- * @author Houssem Charef
+ * @author Wasli rayen
  */
 public class CommentService implements IService<Comment> {
 
@@ -38,6 +38,9 @@ public class CommentService implements IService<Comment> {
         String sql = "INSERT INTO `comment`( `comment`, `id_article`, created_on) VALUES (?,?,?)";
         try {
             ps = con.prepareStatement(sql);
+            if (t.getComment().contains("kill") || t.getComment().contains("racisme")) {
+    t.setComment(t.getComment().replaceAll("(?i)(kill|racisme)", "***"));
+}
 
             ps.setString(1, t.getComment());
             ps.setInt(2, t.getArticle().getId());

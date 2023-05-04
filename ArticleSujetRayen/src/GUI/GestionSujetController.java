@@ -42,7 +42,7 @@ import services.SujetService;
 /**
  * FXML Controller class
  *
- * @author Houssem Charef
+ * @author Wasli rayen
  */
 public class GestionSujetController implements Initializable {
 

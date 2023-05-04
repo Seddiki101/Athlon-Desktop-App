@@ -7,7 +7,7 @@ package entites;
 
 /**
  *
- * @author Houssem Charef
+ * @author Wasli rayen
  */
 public class Sujet {
 

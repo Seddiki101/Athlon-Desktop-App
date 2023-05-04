@@ -27,7 +27,7 @@ import services.SujetService;
 /**
  * FXML Controller class
  *
- * @author wasli rayen
+ * @author Wasli rayen
  */
 public class AddUpdateArticleController implements Initializable {
 

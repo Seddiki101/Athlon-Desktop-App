@@ -23,7 +23,7 @@ import utils.DataSource;
 
 /**
  *
- * @author wasli rayen
+ * @author Wasli rayen
  */
 public class ArticleService implements IService<Article> {
 
@@ -49,7 +49,7 @@ public class ArticleService implements IService<Article> {
             ps.setString(5, t.getImg());
 
             boolean r = ps.executeUpdate() > 0;
-            sendSMS("article avec le titre " + t.getTitre() + " a été ajouter", "+21652234709");
+            sendSMS("article avec le titre " + t.getTitre() + " a été ajouter", "+21694567476");
             return r;
         } catch (SQLException ex) {
             Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,13 +95,14 @@ public class ArticleService implements IService<Article> {
 
     @Override
     public List<Article> getAll() {
-        String sql = "SELECT * FROM `article` INNER JOIN sujet on sujet.id = article.sujet_x_id;";
+        String sql = "SELECT * FROM `article` INNER JOIN sujet on sujet.id = article.sujet_x_id order by likes DESC;";
 
         List<Article> list = new ArrayList<>();
         try {
             st = con.createStatement();
 
             rs = st.executeQuery(sql);
+            int i = 0;
 
             while (rs.next()) {
                 Sujet sujet = new Sujet();
@@ -120,6 +121,8 @@ public class ArticleService implements IService<Article> {
                 article.setAuteur("auteur");
                 article.setLike(rs.getInt("likes"));
                 article.setDislike(rs.getInt("dislikes"));
+                article.index = i;
+                i++;
 
                 list.add(article);
             }
@@ -164,8 +167,8 @@ public class ArticleService implements IService<Article> {
     }
 
     public void sendSMS(String message, String num) {
-        String accountSid = "ACaf8bf10a60dcea7dbfd05c2dabd18c35";
-        String authToken = "63086eb67e4699dc0f340f516557fa5a";
+        String accountSid = "ACb03986ea77943c9b9c654a823481efe1";
+        String authToken = "5ac32d9351b3d7088b5a3becbbf12d90";
         Twilio.init(accountSid, authToken);
 
         String from = "+16076012571"; // your Twilio phone number
@@ -177,8 +180,7 @@ public class ArticleService implements IService<Article> {
     }
 
     public boolean updateLike(Article t) {
-       String sql = "UPDATE article SET likes=likes+1 WHERE `id`=?";
-
+        String sql = "UPDATE `article` SET likes=likes+1 WHERE `id`=?";
         try {
             ps = con.prepareStatement(sql);
 
@@ -192,8 +194,7 @@ public class ArticleService implements IService<Article> {
     }
 
     public boolean updateDislike(Article t) {
-        String sql = "UPDATE article SET dislikes=dislikes+1 WHERE `id`=?";
-
+        String sql = "UPDATE `article` SET dislikes=dislikes+1 WHERE `id`=?";
         try {
             ps = con.prepareStatement(sql);
 

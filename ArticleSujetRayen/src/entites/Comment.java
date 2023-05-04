@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 /**
  *
- * @author Houssem Charef
+ * @author Wasli rayen
  */
 public class Comment {
 

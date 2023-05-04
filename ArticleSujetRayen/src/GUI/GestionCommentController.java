@@ -42,7 +42,7 @@ import services.CommentService;
 /**
  * FXML Controller class
  *
- * @author Houssem Charef
+ * @author Wasli rayen
  */
 public class GestionCommentController implements Initializable {
 
