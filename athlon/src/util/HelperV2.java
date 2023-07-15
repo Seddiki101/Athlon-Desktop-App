@@ -56,7 +56,7 @@ public static void sendWelcomeEmail(String toEmail,String context) throws Messag
     // Create a mail session with authentication
     Authenticator auth = new Authenticator() {
         protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication("athlontn@gmail.com", "vbmcqlujlyxnftax");
+            return new PasswordAuthentication("athlontn@gmail.com", "");
         }
     };
     Session session = Session.getInstance(props, auth);
@@ -87,7 +87,7 @@ public static void sendVariableEmail(String toEmail,String context,String title)
     // Create a mail session with authentication
     Authenticator auth = new Authenticator() {
         protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication("athlontn@gmail.com", "vbmcqlujlyxnftax");
+            return new PasswordAuthentication("athlontn@gmail.com", "");
         }
     };
     Session session = Session.getInstance(props, auth);
